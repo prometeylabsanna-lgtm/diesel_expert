@@ -46,7 +46,7 @@
   display: grid;
   gap: var(--s-block);
   max-width: 420px;
-  margin-bottom: var(--s-section);
+  margin-bottom: 32px;
 }
 
 .services__head .section__title {
@@ -63,6 +63,9 @@
   grid-column: 1 / -1;
   order: 2;
   width: 100%;
+}
+
+.services__more.btn.btn--ghost {
   color: var(--c-accent);
 }
 
@@ -401,7 +404,7 @@
 
   .services {
     padding-top: 62px;
-    padding-bottom: 62px;
+    padding-bottom: 70px;
   }
 
   .promo {
@@ -434,7 +437,7 @@
   }
 
   .services {
-    padding-bottom: 60px;
+    padding-bottom: 179px;
   }
 
   .promo {

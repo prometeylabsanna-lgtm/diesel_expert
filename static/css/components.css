@@ -53,6 +53,39 @@
   .services.is-expanded .service-card.service-card--extra {
     display: flex;
   }
+
+  .service-card:not(.service-card--wide) {
+    box-sizing: border-box;
+    height: 252px;
+    max-height: 252px;
+    overflow: hidden;
+  }
+
+  .service-card__body {
+    flex: 1 1 auto;
+    min-height: 0;
+    gap: 10px;
+  }
+
+  .service-card__heading {
+    align-items: flex-end;
+    gap: 24px;
+  }
+
+  .service-card__title {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    min-width: 0;
+  }
+
+  .service-card__toggle .icon {
+    box-sizing: border-box;
+    width: 24px;
+    height: 24px;
+    padding: 6.25px 9.25px;
+    object-fit: contain;
+  }
 }
 
 .service-card__photo {

@@ -181,7 +181,6 @@ SERVICES = {
                 "Очищення сажевого фільтра (DPF)",
             ],
             [_price(_FROM, "3 000 грн")],
-            mobile_extra=True,
         ),
         _service(
             "Заміна ременя ГРМ",
