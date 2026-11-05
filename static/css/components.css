@@ -58,13 +58,26 @@
     box-sizing: border-box;
     height: 252px;
     max-height: 252px;
+    /* keep overflow hidden for closed card clip; hit ::before stays inside via asymmetric inset */
     overflow: hidden;
   }
 
   .service-card__body {
+    display: flex;
+    flex-direction: column;
     flex: 1 1 auto;
     min-height: 0;
-    gap: 10px;
+    /* 10→4: reclaim 6px so 2-line title (43.2) + 2-line excerpt (33.6) fit inside 252 */
+    gap: 4px;
+  }
+
+  .service-card__heading {
+    flex-shrink: 0;
+  }
+
+  .service-card__excerpt {
+    flex-shrink: 0;
+    min-height: calc(var(--fs-small) * var(--lh) * 2);
   }
 
   /* glyph sized to SVG 5.5×11.5; layout box of toggle stays 12×24 (see below) */
@@ -539,6 +552,11 @@ select.field__control option[value=""] {
     flex: 1 1 auto;
     min-width: 0;
     overflow-wrap: break-word;
+    /* r8: titles wrap to 2 lines max — prevents 3-line squeeze at 320 clipping excerpt */
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
   }
 
   /* 12×24 layout box (D-01); glyph 5.5×11.5 inside; hit ≥44 via ::before */
@@ -549,9 +567,14 @@ select.field__control option[value=""] {
     overflow: visible;
   }
 
-  /* 12×24 → 44×44: (44-24)/2=10 vertical, (44-12)/2=16 horizontal */
+  /* 12×24 visual (D-01); 44×44 hit shifted LEFT so ::before is not clipped by card overflow:hidden at the right edge */
+  .service-card__toggle {
+    z-index: 1;
+  }
+
   .service-card__toggle::before {
-    inset: -10px -16px;
+    /* right:0 (flush to card edge); left: -(44-12)= -32 → full 44×44 inside card */
+    inset: -10px 0 -10px -32px;
   }
 
   .service-card--wide {

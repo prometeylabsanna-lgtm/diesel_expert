@@ -202,8 +202,7 @@
     font-size: var(--fs-h3);
     font-weight: 600;
     white-space: nowrap;
-    min-width: 0;
-    flex: 0 1 auto;
+    flex: 0 0 auto;
   }
 
   .hero-badge + .hero-badge {
@@ -216,5 +215,11 @@
     width: 24px;
     height: 24px;
     object-fit: contain;
+  }
+
+  /* Figma Shield Tick 16:4107 ≈ 17.96×19.71 — also frees ~3px that overflowed badge 2 */
+  .hero-badge img[src*="shield-line"] {
+    width: 18px;
+    height: 19.7px;
   }
 }
