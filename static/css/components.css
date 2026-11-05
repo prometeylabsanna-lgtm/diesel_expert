@@ -465,3 +465,26 @@ select.field__control option[value=""] {
     height: 287px;
   }
 }
+
+@media (min-width: 1440px) {
+  .service-card--wide {
+    gap: 12px;
+    height: 598px;
+    min-height: 598px;
+    max-height: 598px;
+  }
+
+  .service-card--wide .service-card__photo {
+    height: 211px;
+  }
+
+  .services__grid > .service-card:nth-child(12) .service-card__photo,
+  .services__grid > .service-card:nth-child(13) .service-card__photo {
+    height: 217px;
+  }
+
+  .services__grid > .service-card:nth-child(12),
+  .services__grid > .service-card:nth-child(13) {
+    gap: 12px;
+  }
+}

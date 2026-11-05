@@ -382,8 +382,13 @@
 
   .services__grid {
     grid-template-columns: repeat(4, 320px);
+    grid-template-rows: 598px 598px 598px 522px;
     justify-content: space-between;
-    row-gap: 20px;
+  }
+
+  .services__grid > .service-card:nth-child(12),
+  .services__grid > .service-card:nth-child(13) {
+    min-height: 522px;
   }
 }
 
@@ -396,7 +401,7 @@
 
   .services {
     padding-top: 62px;
-    padding-bottom: 38px;
+    padding-bottom: 62px;
   }
 
   .promo {
