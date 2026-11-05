@@ -28,7 +28,7 @@
   overflow: auto;
   -webkit-overflow-scrolling: touch;
   overscroll-behavior: contain;
-  padding: 48px 14px 20px;
+  padding: 29px 14px 20px;
   border: 1px solid var(--c-accent);
   border-radius: var(--r-card);
   background: var(--c-bg);
@@ -55,12 +55,14 @@
 }
 
 .modal .field {
+  height: 44px;
   border: 1px solid var(--c-glass-border);
 }
 
 .modal .field__control {
   min-height: 0;
-  height: 42px;
+  height: 100%;
+  max-height: 100%;
 }
 
 .modal__title {
@@ -90,6 +92,10 @@
 .modal__submit {
   width: 100%;
   margin-top: var(--s-lg);
+}
+
+.modal__form .modal__submit {
+  margin-top: calc(var(--s-lg) - var(--s-inner));
 }
 
 .modal__form + .modal__direct {
@@ -123,7 +129,7 @@
   .modal__panel {
     width: min(669px, calc(100% - 48px));
     height: 538px;
-    padding: 56px 50px 36px;
+    padding: 50px 50px 36px;
   }
 
   .modal__close {
