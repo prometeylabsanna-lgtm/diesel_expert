@@ -48,6 +48,21 @@
   cursor: pointer;
 }
 
+.modal__close img {
+  width: 15.5px;
+  height: 15.5px;
+  object-fit: contain;
+}
+
+.modal .field {
+  border: 1px solid var(--c-glass-border);
+}
+
+.modal .field__control {
+  min-height: 0;
+  height: 42px;
+}
+
 .modal__title {
   margin: 0;
   color: var(--c-accent);

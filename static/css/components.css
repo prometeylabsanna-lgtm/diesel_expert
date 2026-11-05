@@ -340,9 +340,26 @@
   -webkit-appearance: none;
 }
 
+select.field__control:invalid {
+  color: var(--c-placeholder);
+}
+
+select.field__control option {
+  color: var(--c-text);
+}
+
+select.field__control option[value=""] {
+  color: var(--c-placeholder);
+}
+
 .field__chevron {
   position: absolute;
   right: 16px;
+  width: 24px;
+  height: 24px;
+  padding: 6.25px 9.25px;
+  object-fit: contain;
+  box-sizing: border-box;
   pointer-events: none;
 }
 

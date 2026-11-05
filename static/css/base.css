@@ -131,6 +131,9 @@ p {
 }
 
 .icon--right {
+  width: 16px;
+  height: 16px;
+  object-fit: contain;
   transform: rotate(-90deg);
 }
 
