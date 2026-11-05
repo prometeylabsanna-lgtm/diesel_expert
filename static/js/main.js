@@ -13,24 +13,34 @@ function syncLock() {
   body.classList.toggle("is-locked", anyOverlayOpen());
 }
 
+let menuReturnFocus = null;
+
 function closeMenu() {
-  if (!menu) return;
+  if (!menu || menu.hidden) return;
   menu.hidden = true;
   body.classList.remove("is-menu-open");
   document.querySelectorAll("[data-menu-toggle]").forEach((btn) => {
     btn.setAttribute("aria-expanded", "false");
   });
   syncLock();
+  const back = menuReturnFocus;
+  menuReturnFocus = null;
+  if (back && typeof back.focus === "function" && document.contains(back)) back.focus();
 }
 
 function openMenu() {
   if (!menu) return;
+  const opener = document.activeElement;
+  menuReturnFocus = opener && opener !== document.body ? opener : document.querySelector(".header__burger");
   menu.hidden = false;
   body.classList.add("is-menu-open");
   document.querySelectorAll("[data-menu-toggle]").forEach((btn) => {
     btn.setAttribute("aria-expanded", "true");
   });
   syncLock();
+  const panel = menu.querySelector(".mobile-menu__panel") || menu;
+  const focusTarget = getFocusable(panel)[0] || panel.querySelector("a[href], button:not([disabled])");
+  if (focusTarget) focusTarget.focus();
 }
 
 document.querySelectorAll("[data-menu-toggle]").forEach((btn) => {
