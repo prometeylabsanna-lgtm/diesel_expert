@@ -385,3 +385,27 @@
     justify-content: space-between;
   }
 }
+
+
+/* desk rhythm: Figma tops promo4162 steps4751 reviews5446 works5924 faq6436 footer7053 */
+@media (min-width: 1280px) {
+  .promo {
+    padding-bottom: 70px; /* was 50; +20 → steps@4751 */
+  }
+
+  .steps {
+    padding-bottom: 55px; /* was 50; +5 → reviews@5446 */
+  }
+
+  .reviews {
+    padding-bottom: 42px; /* was 50; -8 → works@5924 */
+  }
+
+  .works {
+    padding-bottom: 70px; /* was 50; +20 → faq@6436 */
+  }
+
+  .faq {
+    padding-bottom: 29px; /* was 50; -21 → footer@7053 */
+  }
+}
