@@ -428,6 +428,11 @@ select.field__control option[value=""] {
     height: 293px;
   }
 
+  .service-card__list li span {
+    text-box-trim: trim-both;
+    text-box-edge: cap alphabetic;
+  }
+
   .service-card--wide .service-card__photo {
     height: 219px;
   }
