@@ -138,9 +138,11 @@
 
 @media (min-width: 1280px) {
   .hero {
-    min-height: 900px;
-    padding-top: 268px;
-    padding-bottom: 28px;
+    min-height: 1020px;
+    height: 1020px;
+    padding-top: 295px;
+    padding-bottom: 40px;
+    box-sizing: border-box;
   }
 
   .hero__content {
