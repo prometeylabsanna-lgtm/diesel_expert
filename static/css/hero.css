@@ -189,6 +189,10 @@
     align-items: center;
     gap: 25px;
     max-width: 891px;
+    /* kill ~3px horizontal overflow @1440 without changing look */
+    min-width: 0;
+    width: 100%;
+    box-sizing: border-box;
   }
 
   .hero-badge {
@@ -198,6 +202,8 @@
     font-size: var(--fs-h3);
     font-weight: 600;
     white-space: nowrap;
+    min-width: 0;
+    flex: 0 1 auto;
   }
 
   .hero-badge + .hero-badge {

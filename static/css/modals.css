@@ -48,6 +48,13 @@
   cursor: pointer;
 }
 
+/* ≥44×44 hit; visible icon/box stays 24 */
+.modal__close::before {
+  content: "";
+  position: absolute;
+  inset: -10px;
+}
+
 .modal__close img {
   width: 15.5px;
   height: 15.5px;
