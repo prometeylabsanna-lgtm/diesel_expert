@@ -1,11 +1,9 @@
 # Involve
 
-Файлів шрифту в репозиторії немає. Потрібні `woff2`:
+Джерело: TTF від Анни (`inbox-fonts/involve_*.ttf`), ваги з name/OS2:
+- `involve_2.ttf` → Regular / usWeightClass 400 → `Involve-Regular.woff2`
+- `involve_1.ttf` → Medium / usWeightClass 500 → `Involve-Medium.woff2`
+- `involve_3.ttf` → SemiBold / usWeightClass 600 → `Involve-SemiBold.woff2`
 
-- Involve-Regular.woff2 (400)
-- Involve-Medium.woff2 (500)
-- Involve-SemiBold.woff2 (600)
-- Involve-Bold.woff2 (700)
-
-Покласти в цю теку. `static/css/base.css` уже містить `@font-face` на ці імена.
-Поки файлів немає, сторінка падає на Inter / system-ui.
+Підмножина: латиниця + кирилиця (+ діакритика/пунктуація), `pyftsubset` → woff2.
+Bold 700 у макеті не передано — `@font-face` 700 немає.

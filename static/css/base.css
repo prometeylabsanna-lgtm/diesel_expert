@@ -1,5 +1,4 @@
-/* Involve: потрібні woff2 у static/fonts/ (Regular 400, Medium 500, SemiBold 600, Bold 700).
-   Поки файлів немає — fallback Inter / system-ui. Див. static/fonts/README.md */
+/* Involve: woff2 у static/fonts/ (Regular 400, Medium 500, SemiBold 600). Bold 700 не передано. Див. static/fonts/README.md */
 
 @font-face {
   font-family: Involve;
@@ -21,14 +20,6 @@
   font-family: Involve;
   src: url("../fonts/Involve-SemiBold.woff2") format("woff2");
   font-weight: 600;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: Involve;
-  src: url("../fonts/Involve-Bold.woff2") format("woff2");
-  font-weight: 700;
   font-style: normal;
   font-display: swap;
 }
