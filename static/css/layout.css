@@ -134,7 +134,10 @@ body.is-menu-open .header {
   background: var(--c-card);
   -webkit-backdrop-filter: blur(18px);
   backdrop-filter: blur(18px);
-  overflow: hidden;
+  overflow-x: hidden;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior: contain;
 }
 
 .mobile-menu__top {
@@ -176,9 +179,9 @@ body.is-menu-open .header {
   flex: 1 1 auto;
   flex-direction: column;
   gap: 40px;
-  min-height: 0;
+  min-height: min-content;
   margin: 0;
-  overflow: hidden;
+  overflow: visible;
 }
 
 .mobile-menu__list {
@@ -239,6 +242,25 @@ body.is-menu-open .header {
   font-size: var(--fs-body);
   font-weight: 600;
   line-height: var(--lh);
+}
+
+@media (max-height: 670px) {
+  .mobile-menu__panel {
+    gap: 24px;
+    padding-bottom: 12px;
+  }
+
+  .mobile-menu__body {
+    gap: 24px;
+  }
+
+  .mobile-menu__list {
+    gap: 14px;
+  }
+
+  .mobile-menu__link {
+    padding-bottom: 15px;
+  }
 }
 
 .footer {
