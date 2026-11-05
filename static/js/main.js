@@ -14,30 +14,46 @@ function syncLock() {
 }
 
 function closeMenu() {
-  if (!menu || !burger) return;
+  if (!menu) return;
   menu.hidden = true;
-  burger.setAttribute("aria-expanded", "false");
+  body.classList.remove("is-menu-open");
+  document.querySelectorAll("[data-menu-toggle]").forEach((btn) => {
+    btn.setAttribute("aria-expanded", "false");
+  });
   syncLock();
 }
 
 function openMenu() {
-  if (!menu || !burger) return;
+  if (!menu) return;
   menu.hidden = false;
-  burger.setAttribute("aria-expanded", "true");
+  body.classList.add("is-menu-open");
+  document.querySelectorAll("[data-menu-toggle]").forEach((btn) => {
+    btn.setAttribute("aria-expanded", "true");
+  });
   syncLock();
 }
 
-if (burger && menu) {
-  burger.addEventListener("click", () => {
+document.querySelectorAll("[data-menu-toggle]").forEach((btn) => {
+  btn.addEventListener("click", () => {
     if (menu.hidden) openMenu();
     else closeMenu();
   });
+});
+if (menu) {
   menu.querySelectorAll("a").forEach((link) => {
     link.addEventListener("click", closeMenu);
   });
 }
 
 let lastFocus = null;
+
+function getFocusable(container) {
+  return Array.from(
+    container.querySelectorAll(
+      'a[href], button:not([disabled]), input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])'
+    )
+  ).filter((el) => !el.hasAttribute("disabled") && el.getAttribute("aria-hidden") !== "true" && el.offsetParent !== null);
+}
 
 function openModal(name) {
   const modal = document.getElementById(`modal-${name}`);
@@ -49,7 +65,9 @@ function openModal(name) {
   lastFocus = document.activeElement;
   modal.hidden = false;
   syncLock();
-  const focusTarget = modal.querySelector("input, select, button, a");
+  const panel = modal.querySelector(".modal__panel") || modal;
+  const field = panel.querySelector("input, select, textarea");
+  const focusTarget = field || getFocusable(panel)[0];
   if (focusTarget) focusTarget.focus();
 }
 
@@ -73,8 +91,29 @@ document.querySelectorAll("[data-modal-close]").forEach((trigger) => {
 });
 
 document.addEventListener("keydown", (event) => {
-  if (event.key !== "Escape") return;
   const modal = document.querySelector(".modal:not([hidden])");
+  if (modal && event.key === "Tab") {
+    const panel = modal.querySelector(".modal__panel") || modal;
+    const focusable = getFocusable(panel);
+    if (!focusable.length) {
+      event.preventDefault();
+      return;
+    }
+    const first = focusable[0];
+    const last = focusable[focusable.length - 1];
+    if (event.shiftKey && document.activeElement === first) {
+      event.preventDefault();
+      last.focus();
+    } else if (!event.shiftKey && document.activeElement === last) {
+      event.preventDefault();
+      first.focus();
+    } else if (!panel.contains(document.activeElement)) {
+      event.preventDefault();
+      first.focus();
+    }
+    return;
+  }
+  if (event.key !== "Escape") return;
   if (modal) {
     closeModal(modal);
     return;

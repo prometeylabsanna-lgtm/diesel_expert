@@ -1,29 +1,45 @@
 {% load static %}
 <div class="mobile-menu" id="mobile-menu" hidden>
   <div class="mobile-menu__panel" role="dialog" aria-modal="true" aria-label="Меню">
-    <nav aria-label="Мобільне меню">
-      <ul class="mobile-menu__list">
-        {% for item in nav %}
-          <li>
-            <a class="mobile-menu__link" href="{{ item.url }}">{{ item.label }}</a>
-          </li>
-        {% endfor %}
-      </ul>
-    </nav>
-    <button class="btn btn--primary mobile-menu__cta" type="button" data-modal-open="booking">
-      <span>{{ settings.cta_diagnostics }}</span>
-      <img class="icon" src="{% static 'img/icons/calendar.svg' %}" alt="" width="22" height="22">
-    </button>
-    <div class="mobile-menu__contacts">
-      <a class="mobile-menu__phone" href="{{ settings.phone_href }}">
-        <img src="{% static 'img/icons/phone.svg' %}" alt="" width="20" height="20">
-        <span>{{ settings.phone }}</span>
+    <div class="mobile-menu__top">
+      <a class="mobile-menu__brand" href="#top">
+        <img class="mobile-menu__logo" src="{% static settings.logo %}" alt="Diesel Expert" width="46" height="39">
       </a>
-      <p class="mobile-menu__address">
-        {% for line in settings.address_lines %}
-          <span>{{ line }}</span>
-        {% endfor %}
-      </p>
+      <div class="mobile-menu__tools">
+        <a class="mobile-menu__phone mobile-menu__phone--top" href="{{ settings.phone_href }}">
+          <img src="{% static 'img/icons/phone.svg' %}" alt="" width="18" height="18">
+          <span>{{ settings.phone }}</span>
+        </a>
+        <button class="header__burger mobile-menu__close" type="button" data-menu-toggle aria-expanded="true" aria-controls="mobile-menu" aria-label="Закрити меню">
+          <img src="{% static 'img/icons/burger.svg' %}" alt="" width="24" height="24">
+        </button>
+      </div>
+    </div>
+    <div class="mobile-menu__body">
+      <nav aria-label="Мобільне меню">
+        <ul class="mobile-menu__list">
+          {% for item in nav %}
+            <li>
+              <a class="mobile-menu__link" href="{{ item.url }}">{{ item.label }}</a>
+            </li>
+          {% endfor %}
+        </ul>
+      </nav>
+      <button class="btn btn--primary mobile-menu__cta" type="button" data-modal-open="booking">
+        <span>{{ settings.cta_diagnostics }}</span>
+        <img class="icon" src="{% static 'img/icons/calendar.svg' %}" alt="" width="22" height="22">
+      </button>
+      <div class="mobile-menu__contacts">
+        <a class="mobile-menu__phone" href="{{ settings.phone_href }}">
+          <img src="{% static 'img/icons/phone.svg' %}" alt="" width="20" height="20">
+          <span>{{ settings.phone }}</span>
+        </a>
+        <p class="mobile-menu__address">
+          {% for line in settings.address_lines %}
+            <span>{{ line }}</span>
+          {% endfor %}
+        </p>
+      </div>
     </div>
   </div>
 </div>
