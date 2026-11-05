@@ -67,18 +67,6 @@
     gap: 10px;
   }
 
-  .service-card__heading {
-    align-items: flex-end;
-    gap: 24px;
-  }
-
-  .service-card__title {
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    min-width: 0;
-  }
-
   .service-card__toggle .icon {
     box-sizing: border-box;
     width: 24px;
@@ -102,7 +90,9 @@
 
 .service-card__body {
   display: grid;
+  grid-template-columns: minmax(0, 1fr);
   gap: var(--s-tight);
+  min-width: 0;
 }
 
 .service-card__heading {
@@ -417,6 +407,7 @@ select.field__control option[value=""] {
 
   .service-card__toggle,
   .service-card__excerpt,
+  .service-card__cta,
   .service-card__label--short {
     display: none;
   }
@@ -519,5 +510,54 @@ select.field__control option[value=""] {
   .services__grid > .service-card:nth-child(12),
   .services__grid > .service-card:nth-child(13) {
     gap: 12px;
+  }
+}
+
+/* r8: mobile service-card heading — wrap titles, keep chevron inside card */
+@media (max-width: 767px) {
+  .service-card__heading {
+    align-items: flex-start;
+    gap: 0;
+    min-width: 0;
+  }
+
+  .service-card__title {
+    flex: 1 1 auto;
+    min-width: 0;
+    overflow-wrap: break-word;
+  }
+
+  /* 12px box: visible glyph is 5.5px wide, centred; box stays inside the card */
+  .service-card__toggle {
+    flex: 0 0 12px;
+    width: 12px;
+    overflow: visible;
+  }
+
+  .service-card__toggle .icon {
+    flex: none;
+    margin: 0 -6px;
+  }
+
+  .service-card--wide {
+    gap: 20px;
+  }
+
+  .service-card--wide .service-card__body {
+    gap: 14px;
+  }
+
+  .service-card--wide .service-card__list li span {
+    text-box-trim: trim-both;
+    text-box-edge: cap alphabetic;
+  }
+
+  .service-card--wide .service-card__list img {
+    margin-top: 0;
+  }
+
+  .service-card__cta.btn {
+    width: 100%;
+    min-height: 44px;
   }
 }

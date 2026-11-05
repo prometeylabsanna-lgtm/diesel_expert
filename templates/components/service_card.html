@@ -27,4 +27,7 @@
       </p>
     {% endfor %}
   </div>
+  {% if service.wide %}
+    <button class="btn btn--primary service-card__cta" type="button" data-modal-open="booking">Записатись на діагностику</button>
+  {% endif %}
 </article>

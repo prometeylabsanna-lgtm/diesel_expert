@@ -78,6 +78,14 @@
   order: 3;
 }
 
+/* mobile row 3 per Figma: рульові рейки / двигун (DPF піднімається в ряд 2) */
+@media (max-width: 767px) {
+  .services__grid > .service-card:nth-child(4),
+  .services__grid > .service-card:nth-child(5) {
+    order: 1;
+  }
+}
+
 .promo__grid {
   display: grid;
   gap: var(--s-block);
@@ -437,7 +445,7 @@
   }
 
   .services {
-    padding-bottom: 179px;
+    padding-bottom: 60px;
   }
 
   .promo {
