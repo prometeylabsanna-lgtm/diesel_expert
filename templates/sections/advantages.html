@@ -1,0 +1,15 @@
+{% load static %}
+<section class="section advantages" id="about" aria-labelledby="about-title">
+  <div class="wrap">
+    <h2 class="section__title" id="about-title">{{ advantages.title }}</h2>
+    <ul class="advantages__grid">
+      {% for item in advantages.items %}
+        <li class="advantage">
+          <img class="advantage__icon" src="{% static item.icon %}" alt="" width="40" height="40">
+          <h3 class="advantage__title">{{ item.title }}</h3>
+          <p class="advantage__text">{{ item.text }}</p>
+        </li>
+      {% endfor %}
+    </ul>
+  </div>
+</section>

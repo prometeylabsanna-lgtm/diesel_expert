@@ -1,0 +1,46 @@
+{% load static %}
+<footer class="footer" id="contacts" role="contentinfo">
+  <div class="wrap footer__inner">
+    <div class="footer__top">
+      <div class="footer__brand">
+        <a href="#top">
+          <img class="footer__logo" src="{% static settings.logo %}" alt="Diesel Expert" width="192" height="166">
+        </a>
+        <span class="footer__divider" aria-hidden="true"></span>
+        <p class="footer__brand-address">
+          {% for line in settings.address_lines %}
+            <span>{{ line }}</span>
+          {% endfor %}
+        </p>
+      </div>
+      <div class="footer__cols">
+        <nav class="footer__legal" aria-label="Документи">
+          {% for link in settings.legal_links %}
+            {% if link.url %}
+              <a href="{{ link.url }}">{{ link.label }}</a>
+            {% else %}
+              <a href="#">{{ link.label }}</a>
+            {% endif %}
+          {% endfor %}
+        </nav>
+        <div class="footer__info">
+          <p class="footer__schedule">
+            {% for line in settings.schedule %}
+              <span>{{ line }}</span>
+            {% endfor %}
+          </p>
+          <p class="footer__address">
+            {% for line in settings.address_lines %}
+              <span>{{ line }}</span>
+            {% endfor %}
+          </p>
+        </div>
+        <img class="footer__map" src="{% static settings.map %}" alt="" width="320" height="166">
+      </div>
+    </div>
+    <div class="footer__bar">
+      <p>{{ settings.copyright }}</p>
+      <p>{{ settings.design_credit }}</p>
+    </div>
+  </div>
+</footer>

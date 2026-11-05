@@ -1,0 +1,17 @@
+{% load static %}
+<section class="section promo" aria-labelledby="promo-title">
+  <div class="wrap promo__grid">
+    <div class="promo__copy">
+      <h2 class="section__title" id="promo-title">{{ promo.title }}</h2>
+      <p class="section__lead">{{ promo.lead }}</p>
+      <div class="promo__note">
+        <img src="{% static 'img/icons/tick.svg' %}" alt="" width="40" height="40">
+        <p>{{ promo.text }}</p>
+      </div>
+      {% if promo.cta %}
+        <button class="btn btn--primary" type="button" data-modal-open="booking">{{ promo.cta }}</button>
+      {% endif %}
+    </div>
+    <img class="promo__photo" src="{% static promo.image %}" alt="" width="660" height="469">
+  </div>
+</section>

@@ -1,0 +1,19 @@
+{% load static %}
+<div class="modal" id="modal-success" hidden role="dialog" aria-modal="true" aria-labelledby="modal-success-title">
+  <button class="modal__backdrop" type="button" data-modal-close aria-label="Закрити"></button>
+  <div class="modal__panel">
+    <button class="modal__close" type="button" data-modal-close aria-label="Закрити">
+      <img src="{% static 'img/icons/close.svg' %}" alt="" width="24" height="24">
+    </button>
+    <h2 class="modal__title" id="modal-success-title">{{ success.title }}</h2>
+    <p class="modal__lead">{{ success.lead }}</p>
+    <a class="btn btn--primary modal__submit" href="#top" data-modal-close>{{ success.home }}</a>
+    <p class="modal__direct">
+      <span>{{ success.direct }}</span>
+      <a href="{{ settings.phone_href }}">
+        <img src="{% static 'img/icons/phone.svg' %}" alt="" width="20" height="20">
+        <span>{{ settings.phone }}</span>
+      </a>
+    </p>
+  </div>
+</div>

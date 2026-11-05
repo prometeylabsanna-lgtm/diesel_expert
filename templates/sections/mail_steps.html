@@ -1,0 +1,14 @@
+<section class="section steps" aria-labelledby="steps-title">
+  <div class="wrap steps__panel">
+    <h2 class="steps__title" id="steps-title">{{ steps.title }}</h2>
+    <ol class="steps__grid">
+      {% for step in steps.items %}
+        <li class="step">
+          <p class="step__num">{{ step.num }}</p>
+          <h3 class="step__title">{{ step.title }}</h3>
+          <p class="step__text">{{ step.text }}</p>
+        </li>
+      {% endfor %}
+    </ol>
+  </div>
+</section>

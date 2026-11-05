@@ -1,0 +1,17 @@
+{% load static %}
+<section class="section services" id="services" aria-labelledby="services-title">
+  <div class="wrap">
+    <div class="services__head">
+      <h2 class="section__title" id="services-title">{{ services.title }}</h2>
+      <p class="section__lead">{{ services.lead }}</p>
+    </div>
+    <div class="services__grid" id="prices">
+      {% for service in services.items %}
+        {% include "components/service_card.html" with service=service %}
+      {% endfor %}
+      <button class="services__more btn btn--ghost" type="button" data-services-more aria-expanded="false">
+        {{ services.more_label }}
+      </button>
+    </div>
+  </div>
+</section>

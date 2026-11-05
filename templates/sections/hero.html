@@ -1,0 +1,42 @@
+{% load static %}
+<section class="hero" aria-labelledby="hero-title">
+  <div class="hero__media" aria-hidden="true"></div>
+  <div class="wrap hero__content">
+    <div class="hero__copy">
+      <h1 class="hero__title" id="hero-title">{{ hero.title }}</h1>
+      <ul class="hero__dirs">
+        {% for card in hero_cards %}
+          <li>
+            {% if card.url %}
+              <a class="hero-dir" href="{{ card.url }}">
+            {% else %}
+              <div class="hero-dir">
+            {% endif %}
+              <span class="hero-dir__thumb hero-dir__thumb--{{ card.modifier }}" aria-hidden="true"></span>
+              <span class="hero-dir__title">{{ card.title }}</span>
+            {% if card.url %}
+              </a>
+            {% else %}
+              </div>
+            {% endif %}
+          </li>
+        {% endfor %}
+      </ul>
+      <div class="hero__actions">
+        <button class="btn btn--primary" type="button" data-modal-open="booking">
+          <span>{{ hero.primary_cta }}</span>
+          <img class="icon icon--right" src="{% static 'img/icons/arrow.svg' %}" alt="" width="20" height="20">
+        </button>
+        <a class="btn btn--ghost" href="{{ hero.secondary_url }}">{{ hero.secondary_cta }}</a>
+      </div>
+    </div>
+    <ul class="hero__badges">
+      {% for badge in hero_badges %}
+        <li class="hero-badge">
+          <img src="{% static badge.icon %}" alt="" width="24" height="24">
+          <span>{{ badge.text }}</span>
+        </li>
+      {% endfor %}
+    </ul>
+  </div>
+</section>

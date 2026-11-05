@@ -1,0 +1,30 @@
+{% load static %}
+<article class="service-card{% if service.wide %} service-card--wide{% endif %}{% if service.mobile_extra %} service-card--extra{% endif %}">
+  <img class="service-card__photo" src="{% static service.image %}" alt="" width="{% if service.wide %}660{% else %}320{% endif %}" height="293">
+  <div class="service-card__body">
+    <div class="service-card__heading">
+      <h3 class="service-card__title">{{ service.title }}</h3>
+      <button class="service-card__toggle" type="button" aria-expanded="false" aria-label="{{ service.title }}">
+        <img class="icon icon--down" src="{% static 'img/icons/chevron-lime.svg' %}" alt="" width="24" height="24">
+      </button>
+    </div>
+    <p class="service-card__excerpt">{{ service.bullets|join:" " }}</p>
+    <ul class="service-card__list">
+      {% for bullet in service.bullets %}
+        <li>
+          <img src="{% static 'img/icons/bullet.svg' %}" alt="" width="16" height="14">
+          <span>{{ bullet }}</span>
+        </li>
+      {% endfor %}
+    </ul>
+  </div>
+  <div class="service-card__prices">
+    {% for price in service.prices %}
+      <p class="service-card__price">
+        <span class="service-card__label service-card__label--full">{{ price.label }}</span>
+        <span class="service-card__label service-card__label--short">{{ price.short }}</span>
+        <span class="service-card__value">{{ price.value }}</span>
+      </p>
+    {% endfor %}
+  </div>
+</article>

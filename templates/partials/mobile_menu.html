@@ -1,0 +1,29 @@
+{% load static %}
+<div class="mobile-menu" id="mobile-menu" hidden>
+  <div class="mobile-menu__panel" role="dialog" aria-modal="true" aria-label="Меню">
+    <nav aria-label="Мобільне меню">
+      <ul class="mobile-menu__list">
+        {% for item in nav %}
+          <li>
+            <a class="mobile-menu__link" href="{{ item.url }}">{{ item.label }}</a>
+          </li>
+        {% endfor %}
+      </ul>
+    </nav>
+    <button class="btn btn--primary mobile-menu__cta" type="button" data-modal-open="booking">
+      <span>{{ settings.cta_diagnostics }}</span>
+      <img class="icon" src="{% static 'img/icons/calendar.svg' %}" alt="" width="22" height="22">
+    </button>
+    <div class="mobile-menu__contacts">
+      <a class="mobile-menu__phone" href="{{ settings.phone_href }}">
+        <img src="{% static 'img/icons/phone.svg' %}" alt="" width="20" height="20">
+        <span>{{ settings.phone }}</span>
+      </a>
+      <p class="mobile-menu__address">
+        {% for line in settings.address_lines %}
+          <span>{{ line }}</span>
+        {% endfor %}
+      </p>
+    </div>
+  </div>
+</div>

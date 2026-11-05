@@ -1,4 +1,11 @@
 {% extends "base.html" %}
 {% block content %}
-<p>Diesel Expert</p>
+  {% include "sections/hero.html" with hero=hero hero_cards=hero_cards hero_badges=hero_badges %}
+  {% include "sections/advantages.html" with advantages=advantages %}
+  {% include "sections/services.html" with services=services %}
+  {% include "sections/mail_promo.html" with promo=promo %}
+  {% include "sections/mail_steps.html" with steps=steps %}
+  {% include "sections/reviews.html" with reviews=reviews %}
+  {% include "sections/works.html" with works=works %}
+  {% include "sections/faq.html" with faq_items=faq_items %}
 {% endblock %}

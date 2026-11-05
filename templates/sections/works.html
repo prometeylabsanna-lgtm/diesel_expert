@@ -1,0 +1,27 @@
+{% load static %}
+<section class="section works" aria-labelledby="works-title">
+  <div class="wrap">
+    <div class="slider" data-slider>
+      <div class="slider__head">
+        <h2 class="section__title" id="works-title">{{ works.title }}</h2>
+        <div class="slider__nav">
+          <button class="slider__btn" type="button" data-slider-prev aria-label="Попереднє">
+            <img class="icon" src="{% static 'img/icons/chevron.svg' %}" alt="" width="24" height="24">
+          </button>
+          <button class="slider__btn" type="button" data-slider-next aria-label="Наступне">
+            <img class="icon icon--flip" src="{% static 'img/icons/chevron.svg' %}" alt="" width="24" height="24">
+          </button>
+        </div>
+      </div>
+      <div class="slider__viewport" data-slider-viewport>
+        <ul class="slider__track slider__track--works">
+          {% for work in works.items %}
+            <li class="slider__slide slider__slide--work">
+              <img class="works__photo" src="{% static work.image %}" alt="{{ work.alt }}" width="490" height="287">
+            </li>
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
