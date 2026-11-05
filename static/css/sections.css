@@ -387,25 +387,72 @@
 }
 
 
-/* desk rhythm: Figma tops promo4162 steps4751 reviews5446 works5924 faq6436 footer7053 */
+/* H2 Y @1440: adv 1020, services 1446, promo 4162, steps 4771, reviews 5446, works 5924, faq 6436, footer 7053 */
 @media (min-width: 1280px) {
+  .advantages {
+    padding-top: 0;
+  }
+
+  .services {
+    padding-top: 62px;
+    padding-bottom: 38px;
+  }
+
   .promo {
-    padding-bottom: 70px; /* was 50; +20 → steps@4751 */
+    padding-top: 48px;
+    padding-bottom: 72px;
   }
 
   .steps {
-    padding-bottom: 55px; /* was 50; +5 → reviews@5446 */
+    padding-bottom: 55px;
   }
 
   .reviews {
-    padding-bottom: 42px; /* was 50; -8 → works@5924 */
+    padding-bottom: 42px;
   }
 
   .works {
-    padding-bottom: 70px; /* was 50; +20 → faq@6436 */
+    padding-bottom: 70px;
   }
 
   .faq {
-    padding-bottom: 29px; /* was 50; -21 → footer@7053 */
+    padding-bottom: 80px;
+  }
+}
+
+/* H2 Y @393: adv 895, services 1632, promo 3289, steps 4161, reviews 5091, works 5446, faq 5792, footer 6737 */
+@media (max-width: 767px) {
+  .advantages {
+    padding-top: 73px;
+    padding-bottom: 49px;
+  }
+
+  .services {
+    padding-bottom: 60px;
+  }
+
+  .promo {
+    padding-bottom: 38px;
+  }
+
+  .promo__photo {
+    height: 295px;
+    aspect-ratio: auto;
+  }
+
+  .steps {
+    padding-bottom: 38px;
+  }
+
+  .reviews {
+    padding-bottom: 52px;
+  }
+
+  .works {
+    padding-bottom: 61px;
+  }
+
+  .faq {
+    padding-bottom: 51px;
   }
 }
