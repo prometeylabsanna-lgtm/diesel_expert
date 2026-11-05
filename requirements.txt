@@ -1,1 +1,2 @@
-Django>=5.0,<6
+Django==5.2.19
+django-unfold==0.110.1

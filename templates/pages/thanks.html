@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block title %}{{ success.title }} — Diesel Expert{% endblock %}
+{% block content %}
+  <section class="section legal-page" aria-labelledby="thanks-title">
+    <div class="wrap legal">
+      <h1 class="section__title" id="thanks-title">{{ success.title }}</h1>
+      <p>{{ success.lead }}</p>
+      <p>
+        <a class="btn btn--primary" href="{% url 'home' %}">{{ success.home }}</a>
+      </p>
+      <p class="modal__direct">
+        <span>{{ success.direct }}</span>
+        <a href="{{ settings.phone_href }}">{{ settings.phone }}</a>
+      </p>
+    </div>
+  </section>
+{% endblock %}

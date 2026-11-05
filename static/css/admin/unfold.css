@@ -1,0 +1,18 @@
+#changelist .result-list-wrapper > .grow > .flex.flex-col.flex-wrap {
+  align-items: flex-end;
+}
+
+#changelist #toolbar,
+#changelist #toolbar form,
+#changelist #toolbar form > div {
+  max-width: 100%;
+}
+
+@media (max-width: 639px) {
+  #changelist #toolbar,
+  #changelist #toolbar form,
+  #changelist #toolbar form > div,
+  #changelist form.flex {
+    width: 100%;
+  }
+}

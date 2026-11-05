@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block title %}{{ legal.title }} — Diesel Expert{% endblock %}
+{% block content %}
+  <section class="section legal-page" aria-labelledby="privacy-title">
+    <div class="wrap legal">
+      <h1 class="section__title" id="privacy-title">{{ legal.title }}</h1>
+      {{ legal.body|linebreaks }}
+    </div>
+  </section>
+{% endblock %}

@@ -2,8 +2,8 @@
 <header class="header" role="banner">
   <div class="wrap">
     <div class="header__bar">
-      <a class="header__brand" href="#top">
-        <img class="header__logo" src="{% static settings.logo %}" alt="Diesel Expert" width="91" height="79">
+      <a class="header__brand" href="{% if request.resolver_match.url_name == 'home' %}#top{% else %}{% url 'home' %}{% endif %}">
+        <img class="header__logo" src="{{ settings.logo_url }}" alt="Diesel Expert" width="91" height="79">
         <span class="header__divider" aria-hidden="true"></span>
         <span class="header__address">
           {% for line in settings.address_lines %}

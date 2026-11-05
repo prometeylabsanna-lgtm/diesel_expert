@@ -2,8 +2,8 @@
 <div class="mobile-menu" id="mobile-menu" hidden>
   <div class="mobile-menu__panel" role="dialog" aria-modal="true" aria-label="Меню">
     <div class="mobile-menu__top">
-      <a class="mobile-menu__brand" href="#top">
-        <img class="mobile-menu__logo" src="{% static settings.logo %}" alt="Diesel Expert" width="46" height="39">
+      <a class="mobile-menu__brand" href="{% if request.resolver_match.url_name == 'home' %}#top{% else %}{% url 'home' %}{% endif %}">
+        <img class="mobile-menu__logo" src="{{ settings.logo_url }}" alt="Diesel Expert" width="46" height="39">
       </a>
       <div class="mobile-menu__tools">
         <a class="mobile-menu__phone mobile-menu__phone--top" href="{{ settings.phone_href }}">

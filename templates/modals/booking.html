@@ -1,42 +1,6 @@
-{% load static %}
-<div class="modal" id="modal-booking" hidden role="dialog" aria-modal="true" aria-labelledby="modal-booking-title">
+<div class="modal" id="modal-booking"{% if not open_booking %} hidden{% endif %} role="dialog" aria-modal="true" aria-labelledby="modal-booking-title">
   <button class="modal__backdrop" type="button" data-modal-close tabindex="-1" aria-label="Закрити"></button>
   <div class="modal__panel">
-    <button class="modal__close" type="button" data-modal-close aria-label="Закрити">
-      <img src="{% static 'img/icons/close.svg' %}" alt="" width="24" height="24">
-    </button>
-    <h2 class="modal__title" id="modal-booking-title">{{ booking.title }}</h2>
-    <p class="modal__lead">{{ booking.lead }}</p>
-    <form class="modal__form" data-booking-form action="#" method="post">
-      <label class="field">
-        <span class="field__icon" aria-hidden="true">
-          <img src="{% static 'img/icons/profile.svg' %}" alt="" width="20" height="20">
-        </span>
-        <input class="field__control" type="text" name="name" autocomplete="name" placeholder="{{ booking.name_placeholder }}" aria-label="{{ booking.name_placeholder }}" required>
-      </label>
-      <label class="field">
-        <span class="field__icon" aria-hidden="true">
-          <img src="{% static 'img/icons/call.svg' %}" alt="" width="20" height="20">
-        </span>
-        <input class="field__control" type="tel" name="phone" inputmode="tel" autocomplete="tel" placeholder="{{ booking.phone_placeholder }}" aria-label="{{ booking.phone_placeholder }}" required>
-      </label>
-      <label class="field field--select">
-        <select class="field__control" name="service" aria-label="{{ booking.service_placeholder }}" required>
-          <option value="" selected disabled>{{ booking.service_placeholder }}</option>
-          {% for service in services.items %}
-            <option value="{{ service.title }}">{{ service.title }}</option>
-          {% endfor %}
-        </select>
-        <img class="field__chevron icon icon--down" src="{% static 'img/icons/chevron-lime.svg' %}" alt="" width="24" height="24">
-      </label>
-      <button class="btn btn--primary modal__submit" type="submit">{{ booking.submit }}</button>
-    </form>
-    <p class="modal__direct">
-      <span>{{ booking.direct }}</span>
-      <a href="{{ settings.phone_href }}">
-        <img src="{% static 'img/icons/phone.svg' %}" alt="" width="20" height="20">
-        <span>{{ settings.phone }}</span>
-      </a>
-    </p>
+    {% include "modals/booking_panel.html" %}
   </div>
 </div>

@@ -1,0 +1,58 @@
+{% load static %}
+<button class="modal__close" type="button" data-modal-close aria-label="Закрити">
+  <img src="{% static 'img/icons/close.svg' %}" alt="" width="24" height="24">
+</button>
+<h2 class="modal__title" id="modal-booking-title">{{ booking.title }}</h2>
+<p class="modal__lead">{{ booking.lead }}</p>
+<form class="modal__form" data-booking-form method="post" action="{% url 'lead_create' %}" hx-post="{% url 'lead_create' %}" hx-swap="none" hx-disabled-elt="find button[type='submit']">
+  {% csrf_token %}
+  <div class="hp" aria-hidden="true">
+    <label>Компанія
+      <input type="text" name="company" tabindex="-1" autocomplete="off" value="">
+    </label>
+  </div>
+  <div class="modal__field">
+    <label class="field">
+      <span class="field__icon" aria-hidden="true">
+        <img src="{% static 'img/icons/profile.svg' %}" alt="" width="20" height="20">
+      </span>
+      <input class="field__control" type="text" name="name" autocomplete="name" maxlength="80" placeholder="{{ booking.name_placeholder }}" aria-label="{{ booking.name_placeholder }}" value="{% if form %}{{ form.name.value|default:'' }}{% endif %}" required>
+    </label>
+    {% if form.name.errors %}
+      <p class="field__error" role="alert">{{ form.name.errors.0 }}</p>
+    {% endif %}
+  </div>
+  <div class="modal__field">
+    <label class="field">
+      <span class="field__icon" aria-hidden="true">
+        <img src="{% static 'img/icons/call.svg' %}" alt="" width="20" height="20">
+      </span>
+      <input class="field__control" type="tel" name="phone" inputmode="tel" autocomplete="tel" maxlength="32" placeholder="{{ booking.phone_placeholder }}" aria-label="{{ booking.phone_placeholder }}" value="{% if form %}{{ form.phone.value|default:'' }}{% endif %}" required>
+    </label>
+    {% if form.phone.errors %}
+      <p class="field__error" role="alert">{{ form.phone.errors.0 }}</p>
+    {% endif %}
+  </div>
+  <div class="modal__field">
+    <label class="field field--select">
+      <select class="field__control" name="service" aria-label="{{ booking.service_placeholder }}" required>
+        <option value="" disabled {% if not form or not form.service.value %}selected{% endif %}>{{ booking.service_placeholder }}</option>
+        {% for service in services.items %}
+          <option value="{{ service.title }}" {% if form and form.service.value == service.title %}selected{% endif %}>{{ service.title }}</option>
+        {% endfor %}
+      </select>
+      <img class="field__chevron icon icon--down" src="{% static 'img/icons/chevron-lime.svg' %}" alt="" width="24" height="24">
+    </label>
+    {% if form.service.errors %}
+      <p class="field__error" role="alert">{{ form.service.errors.0 }}</p>
+    {% endif %}
+  </div>
+  <button class="btn btn--primary modal__submit" type="submit">{{ booking.submit }}</button>
+</form>
+<p class="modal__direct">
+  <span>{{ booking.direct }}</span>
+  <a href="{{ settings.phone_href }}">
+    <img src="{% static 'img/icons/phone.svg' %}" alt="" width="20" height="20">
+    <span>{{ settings.phone }}</span>
+  </a>
+</p>

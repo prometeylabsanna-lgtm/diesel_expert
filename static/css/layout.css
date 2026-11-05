@@ -334,6 +334,34 @@ body.is-menu-open .header {
   margin: 0;
 }
 
+.footer__legal {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.legal-page {
+  padding-top: calc(var(--header-offset) + var(--s-section));
+}
+
+.legal {
+  display: grid;
+  gap: 16px;
+  max-width: 720px;
+  color: var(--c-muted);
+  font-size: var(--fs-body);
+  line-height: 1.5;
+}
+
+.legal p {
+  margin: 0;
+}
+
+.legal .btn {
+  justify-self: start;
+  min-height: 44px;
+}
+
 @media (min-width: 768px) {
   .footer__info {
     grid-template-columns: repeat(2, minmax(0, max-content));

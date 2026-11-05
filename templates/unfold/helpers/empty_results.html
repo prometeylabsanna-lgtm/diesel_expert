@@ -1,0 +1,21 @@
+{% load admin_urls %}
+
+{% url cl.opts|admin_urlname:"add" as add_url %}
+
+<div class="bg-white border border-base-200 flex flex-col items-center px-8 shadow-xs dark:bg-base-900 dark:border-base-800 {% if cl.search_fields %}rounded-b-default{% else %}rounded-default{% endif %} py-24">
+    <h2 class="font-semibold mb-1 text-xl tracking-tight">
+        Нічого не знайдено
+    </h2>
+    <p class="mb-6 text-center">
+        За цим запитом немає результатів.
+    </p>
+    {% if has_add_permission or cl.has_filters or cl.query %}
+        <div class="flex flex-col gap-4 justify-center w-full lg:flex-row">
+            {% if cl.has_filters or cl.query %}
+                <a href="?" class="border border-base-200 flex flex-row font-medium gap-2 h-[38px] items-center justify-center px-3 py-2 rounded-default w-full lg:w-auto">
+                    Скинути фільтри
+                </a>
+            {% endif %}
+        </div>
+    {% endif %}
+</div>

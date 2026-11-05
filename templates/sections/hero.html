@@ -1,6 +1,6 @@
 {% load static %}
 <section class="hero" aria-labelledby="hero-title">
-  <div class="hero__media" aria-hidden="true"></div>
+  <div class="hero__media" aria-hidden="true"{% if hero.bg_override %} style="background-image: linear-gradient(180deg, var(--c-hero-to) 0%, var(--c-hero-from) 100%), url('{{ hero.bg_override }}')" {% endif %}></div>
   <div class="wrap hero__content">
     <div class="hero__copy">
       <h1 class="hero__title" id="hero-title">{{ hero.title }}</h1>
@@ -33,7 +33,7 @@
     <ul class="hero__badges">
       {% for badge in hero_badges %}
         <li class="hero-badge">
-          <img src="{% static badge.icon %}" alt="" width="24" height="24">
+          <img src="{{ badge.icon }}" alt="" width="24" height="24">
           <span>{{ badge.text }}</span>
         </li>
       {% endfor %}

@@ -62,7 +62,11 @@ function getFocusable(container) {
     container.querySelectorAll(
       'a[href], button:not([disabled]), input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])'
     )
-  ).filter((el) => !el.hasAttribute("disabled") && el.getAttribute("aria-hidden") !== "true" && el.offsetParent !== null);
+  ).filter((el) => {
+    if (el.hasAttribute("disabled") || el.tabIndex < 0) return false;
+    if (el.closest("[aria-hidden='true']")) return false;
+    return el.offsetParent !== null;
+  });
 }
 
 function openModal(name) {
@@ -76,9 +80,10 @@ function openModal(name) {
   modal.hidden = false;
   syncLock();
   const panel = modal.querySelector(".modal__panel") || modal;
-  const field = panel.querySelector("input, select, textarea");
-  const focusTarget = field || getFocusable(panel)[0];
-  if (focusTarget) focusTarget.focus();
+  requestAnimationFrame(() => {
+    const focusTarget = getFocusable(panel)[0];
+    if (focusTarget) focusTarget.focus();
+  });
 }
 
 function closeModal(modal) {
@@ -87,17 +92,30 @@ function closeModal(modal) {
   if (lastFocus && typeof lastFocus.focus === "function") lastFocus.focus();
 }
 
-document.querySelectorAll("[data-modal-open]").forEach((trigger) => {
-  trigger.addEventListener("click", () => {
-    openModal(trigger.getAttribute("data-modal-open"));
-  });
+document.addEventListener("click", (event) => {
+  const opener = event.target.closest("[data-modal-open]");
+  if (opener) {
+    openModal(opener.getAttribute("data-modal-open"));
+    const select = document.querySelector('#modal-booking select[name="service"]');
+    if (select) select.value = opener.getAttribute("data-service") || "";
+    return;
+  }
+  const closer = event.target.closest("[data-modal-close]");
+  if (!closer) return;
+  const modal = closer.closest(".modal");
+  if (modal) closeModal(modal);
 });
 
-document.querySelectorAll("[data-modal-close]").forEach((trigger) => {
-  trigger.addEventListener("click", () => {
-    const modal = trigger.closest(".modal");
-    if (modal) closeModal(modal);
-  });
+document.body.addEventListener("lead-ok", () => {
+  const form = document.querySelector("[data-booking-form]");
+  if (form) form.reset();
+  const thanks = document.body.getAttribute("data-thanks-url");
+  if (thanks && window.location.pathname !== thanks) {
+    window.history.pushState({ thanks: true }, "", thanks);
+  }
+  const booking = document.getElementById("modal-booking");
+  if (booking) booking.hidden = true;
+  openModal("success");
 });
 
 document.addEventListener("keydown", (event) => {
@@ -130,17 +148,6 @@ document.addEventListener("keydown", (event) => {
   }
   closeMenu();
 });
-
-const bookingForm = document.querySelector("[data-booking-form]");
-if (bookingForm) {
-  bookingForm.addEventListener("submit", (event) => {
-    event.preventDefault();
-    const booking = document.getElementById("modal-booking");
-    if (booking) booking.hidden = true;
-    openModal("success");
-    bookingForm.reset();
-  });
-}
 
 document.querySelectorAll(".faq__question").forEach((button) => {
   button.addEventListener("click", () => {

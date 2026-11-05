@@ -7,7 +7,7 @@
     </button>
     <h2 class="modal__title" id="modal-success-title">{{ success.title }}</h2>
     <p class="modal__lead">{{ success.lead }}</p>
-    <a class="btn btn--primary modal__submit" href="#top" data-modal-close>{{ success.home }}</a>
+    <a class="btn btn--primary modal__submit" href="{% url 'home' %}" data-modal-close>{{ success.home }}</a>
     <p class="modal__direct">
       <span>{{ success.direct }}</span>
       <a href="{{ settings.phone_href }}">

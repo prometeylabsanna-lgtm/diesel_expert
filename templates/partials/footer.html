@@ -3,8 +3,8 @@
   <div class="wrap footer__inner">
     <div class="footer__top">
       <div class="footer__brand">
-        <a href="#top">
-          <img class="footer__logo" src="{% static settings.logo %}" alt="Diesel Expert" width="192" height="166">
+        <a href="{% if request.resolver_match.url_name == 'home' %}#top{% else %}{% url 'home' %}{% endif %}">
+          <img class="footer__logo" src="{{ settings.logo_url }}" alt="Diesel Expert" width="192" height="166">
         </a>
         <span class="footer__divider" aria-hidden="true"></span>
         <p class="footer__brand-address">
@@ -25,6 +25,9 @@
       </div>
     </div>
     <div class="footer__bar">
+      {% if settings.privacy_url %}
+        <a class="footer__legal" href="{{ settings.privacy_url }}">{{ settings.privacy_label }}</a>
+      {% endif %}
       <p>{{ settings.copyright }}</p>
       <p>{{ settings.design_credit }}</p>
     </div>

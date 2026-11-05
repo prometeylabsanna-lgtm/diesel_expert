@@ -1,0 +1,31 @@
+{% extends "admin/base.html" %}
+
+{% block content %}
+<div id="recent-actions-page" class="flex flex-col gap-4">
+    {% if entries %}
+        <ul class="flex flex-col gap-3">
+            {% for entry in entries %}
+                <li class="border border-base-200 rounded-default px-4 py-3 dark:border-base-800">
+                    <p class="font-medium">
+                        {% if entry.is_deletion or not entry.get_admin_url %}
+                            {{ entry.object_repr }}
+                        {% else %}
+                            <a href="{{ entry.get_admin_url }}">{{ entry.object_repr }}</a>
+                        {% endif %}
+                    </p>
+                    <p class="text-sm">
+                        {% if entry.is_addition %}Створено{% elif entry.is_change %}Змінено{% elif entry.is_deletion %}Видалено{% else %}Дія{% endif %}
+                        · {{ entry.user }} · {{ entry.action_time|date:"d.m.Y H:i" }}
+                    </p>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <div class="border border-base-200 flex flex-col items-center px-8 py-16 rounded-default dark:border-base-800">
+            <h2 class="font-semibold mb-2 text-xl">Недавніх дій ще немає</h2>
+            <p class="mb-6 text-center">Тут з’являться зміни в адмінці.</p>
+            <a class="bg-primary-600 font-medium h-[38px] inline-flex items-center px-3 rounded-default text-white" href="{% url 'admin:index' %}">На головну адмінки</a>
+        </div>
+    {% endif %}
+</div>
+{% endblock %}

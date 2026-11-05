@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="theme-color" content="#010b0d">
-  <title>Diesel Expert</title>
+  <title>{% block title %}Diesel Expert{% endblock %}</title>
   <meta name="description" content="{{ hero.title }}">
   <link rel="stylesheet" href="{% static 'css/tokens.css' %}">
   <link rel="stylesheet" href="{% static 'css/base.css' %}">
@@ -15,7 +15,7 @@
   <link rel="stylesheet" href="{% static 'css/components.css' %}">
   <link rel="stylesheet" href="{% static 'css/modals.css' %}">
 </head>
-<body>
+<body data-thanks-url="{% url 'thanks' %}"{% if open_booking %} class="is-locked"{% endif %}>
   {% include "partials/header.html" with nav=nav settings=settings %}
   {% include "partials/mobile_menu.html" with nav=nav settings=settings %}
   <main id="top">
@@ -24,6 +24,7 @@
   {% include "partials/footer.html" with settings=settings nav=nav %}
   {% include "modals/booking.html" with services=services settings=settings booking=booking %}
   {% include "modals/success.html" with settings=settings success=success %}
+  <script src="{% static 'js/htmx.min.js' %}" defer></script>
   <script type="module" src="{% static 'js/main.js' %}"></script>
 </body>
 </html>
