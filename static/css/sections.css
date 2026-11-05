@@ -383,6 +383,7 @@
   .services__grid {
     grid-template-columns: repeat(4, 320px);
     justify-content: space-between;
+    row-gap: 20px;
   }
 }
 

@@ -428,6 +428,10 @@ select.field__control option[value=""] {
     height: 293px;
   }
 
+  .service-card:not(.service-card--wide) {
+    min-height: 598px;
+  }
+
   .service-card__list li span {
     text-box-trim: trim-both;
     text-box-edge: cap alphabetic;
