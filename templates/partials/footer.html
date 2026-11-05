@@ -14,28 +14,14 @@
         </p>
       </div>
       <div class="footer__cols">
-        <nav class="footer__legal" aria-label="Документи">
-          {% for link in settings.legal_links %}
-            {% if link.url %}
-              <a href="{{ link.url }}">{{ link.label }}</a>
-            {% else %}
-              <a href="#">{{ link.label }}</a>
-            {% endif %}
-          {% endfor %}
-        </nav>
         <div class="footer__info">
-          <p class="footer__schedule">
-            {% for line in settings.schedule %}
-              <span>{{ line }}</span>
-            {% endfor %}
-          </p>
+          <p class="footer__schedule">{{ settings.schedule }}</p>
           <p class="footer__address">
             {% for line in settings.address_lines %}
               <span>{{ line }}</span>
             {% endfor %}
           </p>
         </div>
-        <img class="footer__map" src="{% static settings.map %}" alt="" width="320" height="166">
       </div>
     </div>
     <div class="footer__bar">
