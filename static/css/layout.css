@@ -36,7 +36,7 @@
 .header__divider,
 .header__address,
 .header__nav,
-.header__cta {
+.header .header__cta {
   display: none;
 }
 
@@ -309,7 +309,7 @@
     gap: 18px;
   }
 
-  .header__cta {
+  .header .header__cta {
     display: inline-flex;
   }
 
