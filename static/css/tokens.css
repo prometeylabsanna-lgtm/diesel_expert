@@ -1,0 +1,43 @@
+:root {
+  --c-bg: #010b0d;
+  --c-accent: #45db00;
+  --c-text: #ffffff;
+  --c-muted: #dadada;
+  --c-secondary: #b1b1b1;
+  --c-placeholder: #676767;
+  --c-light: #eaeaea;
+  --c-card: rgba(38, 38, 38, 0.2);
+  --c-overlay: rgba(0, 0, 0, 0.6);
+  --c-hero-from: rgba(1, 11, 13, 0.7);
+  --c-hero-to: rgba(1, 11, 13, 0);
+  --c-step: rgba(0, 0, 0, 0.6);
+  --font: "Involve", Inter, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --fs-h1: 54px;
+  --fs-h2: 32px;
+  --fs-h3: 22px;
+  --fs-price: 24px;
+  --fs-lead: 18px;
+  --fs-body: 16px;
+  --fs-small: 14px;
+  --fs-caption: 12px;
+  --lh: 1.2;
+  --r-card: 20px;
+  --r-card-sm: 14px;
+  --r-control: 12px;
+  --r-chip: 8px;
+  --s-section: 40px;
+  --s-block: 20px;
+  --s-inner: 14px;
+  --s-tight: 10px;
+  --s-xs: 8px;
+  --s-lg: 50px;
+  --page: 1340px;
+  --header-offset: 78px;
+}
+
+@media (min-width: 1280px) {
+  :root {
+    --fs-h2: 54px;
+    --header-offset: 127px;
+  }
+}
