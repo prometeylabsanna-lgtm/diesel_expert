@@ -1,0 +1,263 @@
+<cursor_untrusted_data_1337 source="CallDynamicTool">
+
+const imgImage7 = "(downloaded → assets/)";
+const imgImage8 = "(downloaded → assets/)";
+const imgImage9 = "(downloaded → assets/)";
+const imgImage6 = "(downloaded → assets/)";
+const imgImage10 = "(downloaded → assets/)";
+const imgImage11 = "(downloaded → assets/)";
+const imgLeft2 = "(downloaded → assets/)";
+
+export default function Frame99() {
+  return (
+    <div className="gap-x-[14px] gap-y-[20px] grid grid-cols-[repeat(2,minmax(0,1fr))] grid-rows-[repeat(3,minmax(0,1fr))] relative size-full" data-node-id="16:4632">
+      <div className="content-stretch flex flex-col items-start justify-between justify-self-stretch relative self-stretch shrink-0" data-node-id="16:4633" data-name="Component 7">
+        <div className="h-[93px] relative rounded-[20px] shrink-0 w-[175px]" data-node-id="16:4634" data-name="image 7">
+          <div className="absolute inset-0 overflow-hidden pointer-events-none rounded-[20px]">
+            <img alt="" className="absolute h-[173.12%] left-[-31.73%] max-w-none top-0 w-[163.47%]" src={imgImage7} />
+          </div>
+        </div>
+        <div className="content-stretch flex flex-col gap-[10px] items-start relative shrink-0 w-full" data-node-id="16:4635">
+          <div className="content-stretch flex items-start justify-between relative shrink-0 w-full" data-node-id="16:4636">
+            <p className="[word-break:break-word] font-['Involve:SemiBold'] leading-[1.2] not-italic relative shrink-0 text-[18px] text-white w-[144px]" data-node-id="16:4637">
+              Очищення DPF-фільтра
+            </p>
+            <div className="flex items-center justify-center relative shrink-0 size-[24px]" data-node-id="16:4638">
+              <div className="-rotate-90 flex-none">
+                <div className="overflow-clip relative size-[24px]" data-name="Hicon / Outline / Left 2">
+                  <div className="absolute inset-[26.04%_38.54%]" data-node-id="I16:4638;17:1028" data-name="Left 2">
+                    <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgLeft2} />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <p className="[text-box-edge:cap_alphabetic] [text-box-trim:trim-both] [word-break:break-word] font-['Involve:Medium'] h-[30px] leading-[0] not-italic overflow-hidden relative shrink-0 text-[#b1b1b1] text-[14px] text-ellipsis w-[175px]" data-node-id="16:4639">
+            <span className="leading-[1.2]">{`Відновлення пропускної здатності вихлопної системиВиконуємо діагностику та ремонт Професійний ремонт рульових рейок усіх типів: механічних, гідравлічних та електричних. `}</span>
+            <span className="leading-[1.2]">{`Виконуємо `}</span>
+          </p>
+        </div>
+        <div className="bg-[rgba(38,38,38,0.2)] h-[40px] relative rounded-[14px] shrink-0 w-full" data-node-id="16:4640">
+          <div className="-translate-y-1/2 [word-break:break-word] absolute content-stretch flex items-center justify-between leading-[1.2] left-[10px] not-italic text-[14px] top-[calc(50%+0.5px)] w-[155px] whitespace-nowrap" data-node-id="16:4641">
+            <p className="font-['Involve:Medium'] relative shrink-0 text-[#b1b1b1]" data-node-id="16:4642">
+              Ціна від:
+            </p>
+            <p className="font-['Involve:SemiBold'] relative shrink-0 text-white" data-node-id="16:4643">
+              3 000 грн
+            </p>
+          </div>
+        </div>
+      </div>
+      <div className="content-stretch flex flex-col items-start justify-between justify-self-stretch relative self-stretch shrink-0" data-node-id="16:4644" data-name="Component 8">
+        <div className="aspect-[175/93] relative rounded-[20px] shrink-0 w-full" data-node-id="16:4645" data-name="image 7">
+          <div className="absolute inset-0 overflow-hidden pointer-events-none rounded-[20px]">
+            <img alt="" className="absolute h-[173.12%] left-[-31.69%] max-w-none top-[-19.13%] w-[163.37%]" src={imgImage8} />
+          </div>
+        </div>
+        <div className="content-stretch flex flex-col gap-[10px] items-start relative shrink-0 w-full" data-node-id="16:4646">
+          <div className="content-stretch flex items-start justify-between relative shrink-0 w-full" data-node-id="16:4647">
+            <p className="[word-break:break-word] font-['Involve:SemiBold'] leading-[1.2] not-italic relative shrink-0 text-[18px] text-white w-[144px] whitespace-pre-wrap" data-node-id="16:4648">{`Заміна ременя ГРМ   `}</p>
+            <div className="flex items-center justify-center relative shrink-0 size-[24px]" data-node-id="16:4649">
+              <div className="-rotate-90 flex-none">
+                <div className="overflow-clip relative size-[24px]" data-name="Hicon / Outline / Left 2">
+                  <div className="absolute inset-[26.04%_38.54%]" data-node-id="I16:4649;17:1028" data-name="Left 2">
+                    <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgLeft2} />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <p className="[text-box-edge:cap_alphabetic] [text-box-trim:trim-both] [word-break:break-word] font-['Involve:Medium'] h-[30px] leading-[1.2] not-italic overflow-hidden relative shrink-0 text-[#b1b1b1] text-[14px] text-ellipsis w-[175px]" data-node-id="16:4650">
+            Заміна комплекту ременя ГРМ. Заміна комплекту ланцюга ГРМ без зняття двигуна
+          </p>
+        </div>
+        <div className="bg-[rgba(38,38,38,0.2)] h-[40px] relative rounded-[14px] shrink-0 w-full" data-node-id="16:4651">
+          <div className="-translate-y-1/2 [word-break:break-word] absolute content-stretch flex items-center justify-between leading-[1.2] left-[10px] not-italic text-[14px] top-[calc(50%+0.5px)] w-[155px] whitespace-nowrap" data-node-id="16:4652">
+            <p className="font-['Involve:Medium'] relative shrink-0 text-[#b1b1b1]" data-node-id="16:4653">
+              Ціна від:
+            </p>
+            <p className="font-['Involve:SemiBold'] relative shrink-0 text-white" data-node-id="16:4654">
+              3 500 грн
+            </p>
+          </div>
+        </div>
+      </div>
+      <div className="content-stretch flex flex-col items-start justify-between justify-self-stretch relative self-stretch shrink-0" data-node-id="16:4655" data-name="Component 9">
+        <div className="aspect-[175/93] relative rounded-[20px] shrink-0 w-full" data-node-id="16:4656" data-name="image 7">
+          <div className="absolute inset-0 overflow-hidden pointer-events-none rounded-[20px]">
+            <img alt="" className="absolute h-[172.04%] left-[-40.24%] max-w-none top-[-31.16%] w-[162.09%]" src={imgImage9} />
+          </div>
+        </div>
+        <div className="content-stretch flex flex-col gap-[10px] items-start relative shrink-0 w-full" data-node-id="16:4657">
+          <div className="content-stretch flex items-start justify-between relative shrink-0 w-full" data-node-id="16:4658">
+            <p className="[word-break:break-word] font-['Involve:SemiBold'] leading-[1.2] not-italic relative shrink-0 text-[18px] text-white w-[143px]" data-node-id="16:4659">{`Заправка авто-кондиціонера `}</p>
+            <div className="flex items-center justify-center relative shrink-0 size-[24px]" data-node-id="16:4660">
+              <div className="-rotate-90 flex-none">
+                <div className="overflow-clip relative size-[24px]" data-name="Hicon / Outline / Left 2">
+                  <div className="absolute inset-[26.04%_38.54%]" data-node-id="I16:4660;17:1028" data-name="Left 2">
+                    <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgLeft2} />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <p className="[text-box-edge:cap_alphabetic] [text-box-trim:trim-both] [word-break:break-word] font-['Involve:Medium'] h-[30px] leading-[1.2] not-italic overflow-hidden relative shrink-0 text-[#b1b1b1] text-[14px] text-ellipsis w-[175px]" data-node-id="16:4661">
+            Заправка автокондиціонера R134a Перевірка системи на герметичність( вакуумація)
+          </p>
+        </div>
+        <div className="bg-[rgba(38,38,38,0.2)] h-[40px] relative rounded-[14px] shrink-0 w-full" data-node-id="16:4662">
+          <div className="-translate-y-1/2 [word-break:break-word] absolute content-stretch flex items-center justify-between leading-[1.2] left-[10px] not-italic text-[14px] top-[calc(50%+0.5px)] w-[155px] whitespace-nowrap" data-node-id="16:4663">
+            <p className="font-['Involve:Medium'] relative shrink-0 text-[#b1b1b1]" data-node-id="16:4664">
+              Ціна від:
+            </p>
+            <p className="font-['Involve:SemiBold'] relative shrink-0 text-white" data-node-id="16:4665">
+              1 500 грн
+            </p>
+          </div>
+        </div>
+      </div>
+      <div className="content-stretch flex flex-col items-start justify-between justify-self-stretch relative self-stretch shrink-0" data-node-id="16:4666" data-name="Component 10">
+        <div className="aspect-[175/93] relative rounded-[20px] shrink-0 w-full" data-node-id="16:4667" data-name="image 6">
+          <div className="absolute inset-0 overflow-hidden pointer-events-none rounded-[20px]">
+            <img alt="" className="absolute h-[173.12%] left-[-19%] max-w-none top-[-27.62%] w-[138%]" src={imgImage6} />
+          </div>
+        </div>
+        <div className="content-stretch flex flex-col gap-[10px] items-start relative shrink-0 w-full" data-node-id="16:4668">
+          <div className="content-stretch flex items-start justify-between relative shrink-0 w-full" data-node-id="16:4669">
+            <p className="[word-break:break-word] font-['Involve:SemiBold'] leading-[1.2] not-italic relative shrink-0 text-[18px] text-white w-[143px]" data-node-id="16:4670">
+              Ремонт маховика
+            </p>
+            <div className="flex items-center justify-center relative shrink-0 size-[24px]" data-node-id="16:4671">
+              <div className="-rotate-90 flex-none">
+                <div className="overflow-clip relative size-[24px]" data-name="Hicon / Outline / Left 2">
+                  <div className="absolute inset-[26.04%_38.54%]" data-node-id="I16:4671;17:1028" data-name="Left 2">
+                    <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgLeft2} />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="[text-box-edge:cap_alphabetic] [text-box-trim:trim-both] [word-break:break-word] font-['Involve:Medium'] h-[30px] leading-[0] not-italic overflow-hidden relative shrink-0 text-[#b1b1b1] text-[14px] text-ellipsis w-[175px] whitespace-pre-wrap" data-node-id="16:4672">
+            <p className="mb-0">
+              <span className="leading-[1.2]">Ремонт/реставрація двомасового маховика</span>
+              <span className="[word-break:break-word] font-['Involve:Bold'] leading-[1.2] not-italic">{` `}</span>
+            </p>
+            <p className="leading-[1.2]">​</p>
+          </div>
+        </div>
+        <div className="bg-[rgba(38,38,38,0.2)] h-[40px] relative rounded-[14px] shrink-0 w-full" data-node-id="16:4673">
+          <div className="-translate-y-1/2 [word-break:break-word] absolute content-stretch flex items-center justify-between leading-[1.2] left-[10px] not-italic text-[14px] top-[calc(50%+0.5px)] w-[155px] whitespace-nowrap" data-node-id="16:4674">
+            <p className="font-['Involve:Medium'] relative shrink-0 text-[#b1b1b1]" data-node-id="16:4675">
+              Ціна від:
+            </p>
+            <p className="font-['Involve:SemiBold'] relative shrink-0 text-white" data-node-id="16:4676">
+              4 500 грн
+            </p>
+          </div>
+        </div>
+      </div>
+      <div className="content-stretch flex flex-col items-start justify-between justify-self-stretch relative self-stretch shrink-0" data-node-id="16:4677" data-name="Component 11">
+        <div className="h-[93px] relative rounded-[20px] shrink-0 w-[176px]" data-node-id="16:4678" data-name="image 7">
+          <div className="absolute inset-0 overflow-hidden pointer-events-none rounded-[20px]">
+            <img alt="" className="absolute h-[227.1%] left-0 max-w-none top-[-26.45%] w-full" src={imgImage10} />
+          </div>
+        </div>
+        <div className="content-stretch flex flex-col gap-[10px] items-start relative shrink-0 w-full" data-node-id="16:4679">
+          <div className="content-stretch flex items-start justify-between relative shrink-0 w-full" data-node-id="16:4680">
+            <p className="[word-break:break-word] font-['Involve:SemiBold'] leading-[1.2] not-italic relative shrink-0 text-[18px] text-white w-[143px]" data-node-id="16:4681">
+              Ремонт пневмопідвіски
+            </p>
+            <div className="flex items-center justify-center relative shrink-0 size-[24px]" data-node-id="16:4682">
+              <div className="-rotate-90 flex-none">
+                <div className="overflow-clip relative size-[24px]" data-name="Hicon / Outline / Left 2">
+                  <div className="absolute inset-[26.04%_38.54%]" data-node-id="I16:4682;17:1028" data-name="Left 2">
+                    <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgLeft2} />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="[text-box-edge:cap_alphabetic] [text-box-trim:trim-both] [word-break:break-word] font-['Involve:Medium'] h-[30px] leading-[0] not-italic overflow-hidden relative shrink-0 text-[#b1b1b1] text-[14px] text-ellipsis w-[175px] whitespace-pre-wrap" data-node-id="16:4683">
+            <p className="mb-0">
+              <span className="leading-[1.2]">Професійна реставрація. Виконуємо демонтажні та монтажні роботи Ремонт/реставрація двомасового маховика</span>
+              <span className="[word-break:break-word] font-['Involve:Bold'] leading-[1.2] not-italic">{` `}</span>
+            </p>
+            <p className="leading-[1.2]">​</p>
+          </div>
+        </div>
+        <div className="bg-[rgba(38,38,38,0.2)] h-[40px] relative rounded-[14px] shrink-0 w-full" data-node-id="16:4684">
+          <div className="-translate-y-1/2 [word-break:break-word] absolute content-stretch flex items-center justify-between leading-[1.2] left-[8px] not-italic text-[14px] top-[calc(50%+0.5px)] w-[160px] whitespace-nowrap" data-node-id="16:4685">
+            <p className="font-['Involve:Medium'] relative shrink-0 text-[#b1b1b1]" data-node-id="16:4686">
+              Рес. від:
+            </p>
+            <p className="font-['Involve:SemiBold'] relative shrink-0 text-white" data-node-id="16:4687">
+              4 000 грн
+            </p>
+          </div>
+        </div>
+        <div className="bg-[rgba(38,38,38,0.2)] h-[40px] relative rounded-[14px] shrink-0 w-full" data-node-id="16:4688">
+          <div className="-translate-y-1/2 [word-break:break-word] absolute content-stretch flex items-center justify-between leading-[1.2] left-[8px] not-italic text-[14px] top-[calc(50%+0.5px)] w-[160px] whitespace-nowrap" data-node-id="16:4689">
+            <p className="font-['Involve:Medium'] relative shrink-0 text-[#b1b1b1]" data-node-id="16:4690">
+              Демонт. від:
+            </p>
+            <p className="font-['Involve:SemiBold'] relative shrink-0 text-white" data-node-id="16:4691">
+              4 500 грн
+            </p>
+          </div>
+        </div>
+      </div>
+      <div className="content-stretch flex flex-col items-start justify-between justify-self-stretch relative self-stretch shrink-0" data-node-id="16:4692" data-name="Component 12">
+        <div className="aspect-[176/93] relative rounded-[20px] shrink-0 w-full" data-node-id="16:4693" data-name="image 7">
+          <div className="absolute inset-0 overflow-hidden pointer-events-none rounded-[20px]">
+            <img alt="" className="absolute h-[174.19%] left-[-19.03%] max-w-none top-[-36.96%] w-[138.07%]" src={imgImage11} />
+          </div>
+        </div>
+        <div className="content-stretch flex flex-col gap-[10px] items-start relative shrink-0 w-full" data-node-id="16:4694">
+          <div className="content-stretch flex items-start justify-between relative shrink-0 w-full" data-node-id="16:4695">
+            <div className="[word-break:break-word] font-['Involve:SemiBold'] leading-[0] not-italic relative shrink-0 text-[18px] text-white w-[150px] whitespace-pre-wrap" data-node-id="16:4696">
+              <p className="leading-[1.2] mb-0">{`Механічна обробка `}</p>
+              <p className="leading-[1.2]">деталей</p>
+            </div>
+            <div className="flex items-center justify-center relative shrink-0 size-[24px]" data-node-id="16:4697">
+              <div className="-rotate-90 flex-none">
+                <div className="overflow-clip relative size-[24px]" data-name="Hicon / Outline / Left 2">
+                  <div className="absolute inset-[26.04%_38.54%]" data-node-id="I16:4697;17:1028" data-name="Left 2">
+                    <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgLeft2} />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="[text-box-edge:cap_alphabetic] [text-box-trim:trim-both] [word-break:break-word] font-['Involve:Medium'] h-[30px] leading-[0] not-italic overflow-hidden relative shrink-0 text-[#b1b1b1] text-[14px] text-ellipsis w-[175px] whitespace-pre-wrap" data-node-id="16:4698">
+            <p className="mb-0">
+              <span className="leading-[1.2]">{`Шліфування , розточування, фрезерування та хонінгування  автомобільних агрегатівПрофесійна реставрація. Виконуємо демонтажні та монтажні роботи Ремонт/реставрація двомасового маховика`}</span>
+              <span className="[word-break:break-word] font-['Involve:Bold'] leading-[1.2] not-italic">{` `}</span>
+            </p>
+            <p className="leading-[1.2]">​</p>
+          </div>
+        </div>
+        <div className="bg-[rgba(38,38,38,0.2)] h-[40px] relative rounded-[14px] shrink-0 w-full" data-node-id="16:4699">
+          <div className="-translate-y-1/2 [word-break:break-word] absolute content-stretch flex items-center justify-between leading-[1.2] left-[10px] not-italic text-[14px] top-[calc(50%+0.5px)] w-[155px] whitespace-nowrap" data-node-id="16:4700">
+            <p className="font-['Involve:Medium'] relative shrink-0 text-[#b1b1b1]" data-node-id="16:4701">
+              Ціна від:
+            </p>
+            <p className="font-['Involve:SemiBold'] relative shrink-0 text-white" data-node-id="16:4702">
+              800 грн
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+SUPER CRITICAL: The generated React+Tailwind code MUST be converted to match the target project's technology stack and styling system.
+1. Analyze the target codebase to identify: technology stack, styling approach, component patterns, and design tokens
+2. Convert React syntax to the target framework/library
+3. Transform all Tailwind classes to the target styling system while preserving exact visual design
+4. Follow the project's existing patterns and conventions
+DO NOT install any Tailwind as a dependency unless the user instructs you to do so.
+
+Node ids have been added to the code as data attributes, e.g. `data-node-id="1:2"`.
+The generated code contains image and SVG URL constants, e.g. const image = '(downloaded → assets/)
+
+</cursor_untrusted_data_1337>

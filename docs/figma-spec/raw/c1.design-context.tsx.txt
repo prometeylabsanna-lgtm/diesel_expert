@@ -1,0 +1,60 @@
+<cursor_untrusted_data_1337 source="CallDynamicTool">
+
+const imgImage6 = "(downloaded → assets/)";
+const imgLeft2 = "(downloaded → assets/)";
+
+type Component1Props = {
+  className?: string;
+  property1?: "Frame 97" | "Frame 98";
+};
+
+export default function Component1({ className, property1 = "Frame 97" }: Component1Props) {
+  const isFrame98 = property1 === "Frame 98";
+  return (
+    <div className={className || "content-stretch flex flex-col gap-[19px] items-start relative w-[175px]"} id={isFrame98 ? "node-16_4614" : "node-16_4603"}>
+      <div className="aspect-[175/93] relative rounded-[20px] shrink-0 w-full" id={isFrame98 ? "node-16_4615" : "node-16_4604"} data-name="image 6">
+        <div className="absolute inset-0 overflow-hidden pointer-events-none rounded-[20px]">
+          <img alt="" className="absolute h-[172.04%] left-[-30.89%] max-w-none top-[-35.92%] w-[162.45%]" src={imgImage6} />
+        </div>
+      </div>
+      <div className="content-stretch flex flex-col gap-[10px] items-start relative shrink-0 w-full" id={isFrame98 ? "node-16_4616" : "node-16_4605"}>
+        <button className="content-stretch cursor-pointer flex gap-[24px] items-end relative shrink-0 w-full" id={isFrame98 ? "node-16_4617" : "node-16_4606"}>
+          <p className="[word-break:break-word] font-['Involve:SemiBold'] leading-[1.2] not-italic relative shrink-0 text-[18px] text-left text-white whitespace-nowrap" id={isFrame98 ? "node-16_4618" : "node-16_4607"}>
+            Ремонт турбін
+          </p>
+          <div className="flex items-center justify-center relative shrink-0 size-[24px]" id={isFrame98 ? "node-16_4619" : "node-16_4608"}>
+            <div className={`flex-none ${isFrame98 ? "rotate-90" : "-rotate-90"}`}>
+              <div className="overflow-clip relative size-[24px]" data-name="Hicon / Outline / Left 2">
+                <div className="absolute inset-[26.04%_38.54%]" id={isFrame98 ? "node-I16_4619-17_1028" : "node-I16_4608-17_1028"} data-name="Left 2">
+                  <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgLeft2} />
+                </div>
+              </div>
+            </div>
+          </div>
+        </button>
+        <p className={`[text-box-edge:cap_alphabetic] [text-box-trim:trim-both] [word-break:break-word] font-["Involve:Medium"] leading-[1.2] not-italic overflow-hidden relative shrink-0 text-[#b1b1b1] text-[14px] text-ellipsis w-full whitespace-pre-wrap ${isFrame98 ? "h-[171px]" : "h-[47px]"}`} id={isFrame98 ? "node-16_4620" : "node-16_4609"}>{`Виконуємо роботи будь якої складності турбін та  турбокомпрессорів по доступним цінам. Забезпечуємо якісну діагностику і професійну збірку. Демонтажні та монтажні роботи. Консультація безкоштовна`}</p>
+      </div>
+      <div className="bg-[rgba(38,38,38,0.2)] h-[40px] relative rounded-[14px] shrink-0 w-full" id={isFrame98 ? "node-16_4621" : "node-16_4610"}>
+        <div className="-translate-y-1/2 [word-break:break-word] absolute content-stretch flex items-center justify-between leading-[1.2] left-[10px] not-italic text-[14px] top-[calc(50%+0.5px)] w-[155px] whitespace-nowrap" id={isFrame98 ? "node-16_4622" : "node-16_4611"}>
+          <p className="font-['Involve:Medium'] relative shrink-0 text-[#b1b1b1]" id={isFrame98 ? "node-16_4623" : "node-16_4612"}>
+            Ціна від:
+          </p>
+          <p className="font-['Involve:SemiBold'] relative shrink-0 text-white" id={isFrame98 ? "node-16_4624" : "node-16_4613"}>
+            3 000 грн
+          </p>
+        </div>
+      </div>
+    </div>
+  );
+}
+SUPER CRITICAL: The generated React+Tailwind code MUST be converted to match the target project's technology stack and styling system.
+1. Analyze the target codebase to identify: technology stack, styling approach, component patterns, and design tokens
+2. Convert React syntax to the target framework/library
+3. Transform all Tailwind classes to the target styling system while preserving exact visual design
+4. Follow the project's existing patterns and conventions
+DO NOT install any Tailwind as a dependency unless the user instructs you to do so.
+
+Node ids have been added to the code as data attributes, e.g. `data-node-id="1:2"`.
+The generated code contains image and SVG URL constants, e.g. const image = '(downloaded → assets/)
+
+</cursor_untrusted_data_1337>

@@ -1,0 +1,152 @@
+<cursor_untrusted_data_1337 source="CallDynamicTool">
+
+const imgTextAlignRight = "(downloaded → assets/)";
+const imgImage2 = "(downloaded → assets/)";
+const imgImage1 = "(downloaded → assets/)";
+const imgCalling = "(downloaded → assets/)";
+const imgVector3 = "(downloaded → assets/)";
+const imgCalendar = "(downloaded → assets/)";
+const imgCalling1 = "(downloaded → assets/)";
+
+function HiconOutlineTextAlignRight({ className }: { className?: string }) {
+  return (
+    <div className={className || "overflow-clip relative size-[24px]"} data-node-id="16:2950" data-name="Hicon / Outline / Text Align Right">
+      <div className="absolute inset-[29.17%_18.75%_31.25%_16.67%]" data-node-id="16:2951" data-name="Text Align Right">
+        <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgTextAlignRight} />
+      </div>
+    </div>
+  );
+}
+
+export default function Design() {
+  return (
+    <div className="bg-[#010b0d] relative size-full" data-node-id="16:4791" data-name="Design">
+      <div className="-translate-x-1/2 absolute flex h-[805px] items-center justify-center left-1/2 top-0 w-[393px]" data-node-id="16:4792">
+        <div className="-scale-y-100 flex-none rotate-180">
+          <div className="h-[805px] relative w-[393px]" data-name="image 2">
+            <div className="absolute inset-0 overflow-hidden pointer-events-none">
+              <img alt="" className="absolute h-[100.84%] left-[-90.61%] max-w-none top-[-0.85%] w-[309.92%]" src={imgImage2} />
+            </div>
+          </div>
+        </div>
+      </div>
+      <div className="-translate-x-1/2 absolute bg-gradient-to-b from-[rgba(1,11,13,0)] h-[805px] left-1/2 to-[rgba(1,11,13,0.7)] top-0 w-[393px]" data-node-id="16:4793" />
+      <div className="absolute bottom-0 h-[808px] left-1/2 pointer-events-none top-[20px]" data-node-id="16:4794">
+        <div className="-translate-x-1/2 bg-[rgba(38,38,38,0.2)] h-[627px] overflow-clip pointer-events-auto rounded-[20px] sticky top-0 w-[363px]">
+          <div className="absolute content-stretch flex items-center justify-between left-[12px] top-[12px] w-[339px]" data-node-id="16:4795">
+            <div className="content-stretch flex items-center relative shrink-0" data-node-id="16:4796">
+              <div className="h-[39px] relative shrink-0 w-[46px]" data-node-id="16:4797" data-name="image 1">
+                <div className="absolute inset-0 overflow-hidden pointer-events-none">
+                  <img alt="" className="absolute h-[106.84%] left-[-5.93%] max-w-none top-[-4.27%] w-[111.11%]" src={imgImage1} />
+                </div>
+              </div>
+            </div>
+            <div className="content-stretch flex gap-[20px] items-center justify-center relative shrink-0" data-node-id="16:4798">
+              <div className="content-stretch flex gap-[8px] items-center justify-center relative shrink-0" data-node-id="16:4799">
+                <div className="relative shrink-0 size-[18px]" data-node-id="16:4800" data-name="Iconly/Regular/Light/Calling">
+                  <div className="absolute inset-[10.42%_10.86%_10.42%_8.33%]" data-node-id="I16:4800;29221:1682" data-name="Calling">
+                    <div className="absolute inset-[-5.26%_-5.16%]">
+                      <img alt="" className="block max-w-none size-full" src={imgCalling} />
+                    </div>
+                  </div>
+                </div>
+                <p className="[word-break:break-word] font-['Involve:SemiBold'] leading-[1.2] not-italic relative shrink-0 text-[12px] text-white whitespace-nowrap" data-node-id="16:4801">
+                  068 806 83 16
+                </p>
+              </div>
+              <div className="bg-[#45db00] content-stretch flex items-center justify-center py-[14px] relative rounded-[12px] shrink-0 size-[44px]" data-node-id="16:4802">
+                <HiconOutlineTextAlignRight className="overflow-clip relative shrink-0 size-[24px]" />
+              </div>
+            </div>
+          </div>
+          <div className="absolute content-stretch flex flex-col gap-[40px] h-[517px] items-end left-[13px] top-[96px] w-[336px]" data-node-id="16:4804">
+            <div className="content-center flex flex-wrap gap-[20px] items-center relative shrink-0 w-full" data-node-id="16:4805">
+              <p className="[word-break:break-word] font-['Involve:SemiBold'] leading-[1.2] not-italic relative shrink-0 text-[16px] text-white whitespace-nowrap" data-node-id="16:4806">
+                Головна
+              </p>
+              <div className="h-0 relative shrink-0 w-[335px]" data-node-id="16:4807">
+                <div className="absolute inset-[-0.5px_-0.15%]">
+                  <img alt="" className="block max-w-none size-full" src={imgVector3} />
+                </div>
+              </div>
+              <p className="[word-break:break-word] font-['Involve:SemiBold'] leading-[1.2] not-italic relative shrink-0 text-[16px] text-white whitespace-nowrap" data-node-id="16:4808">
+                Послуги
+              </p>
+              <div className="h-0 relative shrink-0 w-[335px]" data-node-id="16:4809">
+                <div className="absolute inset-[-0.5px_-0.15%]">
+                  <img alt="" className="block max-w-none size-full" src={imgVector3} />
+                </div>
+              </div>
+              <p className="[word-break:break-word] font-['Involve:SemiBold'] leading-[1.2] not-italic relative shrink-0 text-[16px] text-white whitespace-nowrap" data-node-id="16:4810">
+                Ціни
+              </p>
+              <div className="h-0 relative shrink-0 w-[335px]" data-node-id="16:4811">
+                <div className="absolute inset-[-0.5px_-0.15%]">
+                  <img alt="" className="block max-w-none size-full" src={imgVector3} />
+                </div>
+              </div>
+              <p className="[word-break:break-word] font-['Involve:SemiBold'] leading-[1.2] not-italic relative shrink-0 text-[16px] text-white whitespace-nowrap" data-node-id="16:4812">
+                Про нас
+              </p>
+              <div className="h-0 relative shrink-0 w-[335px]" data-node-id="16:4813">
+                <div className="absolute inset-[-0.5px_-0.15%]">
+                  <img alt="" className="block max-w-none size-full" src={imgVector3} />
+                </div>
+              </div>
+              <p className="[word-break:break-word] font-['Involve:SemiBold'] leading-[1.2] not-italic relative shrink-0 text-[16px] text-white whitespace-nowrap" data-node-id="16:4814">
+                Відгуки
+              </p>
+              <div className="h-0 relative shrink-0 w-[335px]" data-node-id="16:4815">
+                <div className="absolute inset-[-0.5px_-0.15%]">
+                  <img alt="" className="block max-w-none size-full" src={imgVector3} />
+                </div>
+              </div>
+              <p className="[word-break:break-word] font-['Involve:SemiBold'] leading-[1.2] not-italic relative shrink-0 text-[16px] text-white whitespace-nowrap" data-node-id="16:4816">
+                Контакти
+              </p>
+            </div>
+            <div className="bg-[#45db00] content-stretch flex gap-[10px] h-[44px] items-center justify-center px-[26px] py-[14px] relative rounded-[12px] shrink-0 w-full" data-node-id="16:4817">
+              <p className="[text-box-edge:cap_alphabetic] [text-box-trim:trim-both] [word-break:break-word] font-['Involve:SemiBold'] leading-[1.2] not-italic relative shrink-0 text-[#010b0d] text-[16px] whitespace-nowrap" data-node-id="16:4818">
+                Записатись на діагностику
+              </p>
+              <div className="relative shrink-0 size-[22px]" data-node-id="16:4819" data-name="Iconly/Regular/Outline/Calendar">
+                <div className="absolute inset-[4.17%_10.42%_6.25%_8.33%]" data-node-id="I16:4819;33437:4877" data-name="Calendar">
+                  <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgCalendar} />
+                </div>
+              </div>
+            </div>
+            <div className="content-stretch flex flex-col gap-[14px] items-start relative shrink-0 w-full" data-node-id="16:4820">
+              <div className="content-stretch flex gap-[8px] items-center justify-center relative shrink-0" data-node-id="16:4821">
+                <div className="relative shrink-0 size-[20px]" data-node-id="16:4822" data-name="Iconly/Regular/Light/Calling">
+                  <div className="absolute inset-[10.42%_10.86%_10.42%_8.33%]" data-node-id="I16:4822;29221:1682" data-name="Calling">
+                    <div className="absolute inset-[-4.74%_-4.64%]">
+                      <img alt="" className="block max-w-none size-full" src={imgCalling1} />
+                    </div>
+                  </div>
+                </div>
+                <p className="[word-break:break-word] font-['Involve:SemiBold'] leading-[1.2] not-italic relative shrink-0 text-[14px] text-white whitespace-nowrap" data-node-id="16:4823">
+                  068 806 83 16
+                </p>
+              </div>
+              <div className="[word-break:break-word] font-['Involve:SemiBold'] leading-[0] min-w-full not-italic relative shrink-0 text-[#dadada] text-[16px] w-[min-content] whitespace-pre-wrap" data-node-id="16:4824">
+                <p className="leading-[1.2] mb-0">{`м. Луцьк  `}</p>
+                <p className="leading-[1.2]">вул, Мирослава Скорика 2А</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+SUPER CRITICAL: The generated React+Tailwind code MUST be converted to match the target project's technology stack and styling system.
+1. Analyze the target codebase to identify: technology stack, styling approach, component patterns, and design tokens
+2. Convert React syntax to the target framework/library
+3. Transform all Tailwind classes to the target styling system while preserving exact visual design
+4. Follow the project's existing patterns and conventions
+DO NOT install any Tailwind as a dependency unless the user instructs you to do so.
+
+Node ids have been added to the code as data attributes, e.g. `data-node-id="1:2"`.
+The generated code contains image and SVG URL constants, e.g. const image = '(downloaded → assets/)
+
+</cursor_untrusted_data_1337>
