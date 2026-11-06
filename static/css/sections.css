@@ -19,9 +19,6 @@
   border: 0;
   border-radius: var(--r-card);
   background: var(--c-card);
-  -webkit-backdrop-filter: blur(var(--blur-frost-12));
-  backdrop-filter: blur(var(--blur-frost-12));
-  box-shadow: none;
 }
 
 .advantage__icon {
@@ -69,6 +66,12 @@
   width: 100%;
 }
 
+.services__more.btn {
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 19.2px;
+}
+
 .services__more.btn.btn--ghost {
   color: var(--c-accent);
 }
@@ -112,9 +115,6 @@
   border: 0;
   border-radius: var(--r-card);
   background: var(--c-card);
-  -webkit-backdrop-filter: blur(var(--blur-frost-12));
-  backdrop-filter: blur(var(--blur-frost-12));
-  box-shadow: none;
   color: var(--c-muted);
   font-size: var(--fs-body);
   font-weight: 500;
@@ -165,9 +165,6 @@
   border: 0;
   border-radius: var(--r-card-sm);
   background: var(--c-step);
-  -webkit-backdrop-filter: blur(var(--blur-frost-12));
-  backdrop-filter: blur(var(--blur-frost-12));
-  box-shadow: none;
 }
 
 .step__num {
@@ -203,9 +200,6 @@
   border: 0;
   border-radius: var(--r-card-sm);
   background: var(--c-card);
-  -webkit-backdrop-filter: blur(var(--blur-frost-12));
-  backdrop-filter: blur(var(--blur-frost-12));
-  box-shadow: none;
 }
 
 .faq__question {
@@ -227,18 +221,22 @@
 }
 
 .faq__icon {
-  display: grid;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   flex: 0 0 44px;
-  place-items: center;
   width: 44px;
   height: 44px;
   border-radius: var(--r-control);
   background: var(--c-accent);
 }
 
+/* Hit 44×44; 24×24 frame via flex-center у кнопці; гліф 5.5×11.5 (не stretch до 24) */
 .faq__icon .icon {
-  width: 24px;
-  height: 24px;
+  display: block;
+  flex: none;
+  width: 5.5px;
+  height: 11.5px;
   object-fit: contain;
 }
 

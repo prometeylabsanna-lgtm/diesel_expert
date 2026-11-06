@@ -7,9 +7,15 @@
   --c-placeholder: #676767;
   --c-light: #eaeaea;
   --c-card: rgba(38, 38, 38, 0.2);
-  /* Figma GLASS frost 12 ≈ blur(6px); outline frost 4 ≈ blur(4px). Без border/shadow на склі. */
-  --blur-frost-12: 6px;
+  /* Figma GLASS frost 12; outline CTA frost 4. Без drop-shadow на склі. */
+  --blur-frost-12: 12px;
   --blur-frost-4: 4px;
+  --glass-light-edge: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.4),
+    transparent 55%
+  );
+  --glass-inset-top: inset 0 1px 0 rgba(255, 255, 255, 0.18);
   --c-accent-soft: rgba(69, 219, 0, 0.12);
   --c-divider-35: rgba(234, 234, 234, 0.35);
   --c-divider-40: rgba(234, 234, 234, 0.4);
@@ -47,4 +53,50 @@
     --fs-h2: 54px;
     --header-offset: 127px;
   }
+}
+
+/* Shared Figma GLASS (frost 12): fill/radius лишаються на компонентах. */
+.header__bar,
+.mobile-menu__panel,
+.hero-dir,
+.advantage,
+.service-card__price,
+.promo__note,
+.step,
+.review-card,
+.faq__item,
+.footer__bar,
+.field {
+  position: relative;
+  -webkit-backdrop-filter: blur(var(--blur-frost-12)) saturate(1.3);
+  backdrop-filter: blur(var(--blur-frost-12)) saturate(1.3);
+  box-shadow: var(--glass-inset-top);
+}
+
+.header__bar::after,
+.mobile-menu__panel::after,
+.hero-dir::after,
+.advantage::after,
+.service-card__price::after,
+.promo__note::after,
+.step::after,
+.review-card::after,
+.faq__item::after,
+.footer__bar::after,
+.field::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: var(--glass-light-edge);
+  pointer-events: none;
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  mask-composite: exclude;
 }

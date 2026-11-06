@@ -20,9 +20,6 @@ body.is-menu-open .header {
   border: 0;
   border-radius: var(--r-card);
   background: var(--c-card);
-  -webkit-backdrop-filter: blur(var(--blur-frost-12));
-  backdrop-filter: blur(var(--blur-frost-12));
-  box-shadow: none;
 }
 
 .header__brand {
@@ -133,9 +130,6 @@ body.is-menu-open .header {
   border: 0;
   border-radius: var(--r-card);
   background: var(--c-card);
-  -webkit-backdrop-filter: blur(var(--blur-frost-12));
-  backdrop-filter: blur(var(--blur-frost-12));
-  box-shadow: none;
   overflow-x: hidden;
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
@@ -328,9 +322,6 @@ body.is-menu-open .header {
   border: 0;
   border-radius: var(--r-card);
   background: var(--c-card);
-  -webkit-backdrop-filter: blur(var(--blur-frost-12));
-  backdrop-filter: blur(var(--blur-frost-12));
-  box-shadow: none;
   color: var(--c-muted);
   font-size: var(--fs-caption);
   font-weight: 500;

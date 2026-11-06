@@ -56,9 +56,6 @@
   border: 0;
   border-radius: var(--r-card);
   background: var(--c-card);
-  -webkit-backdrop-filter: blur(var(--blur-frost-12));
-  backdrop-filter: blur(var(--blur-frost-12));
-  box-shadow: none;
 }
 
 .hero-dir__thumb {
@@ -104,6 +101,9 @@
 
 .hero__actions .btn {
   flex: 1 1 100%;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 19.2px;
 }
 
 .hero .btn--ghost {
@@ -130,6 +130,9 @@
 
   .hero__actions .btn {
     flex: 0 1 auto;
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 21.6px;
   }
 
   .hero .btn--ghost {

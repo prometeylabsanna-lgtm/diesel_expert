@@ -230,9 +230,6 @@
   border: 0;
   border-radius: var(--r-card-sm);
   background: var(--c-card);
-  -webkit-backdrop-filter: blur(var(--blur-frost-12));
-  backdrop-filter: blur(var(--blur-frost-12));
-  box-shadow: none;
   font-size: var(--fs-small);
   line-height: var(--lh);
 }
@@ -331,9 +328,6 @@
   border: 0;
   border-radius: var(--r-card);
   background: var(--c-card);
-  -webkit-backdrop-filter: blur(var(--blur-frost-12));
-  backdrop-filter: blur(var(--blur-frost-12));
-  box-shadow: none;
 }
 
 .review-card__avatar {
@@ -380,9 +374,6 @@
   border: 0;
   border-radius: var(--r-control);
   background: var(--c-card);
-  -webkit-backdrop-filter: blur(var(--blur-frost-12));
-  backdrop-filter: blur(var(--blur-frost-12));
-  box-shadow: none;
 }
 
 .field__icon {
