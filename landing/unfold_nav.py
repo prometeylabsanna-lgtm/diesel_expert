@@ -33,6 +33,15 @@ def navigation(_request):
     def index(model_name):
         return reverse(f"admin:landing_{model_name}_changelist")
 
+    def branch(title, icon, children):
+        # Unfold вимагає link у батька; клік лише розгортає підменю.
+        return {
+            "title": title,
+            "icon": icon,
+            "link": children[0]["link"],
+            "items": children,
+        }
+
     return [
         {
             "title": "Налаштування",
@@ -49,75 +58,115 @@ def navigation(_request):
         {
             "title": "Головна — блоки",
             "separator": True,
+            "collapsible": False,
             "items": [
-                {
-                    "title": "Перший екран",
-                    "icon": "image",
-                    "link": change("herosettings"),
-                },
-                {
-                    "title": "Картки напрямків",
-                    "icon": "dashboard",
-                    "link": index("herocard"),
-                },
-                {"title": "Плашки", "icon": "sell", "link": index("herobadge")},
-                {
-                    "title": "Переваги (заголовок)",
-                    "icon": "title",
-                    "link": change("advantagessectionsettings"),
-                },
-                {
-                    "title": "Переваги (картки)",
-                    "icon": "verified",
-                    "link": index("advantage"),
-                },
-                {
-                    "title": "Послуги (заголовки)",
-                    "icon": "title",
-                    "link": change("servicessectionsettings"),
-                },
-                {
-                    "title": "Послуги і ціни",
-                    "icon": "build",
-                    "link": index("service"),
-                },
+                branch(
+                    "Перший екран",
+                    "image",
+                    [
+                        {
+                            "title": "Тексти і фон",
+                            "link": change("herosettings"),
+                        },
+                        {
+                            "title": "Картки напрямків",
+                            "link": index("herocard"),
+                        },
+                        {
+                            "title": "Плашки",
+                            "link": index("herobadge"),
+                        },
+                    ],
+                ),
+                branch(
+                    "Переваги",
+                    "verified",
+                    [
+                        {
+                            "title": "Заголовок",
+                            "link": change("advantagessectionsettings"),
+                        },
+                        {
+                            "title": "Картки",
+                            "link": index("advantage"),
+                        },
+                    ],
+                ),
+                branch(
+                    "Послуги",
+                    "build",
+                    [
+                        {
+                            "title": "Заголовки",
+                            "link": change("servicessectionsettings"),
+                        },
+                        {
+                            "title": "Послуги і ціни",
+                            "link": index("service"),
+                        },
+                    ],
+                ),
                 {
                     "title": "Нова пошта",
                     "icon": "local_shipping",
                     "link": change("promosectionsettings"),
                 },
-                {
-                    "title": "Кроки (заголовок)",
-                    "icon": "title",
-                    "link": change("stepssectionsettings"),
-                },
-                {
-                    "title": "Кроки пошти",
-                    "icon": "route",
-                    "link": index("mailstep"),
-                },
-                {
-                    "title": "Відгуки (заголовок)",
-                    "icon": "title",
-                    "link": change("reviewssectionsettings"),
-                },
-                {"title": "Відгуки", "icon": "reviews", "link": index("review")},
-                {
-                    "title": "Роботи (заголовок)",
-                    "icon": "title",
-                    "link": change("workssectionsettings"),
-                },
-                {
-                    "title": "Роботи",
-                    "icon": "photo_library",
-                    "link": index("workphoto"),
-                },
-                {
-                    "title": "Питання (блок)",
-                    "icon": "visibility",
-                    "link": change("faqsectionsettings"),
-                },
-                {"title": "Питання", "icon": "help", "link": index("faqitem")},
+                branch(
+                    "Кроки пошти",
+                    "route",
+                    [
+                        {
+                            "title": "Заголовок",
+                            "link": change("stepssectionsettings"),
+                        },
+                        {
+                            "title": "Кроки",
+                            "link": index("mailstep"),
+                        },
+                    ],
+                ),
+                branch(
+                    "Відгуки",
+                    "reviews",
+                    [
+                        {
+                            "title": "Заголовок",
+                            "link": change("reviewssectionsettings"),
+                        },
+                        {
+                            "title": "Список відгуків",
+                            "link": index("review"),
+                        },
+                    ],
+                ),
+                branch(
+                    "Роботи",
+                    "photo_library",
+                    [
+                        {
+                            "title": "Заголовок",
+                            "link": change("workssectionsettings"),
+                        },
+                        {
+                            "title": "Роботи",
+                            "link": index("workphoto"),
+                        },
+                    ],
+                ),
+                branch(
+                    "Питання",
+                    "help",
+                    [
+                        {
+                            "title": "Видимість блоку",
+                            "link": change("faqsectionsettings"),
+                        },
+                        {
+                            "title": "Питання",
+                            "link": index("faqitem"),
+                        },
+                    ],
+                ),
             ],
         },
         {
