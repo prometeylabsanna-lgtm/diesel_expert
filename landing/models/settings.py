@@ -77,6 +77,14 @@ class SiteSettings(SingletonModel):
     reviews_title = models.CharField("Заголовок відгуків", max_length=160)
     works_title = models.CharField("Заголовок робіт", max_length=160)
 
+    show_advantages_section = models.BooleanField("Показувати блок", default=True)
+    show_services_section = models.BooleanField("Показувати блок", default=True)
+    show_promo_section = models.BooleanField("Показувати блок", default=True)
+    show_steps_section = models.BooleanField("Показувати блок", default=True)
+    show_reviews_section = models.BooleanField("Показувати блок", default=True)
+    show_works_section = models.BooleanField("Показувати блок", default=True)
+    show_faq_section = models.BooleanField("Показувати блок", default=True)
+
     booking_title = models.CharField("Заголовок форми", max_length=120)
     booking_lead = models.TextField("Текст форми")
     booking_name_placeholder = models.CharField("Плейсхолдер імені", max_length=80)
@@ -193,6 +201,13 @@ class WorksSectionSettings(SiteSettings):
         proxy = True
         verbose_name = "Секція «Роботи»"
         verbose_name_plural = "Секція «Роботи»"
+
+
+class FaqSectionSettings(SiteSettings):
+    class Meta:
+        proxy = True
+        verbose_name = "Секція «Питання»"
+        verbose_name_plural = "Секція «Питання»"
 
 
 class BookingSettings(SiteSettings):

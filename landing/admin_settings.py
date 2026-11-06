@@ -5,6 +5,7 @@ from landing.models import (
     AdvantagesSectionSettings,
     BookingSettings,
     ContactsSettings,
+    FaqSectionSettings,
     HeroSettings,
     OfferSettings,
     PrivacySettings,
@@ -66,12 +67,16 @@ class HeroSettingsAdmin(SingletonAdmin):
 
 @admin.register(AdvantagesSectionSettings)
 class AdvantagesSectionSettingsAdmin(SingletonAdmin):
-    fieldsets = (("Заголовок блоку", {"fields": ("advantages_title",)}),)
+    fieldsets = (
+        ("Видимість", {"fields": ("show_advantages_section",)}),
+        ("Заголовок блоку", {"fields": ("advantages_title",)}),
+    )
 
 
 @admin.register(ServicesSectionSettings)
 class ServicesSectionSettingsAdmin(SingletonAdmin):
     fieldsets = (
+        ("Видимість", {"fields": ("show_services_section",)}),
         (
             "Заголовки блоку",
             {
@@ -88,6 +93,7 @@ class ServicesSectionSettingsAdmin(SingletonAdmin):
 @admin.register(PromoSectionSettings)
 class PromoSectionSettingsAdmin(SingletonAdmin):
     fieldsets = (
+        ("Видимість", {"fields": ("show_promo_section",)}),
         (
             "Тексти",
             {
@@ -112,17 +118,31 @@ class PromoSectionSettingsAdmin(SingletonAdmin):
 
 @admin.register(StepsSectionSettings)
 class StepsSectionSettingsAdmin(SingletonAdmin):
-    fieldsets = (("Заголовок блоку", {"fields": ("steps_title",)}),)
+    fieldsets = (
+        ("Видимість", {"fields": ("show_steps_section",)}),
+        ("Заголовок блоку", {"fields": ("steps_title",)}),
+    )
 
 
 @admin.register(ReviewsSectionSettings)
 class ReviewsSectionSettingsAdmin(SingletonAdmin):
-    fieldsets = (("Заголовок блоку", {"fields": ("reviews_title",)}),)
+    fieldsets = (
+        ("Видимість", {"fields": ("show_reviews_section",)}),
+        ("Заголовок блоку", {"fields": ("reviews_title",)}),
+    )
 
 
 @admin.register(WorksSectionSettings)
 class WorksSectionSettingsAdmin(SingletonAdmin):
-    fieldsets = (("Заголовок блоку", {"fields": ("works_title",)}),)
+    fieldsets = (
+        ("Видимість", {"fields": ("show_works_section",)}),
+        ("Заголовок блоку", {"fields": ("works_title",)}),
+    )
+
+
+@admin.register(FaqSectionSettings)
+class FaqSectionSettingsAdmin(SingletonAdmin):
+    fieldsets = (("Видимість", {"fields": ("show_faq_section",)}),)
 
 
 @admin.register(BookingSettings)

@@ -17,7 +17,7 @@
         <ul class="slider__track slider__track--works">
           {% for work in works.items %}
             <li class="slider__slide slider__slide--work">
-              <img class="works__photo" src="{{ work.image }}" alt="{{ work.alt }}" width="490" height="287">
+              <img class="works__photo" src="{{ work.image }}" alt="{{ work.alt|default:'Роботи Diesel Expert, Луцьк' }}" width="490" height="287" loading="lazy" decoding="async">
             </li>
           {% endfor %}
         </ul>

@@ -1,5 +1,5 @@
 {% load static %}
-<section class="section promo" aria-labelledby="promo-title">
+<section class="section promo" id="promo" aria-labelledby="promo-title">
   <div class="wrap promo__grid">
     <div class="promo__copy">
       <h2 class="section__title" id="promo-title">{{ promo.title }}</h2>
@@ -12,6 +12,6 @@
         <button class="btn btn--primary" type="button" data-modal-open="booking">{{ promo.cta }}</button>
       {% endif %}
     </div>
-    <img class="promo__photo" src="{{ promo.image }}" alt="" width="660" height="469">
+    <img class="promo__photo" src="{{ promo.image }}" alt="Ремонт агрегатів Новою поштою — Diesel Expert" width="660" height="469" loading="lazy" decoding="async">
   </div>
 </section>

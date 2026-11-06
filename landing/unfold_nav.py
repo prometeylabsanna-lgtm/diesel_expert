@@ -112,6 +112,11 @@ def navigation(_request):
                     "icon": "photo_library",
                     "link": index("workphoto"),
                 },
+                {
+                    "title": "Питання (блок)",
+                    "icon": "visibility",
+                    "link": change("faqsectionsettings"),
+                },
                 {"title": "Питання", "icon": "help", "link": index("faqitem")},
             ],
         },

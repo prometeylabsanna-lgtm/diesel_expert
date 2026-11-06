@@ -21,11 +21,51 @@ from landing.seed import seed_if_empty
 def build_context(request=None):
     seed_if_empty()
     site = SiteSettings.objects.get(pk=1)
-    on_home = bool(request and getattr(request.resolver_match, "url_name", "") == "home")
+    url_name = ""
+    if request and getattr(request, "resolver_match", None):
+        url_name = request.resolver_match.url_name or ""
+    on_home = url_name == "home"
+    faq_items = [
+        {"question": item.question, "answer": item.answer, "order": item.sort}
+        for item in FaqItem.objects.published()
+    ]
+    page_title = ""
+    if url_name == "privacy":
+        page_title = site.privacy_title
+    elif url_name == "offer":
+        page_title = site.offer_title
+    elif url_name == "thanks":
+        page_title = site.success_title
+
+    from landing.seo_meta import build_seo
+
+    service_items = [
+        _service(item)
+        for item in Service.objects.published().prefetch_related("prices")
+    ]
+    sections = {
+        "advantages": site.show_advantages_section,
+        "services": site.show_services_section,
+        "promo": site.show_promo_section,
+        "steps": site.show_steps_section,
+        "reviews": site.show_reviews_section,
+        "works": site.show_works_section,
+        "faq": site.show_faq_section,
+    }
+
     return {
         "nav": _nav(on_home),
         "settings": _settings(site),
-        "hero": _hero(site),
+        "sections": sections,
+        "seo": build_seo(
+            request,
+            site,
+            url_name=url_name or "home",
+            faq_items=faq_items if sections["faq"] else [],
+            services=service_items if sections["services"] else [],
+            page_title=page_title,
+        ),
+        "hero": _hero(site, request),
         "hero_cards": [_hero_card(item) for item in HeroCard.objects.published()],
         "hero_badges": [_badge(item) for item in HeroBadge.objects.published()],
         "advantages": {
@@ -36,10 +76,7 @@ def build_context(request=None):
             "title": site.services_title,
             "lead": site.services_lead,
             "more_label": site.services_more_label,
-            "items": [
-                _service(item)
-                for item in Service.objects.published().prefetch_related("prices")
-            ],
+            "items": service_items,
         },
         "promo": _promo(site),
         "steps": {
@@ -60,10 +97,7 @@ def build_context(request=None):
             "title": site.works_title,
             "items": [_work(item) for item in WorkPhoto.objects.published()],
         },
-        "faq_items": [
-            {"question": item.question, "answer": item.answer, "order": item.sort}
-            for item in FaqItem.objects.published()
-        ],
+        "faq_items": faq_items,
         "booking": {
             "title": site.booking_title,
             "lead": site.booking_lead,
@@ -128,7 +162,9 @@ def _settings(site):
     }
 
 
-def _hero(site):
+def _hero(site, request=None):
+    from landing.seo_meta import _hero_image_url
+
     override = ""
     if site.hero_image and site.hero_image.name:
         override = public_url(site.hero_image, "")
@@ -138,6 +174,7 @@ def _hero(site):
         "secondary_cta": site.hero_secondary_cta,
         "secondary_url": site.hero_secondary_url,
         "bg_override": override,
+        "bg_url": _hero_image_url(request, site),
     }
 
 

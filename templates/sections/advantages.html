@@ -5,7 +5,7 @@
     <ul class="advantages__grid">
       {% for item in advantages.items %}
         <li class="advantage">
-          <img class="advantage__icon" src="{{ item.icon }}" alt="" width="40" height="40">
+          <img class="advantage__icon" src="{{ item.icon }}" alt="" width="40" height="40" loading="lazy" decoding="async">
           <div class="advantage__body">
             <h3 class="advantage__title">{{ item.title }}</h3>
             <p class="advantage__text">{{ item.text }}</p>

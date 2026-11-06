@@ -1,6 +1,6 @@
 {% load static %}
 <article class="service-card{% if service.wide %} service-card--wide{% endif %}{% if service.mobile_extra %} service-card--extra{% endif %}">
-  <img class="service-card__photo" src="{{ service.image }}" alt="" width="{% if service.wide %}660{% else %}320{% endif %}" height="293">
+  <img class="service-card__photo" src="{{ service.image }}" alt="{{ service.title }} — Diesel Expert, Луцьк" width="{% if service.wide %}660{% else %}320{% endif %}" height="293" loading="lazy" decoding="async">
   <div class="service-card__body">
     <div class="service-card__heading">
       <h3 class="service-card__title">{{ service.title }}</h3>

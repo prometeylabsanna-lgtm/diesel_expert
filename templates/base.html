@@ -5,19 +5,41 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="theme-color" content="#010b0d">
-  <title>{% block title %}Diesel Expert{% endblock %}</title>
-  <meta name="description" content="{{ hero.title }}">
+  <title>{% block title %}{{ seo.title }}{% endblock %}</title>
+  <meta name="description" content="{% block meta_description %}{{ seo.description }}{% endblock %}">
+  <meta name="robots" content="{% block meta_robots %}{{ seo.robots }}{% endblock %}">
+  <link rel="canonical" href="{% block canonical %}{{ seo.canonical }}{% endblock %}">
+  <meta property="og:type" content="{{ seo.og_type }}">
+  <meta property="og:locale" content="{{ seo.og_locale }}">
+  <meta property="og:site_name" content="Diesel Expert">
+  <meta property="og:title" content="{% block og_title %}{{ seo.og_title }}{% endblock %}">
+  <meta property="og:description" content="{% block og_description %}{{ seo.og_description }}{% endblock %}">
+  <meta property="og:url" content="{% block og_url %}{{ seo.og_url }}{% endblock %}">
+  <meta property="og:image" content="{{ seo.og_image }}">
+  <meta property="og:image:width" content="{{ seo.og_image_width }}">
+  <meta property="og:image:height" content="{{ seo.og_image_height }}">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="{% block twitter_title %}{{ seo.og_title }}{% endblock %}">
+  <meta name="twitter:description" content="{% block twitter_description %}{{ seo.og_description }}{% endblock %}">
+  <meta name="twitter:image" content="{{ seo.og_image }}">
+  <link rel="describedby" href="{% url 'llms_txt' %}">
+  {% if seo.hero_preload and seo.hero_image %}
+  <link rel="preload" as="image" href="{{ seo.hero_image }}" fetchpriority="high">
+  {% endif %}
   <link rel="icon" href="{% static 'img/favicon.ico' %}?v=2" sizes="any">
   <link rel="icon" type="image/png" href="{% static 'img/favicon-32.png' %}?v=2" sizes="32x32">
   <link rel="icon" type="image/png" href="{% static 'img/favicon-48.png' %}?v=2" sizes="48x48">
   <link rel="apple-touch-icon" href="{% static 'img/apple-touch-icon.png' %}?v=2">
-  <link rel="stylesheet" href="{% static 'css/tokens.css' %}?v=map-embed">
-  <link rel="stylesheet" href="{% static 'css/base.css' %}?v=map-embed">
-  <link rel="stylesheet" href="{% static 'css/layout.css' %}?v=map-embed">
-  <link rel="stylesheet" href="{% static 'css/hero.css' %}?v=map-embed">
-  <link rel="stylesheet" href="{% static 'css/sections.css' %}?v=map-embed">
-  <link rel="stylesheet" href="{% static 'css/components.css' %}?v=map-embed">
-  <link rel="stylesheet" href="{% static 'css/modals.css' %}?v=map-embed">
+  <link rel="stylesheet" href="{% static 'css/tokens.css' %}?v=seo1">
+  <link rel="stylesheet" href="{% static 'css/base.css' %}?v=seo1">
+  <link rel="stylesheet" href="{% static 'css/layout.css' %}?v=seo1">
+  <link rel="stylesheet" href="{% static 'css/hero.css' %}?v=seo1">
+  <link rel="stylesheet" href="{% static 'css/sections.css' %}?v=seo1">
+  <link rel="stylesheet" href="{% static 'css/components.css' %}?v=seo1">
+  <link rel="stylesheet" href="{% static 'css/modals.css' %}?v=seo1">
+  {% for block in seo.json_ld %}
+  <script type="application/ld+json">{{ block|safe }}</script>
+  {% endfor %}
 </head>
 <body data-thanks-url="{% url 'thanks' %}"{% if open_booking %} class="is-locked"{% endif %}>
   {% include "partials/header.html" with nav=nav settings=settings %}

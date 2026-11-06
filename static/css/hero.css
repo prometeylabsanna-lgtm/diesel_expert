@@ -8,7 +8,7 @@
   background: var(--c-bg);
 }
 
-/* Hero photo: cover на всю ширину — без чорних щілин по боках */
+/* Hero photo: <img> для LCP + градієнт поверх */
 .hero__media {
   position: absolute;
   top: 0;
@@ -18,12 +18,23 @@
   height: 805px;
   overflow: hidden;
   background-color: var(--c-bg);
-  background-image:
-    linear-gradient(180deg, var(--c-hero-to) 0%, var(--c-hero-from) 100%),
-    url("../img/hero/bg.webp");
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center right;
+}
+
+.hero__bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center right;
+}
+
+.hero__media::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: linear-gradient(180deg, var(--c-hero-to) 0%, var(--c-hero-from) 100%);
+  pointer-events: none;
 }
 
 @media (min-width: 393px) and (max-width: 1439px) {
@@ -41,7 +52,10 @@
 @media (min-width: 1280px) {
   .hero__media {
     height: calc(1020px * var(--scale));
-    background-position: 70% center;
+  }
+
+  .hero__bg {
+    object-position: 70% center;
   }
 }
 
