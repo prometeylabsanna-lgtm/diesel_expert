@@ -122,22 +122,31 @@ TIME_ZONE = "Europe/Kyiv"
 USE_I18N = True
 USE_TZ = True
 
-STATIC_URL = "static/"
+# Провідний слеш обовʼязковий — інакше на вкладених URL static «ламається»
+STATIC_URL = "/static/"
 STATICFILES_DIRS = [BASE_DIR / "static"]
 STATIC_ROOT = BASE_DIR / "staticfiles"
-MEDIA_URL = "media/"
+MEDIA_URL = "/media/"
 
 STORAGES = {
     "default": {
         "BACKEND": "django.core.files.storage.FileSystemStorage",
     },
     "staticfiles": {
-        "BACKEND": "whitenoise.storage.CompressedStaticFilesStorage",
+        # На Vercel serverless надійніше без compressed/manifest
+        "BACKEND": (
+            "django.contrib.staticfiles.storage.StaticFilesStorage"
+            if IS_VERCEL
+            else "whitenoise.storage.CompressedStaticFilesStorage"
+        ),
     },
 }
 
-WHITENOISE_USE_FINDERS = False
+# Vercel: staticfiles інколи не потрапляє в lambda → віддаємо напряму з STATICFILES_DIRS
+WHITENOISE_USE_FINDERS = IS_VERCEL
+WHITENOISE_AUTOREFRESH = IS_VERCEL
 WHITENOISE_MANIFEST_STRICT = False
+
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"

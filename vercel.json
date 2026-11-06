@@ -7,15 +7,7 @@
       "use": "@vercel/python",
       "config": {
         "maxLambdaSize": "50mb",
-        "includeFiles": [
-          "staticfiles/**",
-          "static/**",
-          "templates/**",
-          "landing/**",
-          "config/**",
-          "manage.py",
-          "db.sqlite3"
-        ]
+        "includeFiles": "{api,static,staticfiles,templates,landing,config,manage.py,requirements.txt}/**"
       }
     }
   ],
