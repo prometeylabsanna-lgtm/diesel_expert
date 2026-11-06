@@ -7,7 +7,7 @@
   --c-placeholder: #676767;
   --c-light: #eaeaea;
   --c-card: rgba(38, 38, 38, 0.2);
-  /* Hero-dir denser glass only (DL v4 clean-zone). Shared panels stay .2 / blur12. */
+  /* Hero-dir / header denser glass (DL v5). Shared panels stay .2 / blur12. */
   --c-hero-glass: rgba(20, 22, 22, 0.65);
   /* Figma GLASS frost 12; outline CTA frost 4. Без drop-shadow на склі. */
   --blur-frost-12: 12px;
@@ -59,7 +59,6 @@
 }
 
 /* Shared Figma GLASS (frost 12): fill/radius лишаються на компонентах. */
-.header__bar,
 .mobile-menu__panel,
 .advantage,
 .service-card__price,
@@ -75,7 +74,6 @@
   box-shadow: var(--glass-inset-top);
 }
 
-.header__bar::after,
 .mobile-menu__panel::after,
 .advantage::after,
 .service-card__price::after,
@@ -102,12 +100,52 @@
   mask-composite: exclude;
 }
 
-/* Hero-dir glass only: denser fill + stronger blur; edge/inset same as shared. */
+/* Header bar glass (DL v5): denser fill + blur24; mobile brightness.3 / desktop .4; edge .2 / inset .08. */
+.header__bar {
+  position: relative;
+  -webkit-backdrop-filter: blur(24px) brightness(0.3);
+  backdrop-filter: blur(24px) brightness(0.3);
+  box-shadow: var(--glass-inset-top);
+}
+
+@media (min-width: 1280px) {
+  .header__bar {
+    -webkit-backdrop-filter: blur(24px) brightness(0.4);
+    backdrop-filter: blur(24px) brightness(0.4);
+  }
+}
+
+.header__bar::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: var(--glass-light-edge);
+  pointer-events: none;
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+}
+
+/* Hero-dir glass (DL v5): mobile denser blur; desktop + brightness.35; edge/inset shared. */
 .hero-dir {
   position: relative;
   -webkit-backdrop-filter: blur(var(--blur-hero-glass));
   backdrop-filter: blur(var(--blur-hero-glass));
   box-shadow: var(--glass-inset-top);
+}
+
+@media (min-width: 1280px) {
+  .hero-dir {
+    -webkit-backdrop-filter: blur(24px) brightness(0.35);
+    backdrop-filter: blur(24px) brightness(0.35);
+  }
 }
 
 .hero-dir::after {

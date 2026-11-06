@@ -19,7 +19,7 @@ body.is-menu-open .header {
   padding: 8px 12px;
   border: 0;
   border-radius: var(--r-card);
-  background: var(--c-card);
+  background: rgba(20, 22, 22, 0.65);
 }
 
 .header__brand {
