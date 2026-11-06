@@ -47,7 +47,27 @@ class LandingTests(TestCase):
             HTTP_HX_REQUEST="true",
         )
         self.assertEqual(response.status_code, 200)
-        self.assertContains(response, "Вкажіть номер")
+        self.assertContains(response, "Вкажіть")
+        self.assertEqual(Lead.objects.count(), 0)
+
+    def test_name_rejects_symbols(self):
+        response = self.client.post(
+            "/zayavka/",
+            {"name": "Олег!!!", "phone": "0688068316", "service": "Ремонт турбін"},
+            HTTP_HX_REQUEST="true",
+        )
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, "літери")
+        self.assertEqual(Lead.objects.count(), 0)
+
+    def test_phone_rejects_letters(self):
+        response = self.client.post(
+            "/zayavka/",
+            {"name": "Олег", "phone": "068abc8316", "service": "Ремонт турбін"},
+            HTTP_HX_REQUEST="true",
+        )
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, "літери")
         self.assertEqual(Lead.objects.count(), 0)
 
     def test_honeypot_is_dropped(self):

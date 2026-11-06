@@ -4,19 +4,22 @@
     <h2 class="section__title" id="faq-title">Відповіді на питання</h2>
     <div class="faq__list">
       {% for item in faq_items %}
-        <div class="faq__item{% if forloop.first %} is-open{% endif %}">
-          <button class="faq__question" type="button" aria-expanded="{% if forloop.first %}true{% else %}false{% endif %}" aria-controls="faq-panel-{{ item.order }}" id="faq-q-{{ item.order }}">
-            <span>{{ item.question }}</span>
-            <span class="faq__icon" aria-hidden="true">
-              <img class="icon icon--down" src="{% static 'img/icons/icon-left2-chevron.svg' %}" alt="" width="6" height="12">
-            </span>
-          </button>
-          <div class="faq__answer" id="faq-panel-{{ item.order }}" role="region" aria-labelledby="faq-q-{{ item.order }}"{% if not forloop.first %} hidden{% endif %}>
-            {% if item.answer %}
-              <p>{{ item.answer }}</p>
-            {% endif %}
-          </div>
+      <div class="faq__item">
+        <button class="faq__question" type="button" aria-expanded="false"
+          aria-controls="faq-panel-{{ item.order }}" id="faq-q-{{ item.order }}">
+          <span>{{ item.question }}</span>
+          <span class="faq__icon" aria-hidden="true">
+            <img class="icon icon--down" src="{% static 'img/icons/icon-left2-chevron.svg' %}" alt="" width="6"
+              height="12">
+          </span>
+        </button>
+        <div class="faq__answer" id="faq-panel-{{ item.order }}" role="region" aria-labelledby="faq-q-{{ item.order }}"
+          hidden>
+          {% if item.answer %}
+          <p>{{ item.answer }}</p>
+          {% endif %}
         </div>
+      </div>
       {% endfor %}
     </div>
   </div>

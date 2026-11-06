@@ -6,8 +6,10 @@
       {% for item in advantages.items %}
         <li class="advantage">
           <img class="advantage__icon" src="{{ item.icon }}" alt="" width="40" height="40">
-          <h3 class="advantage__title">{{ item.title }}</h3>
-          <p class="advantage__text">{{ item.text }}</p>
+          <div class="advantage__body">
+            <h3 class="advantage__title">{{ item.title }}</h3>
+            <p class="advantage__text">{{ item.text }}</p>
+          </div>
         </li>
       {% endfor %}
     </ul>

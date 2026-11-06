@@ -11,10 +11,13 @@
   gap: var(--s-inner);
 }
 
+/* Figma Frame 14–17: padding 20 / gap 40 (icon→body) / body gap 20 */
 .advantage {
   display: flex;
   flex-direction: column;
-  gap: var(--s-tight);
+  align-items: flex-start;
+  gap: 20px;
+  box-sizing: border-box;
   padding: var(--s-inner);
   border: 0;
   border-radius: var(--r-card);
@@ -22,10 +25,18 @@
 }
 
 .advantage__icon {
+  flex: 0 0 auto;
   width: 28px;
   height: 28px;
   object-fit: contain;
-  margin-bottom: var(--s-tight);
+}
+
+.advantage__body {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 14px;
+  width: 100%;
 }
 
 .advantage__title {
@@ -33,6 +44,7 @@
   font-size: var(--fs-lead);
   font-weight: 600;
   line-height: var(--lh);
+  color: var(--c-text);
 }
 
 .advantage__text {
@@ -101,6 +113,8 @@
 .promo__copy {
   display: grid;
   gap: var(--s-block);
+  /* Місце під hover lift плашки */
+  padding-top: 6px;
 }
 
 .promo .section__title,
@@ -108,27 +122,35 @@
   margin: 0;
 }
 
+/* Figma Frame 15: padding 20 / gap 20 / r20 / Tick у слоті 40×40 */
 .promo__note {
-  display: grid;
-  gap: var(--s-block);
-  padding: var(--s-block);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 20px;
+  box-sizing: border-box;
+  padding: 20px;
   border: 0;
   border-radius: var(--r-card);
   background: var(--c-card);
   color: var(--c-muted);
-  font-size: var(--fs-body);
+  font-size: var(--fs-lead);
   font-weight: 500;
   line-height: var(--lh);
 }
 
 .promo__note p {
   margin: 0;
+  width: 100%;
 }
 
 .promo__note img {
-  width: 29px;
-  height: 20px;
+  display: block;
+  flex: 0 0 auto;
+  width: 40px;
+  height: 40px;
   object-fit: contain;
+  object-position: center;
 }
 
 .promo__photo {
@@ -142,6 +164,7 @@
   padding: 40px 16px;
   border-radius: var(--r-card);
   background: var(--c-accent);
+  overflow: visible;
 }
 
 .steps__title {
@@ -192,14 +215,25 @@
 
 .faq__list {
   display: grid;
-  gap: var(--s-block);
+  gap: 20px;
 }
 
+/* Figma Frame 79 closed: pad 13 13 13 28; open Frame 78: pad 13 13 27 28, gap 20 */
 .faq__item {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+  box-sizing: border-box;
   padding: 13px 13px 13px 14px;
   border: 0;
-  border-radius: var(--r-card-sm);
+  border-radius: var(--r-card);
   background: var(--c-card);
+}
+
+.faq__item.is-open {
+  gap: 20px;
+  padding-bottom: 27px;
 }
 
 .faq__question {
@@ -208,6 +242,7 @@
   justify-content: space-between;
   gap: 12px;
   width: 100%;
+  min-height: 44px;
   margin: 0;
   padding: 0;
   border: 0;
@@ -231,7 +266,7 @@
   background: var(--c-accent);
 }
 
-/* Hit 44×44; 24×24 frame via flex-center у кнопці; гліф 5.5×11.5 (не stretch до 24) */
+/* Hit 44×44; гліф Left 2 = 5.5×11.5 */
 .faq__icon .icon {
   display: block;
   flex: none;
@@ -240,12 +275,21 @@
   object-fit: contain;
 }
 
-.faq__item.is-open .icon--down,
+/* Figma closed: matrix(0,-1,-1,0); open: matrix(0,1,1,0) */
+.faq__icon .icon.icon--down {
+  transform: matrix(0, -1, -1, 0, 0, 0);
+}
+
+.faq__item.is-open .faq__icon .icon.icon--down {
+  transform: matrix(0, 1, 1, 0, 0, 0);
+}
+
 .service-card.is-open .icon--down {
   transform: rotate(90deg);
 }
 
 .faq__answer {
+  width: 100%;
   color: var(--c-muted);
   font-size: var(--fs-body);
   font-weight: 500;
@@ -253,7 +297,7 @@
 }
 
 .faq__answer p {
-  margin: 20px 0 0;
+  margin: 0;
 }
 
 .faq__answer[hidden] {
@@ -294,6 +338,10 @@
 
   .advantage {
     padding: var(--s-block);
+  }
+
+  .advantage__body {
+    gap: var(--s-block);
   }
 
   .advantage__title,
@@ -352,17 +400,25 @@
 @media (min-width: 1280px) {
   .advantages__grid {
     grid-template-columns: repeat(4, minmax(0, 1fr));
+    justify-content: stretch;
+    gap: calc(20px * var(--scale));
   }
 
   .advantage {
-    gap: var(--s-block);
-    min-height: 201px;
+    gap: calc(40px * var(--scale));
+    width: auto;
+    min-width: 0;
+    min-height: calc(201px * var(--scale));
+    padding: calc(20px * var(--scale));
   }
 
   .advantage__icon {
-    width: 40px;
-    height: 40px;
-    margin-bottom: var(--s-block);
+    width: calc(40px * var(--scale));
+    height: calc(40px * var(--scale));
+  }
+
+  .advantage__body {
+    gap: calc(20px * var(--scale));
   }
 
   .advantage__title {
@@ -373,17 +429,32 @@
     font-size: var(--fs-lead);
   }
 
+  .services__grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    grid-template-rows:
+      calc(598px * var(--scale))
+      calc(598px * var(--scale))
+      calc(598px * var(--scale))
+      calc(522px * var(--scale));
+    justify-content: stretch;
+  }
+
+  .services__grid > .service-card:nth-child(12),
+  .services__grid > .service-card:nth-child(13) {
+    min-height: calc(522px * var(--scale));
+  }
+
   .steps__panel {
-    padding: 20px 20px 40px;
+    padding: calc(20px * var(--scale)) calc(20px * var(--scale)) calc(40px * var(--scale));
   }
 
   .steps__title {
-    padding-inline: 20px;
-    font-size: 54px;
+    padding-inline: calc(20px * var(--scale));
+    font-size: var(--fs-h2);
   }
 
   .step__num {
-    font-size: 54px;
+    font-size: var(--fs-h2);
   }
 
   .step__title {
@@ -397,64 +468,46 @@
   }
 
   .faq__item {
-    padding: 13px 13px 13px 28px;
+    padding: calc(13px * var(--scale)) calc(13px * var(--scale)) calc(13px * var(--scale)) calc(28px * var(--scale));
     border-radius: var(--r-card);
+  }
+
+  .faq__item.is-open {
+    padding-bottom: calc(27px * var(--scale));
   }
 
   .faq__question {
     font-size: var(--fs-h3);
   }
-}
 
-@media (min-width: 1440px) {
-  .advantages__grid {
-    grid-template-columns: repeat(4, 320px);
-    justify-content: space-between;
-  }
-
-  .services__grid {
-    grid-template-columns: repeat(4, 320px);
-    grid-template-rows: 598px 598px 598px 522px;
-    justify-content: space-between;
-  }
-
-  .services__grid > .service-card:nth-child(12),
-  .services__grid > .service-card:nth-child(13) {
-    min-height: 522px;
-  }
-}
-
-
-/* H2 Y @1440: adv 1020, services 1446, promo 4162, steps 4771, reviews 5446, works 5924, faq 6436, footer 7053 */
-@media (min-width: 1280px) {
   .advantages {
-    padding-top: 0;
+    padding-top: calc(62px * var(--scale));
   }
 
   .services {
-    padding-top: 62px;
-    padding-bottom: 70px;
+    padding-top: calc(62px * var(--scale));
+    padding-bottom: calc(70px * var(--scale));
   }
 
   .promo {
-    padding-top: 48px;
-    padding-bottom: 72px;
+    padding-top: calc(48px * var(--scale));
+    padding-bottom: calc(72px * var(--scale));
   }
 
   .steps {
-    padding-bottom: 55px;
+    padding-bottom: calc(55px * var(--scale));
   }
 
   .reviews {
-    padding-bottom: 42px;
+    padding-bottom: calc(42px * var(--scale));
   }
 
   .works {
-    padding-bottom: 70px;
+    padding-bottom: calc(70px * var(--scale));
   }
 
   .faq {
-    padding-bottom: 80px;
+    padding-bottom: calc(80px * var(--scale));
   }
 }
 

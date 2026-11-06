@@ -47,8 +47,14 @@ SETTINGS = {
     "phone_href": "tel:+380688068316",
     "address_lines": ["м. Луцьк", "вул, Мирослава Скорика 2А"],
     "logo": "img/logo.webp",
-    "schedule": "ПН–НД 9:00–20:00",
-    "legal_links": [],
+    "schedule": (
+        "Робочий час з 9.00 до 19.00\n"
+        "Субота з 9.00 до 15.00\n"
+        "Неділя вихідний"
+    ),
+    "legal_links": [
+        {"label": "Публічний договір (офферта)", "url_name": "offer"},
+    ],
     "copyright": "© Diesel Expert 2026. Усі права захищені.",
     "design_credit": "Дизайн розроблено PrometeyLabs",
     "cta_service": "Записатись на сервіс",

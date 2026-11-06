@@ -19,8 +19,10 @@
             <li class="slider__slide">
               <article class="review-card">
                 <p class="review-card__avatar" aria-hidden="true">{{ review.initial }}</p>
-                <h3 class="review-card__name">{{ review.name }}</h3>
-                <p class="review-card__text">{{ review.text }}</p>
+                <div class="review-card__body">
+                  <h3 class="review-card__name">{{ review.name }}</h3>
+                  <p class="review-card__text">{{ review.text }}</p>
+                </div>
               </article>
             </li>
           {% endfor %}

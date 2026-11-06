@@ -24,7 +24,8 @@ class ServicePriceInline(TabularInline):
 
 @admin.register(Advantage)
 class AdvantageAdmin(PublishedAdmin):
-    list_display = ("title", "sort", "is_published")
+    list_display = ("preview_thumb", "title", "sort", "is_published")
+    list_display_links = ("preview_thumb", "title")
     search_fields = ("title", "text")
     search_help_text = "Заголовок або текст"
     fields = ("title", "text", "icon", "icon_static", "sort", "is_published")
@@ -40,7 +41,8 @@ class HeroCardAdmin(PublishedAdmin):
 
 @admin.register(HeroBadge)
 class HeroBadgeAdmin(PublishedAdmin):
-    list_display = ("text", "sort", "is_published")
+    list_display = ("preview_thumb", "text", "sort", "is_published")
+    list_display_links = ("preview_thumb", "text")
     search_fields = ("text",)
     search_help_text = "Текст плашки"
     fields = ("text", "icon", "icon_static", "sort", "is_published")
@@ -48,12 +50,14 @@ class HeroBadgeAdmin(PublishedAdmin):
 
 @admin.register(Service)
 class ServiceAdmin(PublishedAdmin):
-    list_display = ("title", "sort", "is_published")
-    search_fields = ("title",)
+    list_display = ("preview_thumb", "title", "slug", "sort", "is_published")
+    list_display_links = ("preview_thumb", "title")
+    search_fields = ("title", "slug")
     search_help_text = "Назва послуги"
     inlines = (ServicePriceInline,)
     fields = (
         "title",
+        "slug",
         "bullets",
         "image",
         "image_static",
@@ -82,7 +86,8 @@ class ReviewAdmin(PublishedAdmin):
 
 @admin.register(WorkPhoto)
 class WorkPhotoAdmin(PublishedAdmin):
-    list_display = ("__str__", "sort", "is_published")
+    list_display = ("preview_thumb", "alt", "sort", "is_published")
+    list_display_links = ("preview_thumb", "alt")
     search_fields = ("alt",)
     search_help_text = "Підпис"
     fields = ("image", "image_static", "alt", "sort", "is_published")

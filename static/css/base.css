@@ -33,6 +33,8 @@
 html {
   scroll-behavior: smooth;
   color-scheme: dark;
+  /* Тимчасово: уся сторінка −10% (незалежно від Figma). Firefox 126+. */
+  zoom: 0.9;
 }
 
 body {
@@ -84,19 +86,20 @@ p {
 }
 
 .wrap {
-  width: min(var(--page), calc(100% - 30px));
+  width: min(var(--page), calc(100% - 20px));
   margin-inline: auto;
 }
 
 @media (min-width: 1280px) {
   .wrap {
-    width: min(var(--page), calc(100% - 100px));
+    /* Без жорсткого cap на --page — інакше zoom лишає чорні поля */
+    width: min(1680px, calc(100vw - (var(--gutter) * 2)));
   }
-}
 
-@media (min-width: 1440px) {
-  .wrap {
-    width: var(--page);
+  /* Хедер і футер трохи ширші (менші бокові відступи) */
+  .header > .wrap,
+  .footer > .wrap {
+    width: min(1704px, calc(100vw - 24px));
   }
 }
 
@@ -137,8 +140,9 @@ p {
   transform: rotate(-90deg);
 }
 
+/* Figma matrix(-1,0,0,1): дзеркало по X, не rotate(180) */
 .icon--flip {
-  transform: rotate(180deg);
+  transform: scaleX(-1);
 }
 
 @media (min-width: 768px) {
@@ -161,12 +165,28 @@ p {
   }
 
   .section__title {
-    font-size: 54px;
+    font-size: var(--fs-h2);
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
+  }
+
+  .btn,
+  .advantage,
+  .hero-dir,
+  .service-card,
+  .review-card,
+  .faq__item,
+  .header__phone,
+  .header__cta,
+  .promo__note,
+  .promo__photo,
+  .step,
+  .works__photo,
+  .slider__btn {
+    transition: none;
   }
 }

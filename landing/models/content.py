@@ -1,5 +1,7 @@
 from django.db import models
+from django.utils.text import slugify
 
+from landing.fields import WebPImageField
 from landing.images import validate_raster
 
 
@@ -9,7 +11,7 @@ class OrderedQuerySet(models.QuerySet):
 
 
 class Advantage(models.Model):
-    icon = models.ImageField(
+    icon = WebPImageField(
         "Іконка (файл)",
         upload_to="icons/",
         blank=True,
@@ -35,7 +37,7 @@ class Advantage(models.Model):
 class HeroCard(models.Model):
     title = models.CharField("Назва", max_length=160)
     image_static = models.CharField("Маска із дизайну", max_length=200)
-    modifier = models.SlugField("Модифікатор CSS", max_length=32)
+    modifier = models.SlugField("Модифікатор CSS", max_length=32, blank=True)
     url = models.CharField("Посилання", max_length=200, blank=True)
     sort = models.PositiveIntegerField("Порядок", default=0)
     is_published = models.BooleanField("На сайті", default=True)
@@ -50,9 +52,14 @@ class HeroCard(models.Model):
     def __str__(self):
         return self.title
 
+    def save(self, *args, **kwargs):
+        if not self.modifier:
+            self.modifier = slugify(self.title, allow_unicode=True)[:32] or "card"
+        super().save(*args, **kwargs)
+
 
 class HeroBadge(models.Model):
-    icon = models.ImageField(
+    icon = WebPImageField(
         "Іконка (файл)",
         upload_to="icons/",
         blank=True,
@@ -76,7 +83,8 @@ class HeroBadge(models.Model):
 
 class Service(models.Model):
     title = models.CharField("Назва", max_length=200)
-    image = models.ImageField(
+    slug = models.SlugField("Slug", max_length=160, blank=True, unique=True)
+    image = WebPImageField(
         "Фото",
         upload_to="services/",
         blank=True,
@@ -98,6 +106,17 @@ class Service(models.Model):
 
     def __str__(self):
         return self.title
+
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            base = slugify(self.title, allow_unicode=True)[:150] or "service"
+            slug = base
+            n = 2
+            while Service.objects.filter(slug=slug).exclude(pk=self.pk).exists():
+                slug = f"{base}-{n}"
+                n += 1
+            self.slug = slug
+        super().save(*args, **kwargs)
 
     def bullet_list(self):
         return [line.strip() for line in self.bullets.splitlines() if line.strip()]
@@ -165,7 +184,7 @@ class Review(models.Model):
 
 
 class WorkPhoto(models.Model):
-    image = models.ImageField(
+    image = WebPImageField(
         "Фото",
         upload_to="works/",
         blank=True,

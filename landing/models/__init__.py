@@ -11,16 +11,25 @@ from landing.models.content import (
 )
 from landing.models.leads import Lead
 from landing.models.settings import (
+    AdvantagesSectionSettings,
     BookingSettings,
     ContactsSettings,
     HeroSettings,
     LegalSettings,
+    OfferSettings,
+    PrivacySettings,
+    PromoSectionSettings,
+    ReviewsSectionSettings,
     SectionSettings,
+    ServicesSectionSettings,
     SiteSettings,
+    StepsSectionSettings,
+    WorksSectionSettings,
 )
 
 __all__ = [
     "Advantage",
+    "AdvantagesSectionSettings",
     "BookingSettings",
     "ContactsSettings",
     "FaqItem",
@@ -30,10 +39,17 @@ __all__ = [
     "Lead",
     "LegalSettings",
     "MailStep",
+    "OfferSettings",
+    "PrivacySettings",
+    "PromoSectionSettings",
     "Review",
+    "ReviewsSectionSettings",
     "SectionSettings",
     "Service",
     "ServicePrice",
+    "ServicesSectionSettings",
     "SiteSettings",
+    "StepsSectionSettings",
     "WorkPhoto",
+    "WorksSectionSettings",
 ]

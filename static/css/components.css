@@ -11,7 +11,7 @@
   border-radius: var(--r-control);
   font-size: var(--fs-body);
   font-weight: 600;
-  line-height: 1;
+  line-height: var(--lh);
   text-align: center;
   text-decoration: none;
   cursor: pointer;
@@ -41,10 +41,60 @@
   }
 }
 
+/* Легкий scale + підйом на кнопках / плашках / картках */
+.btn,
+.advantage,
+.hero-dir,
+.service-card,
+.review-card,
+.faq__item,
+.header__phone,
+.promo__note,
+.promo__photo,
+.step,
+.works__photo,
+.slider__btn {
+  transition:
+    transform 0.22s ease,
+    filter 0.22s ease,
+    background-color 0.22s ease,
+    border-color 0.22s ease;
+}
+
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+  .btn:hover,
+  .advantage:hover,
+  .hero-dir:hover,
+  .service-card:hover,
+  .review-card:hover,
+  .faq__item:hover,
+  .header__phone:hover,
+  .header__cta:hover,
+  .promo__note:hover,
+  .promo__photo:hover,
+  .step:hover,
+  .works__photo:hover,
+  .slider__btn:hover {
+    transform: translateY(-3px) scale(1.02);
+  }
+
+  .btn:active,
+  .advantage:active,
+  .hero-dir:active,
+  .service-card:active,
+  .header__cta:active,
+  .promo__note:active,
+  .step:active,
+  .works__photo:active,
+  .slider__btn:active {
+    transform: translateY(-1px) scale(1.01);
+  }
+}
+
 .service-card {
   display: flex;
   flex-direction: column;
-  gap: 19px;
+  gap: var(--s-block);
   min-width: 0;
 }
 
@@ -199,6 +249,7 @@
   width: 16px;
   height: 14px;
   margin-top: 2px;
+  object-fit: contain;
 }
 
 .service-card--wide .service-card__toggle,
@@ -216,25 +267,29 @@
   margin-top: auto;
 }
 
+/* Figma Frame 15: 320×54, r20, rgba(38,38,38,.2); Frame 22: left 14px, space-between */
 .service-card__price {
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   align-items: center;
   justify-content: space-between;
-  gap: 4px 8px;
+  gap: 8px;
   box-sizing: border-box;
   width: 100%;
+  height: 40px;
   min-height: 40px;
   margin: 0;
-  padding: 8px 10px;
+  padding: 0 10px;
   border: 0;
-  border-radius: var(--r-card-sm);
+  border-radius: 14px;
   background: var(--c-card);
   font-size: var(--fs-small);
   line-height: var(--lh);
 }
 
 .service-card__label {
+  flex: 1 1 auto;
+  min-width: 0;
   color: var(--c-secondary);
   font-weight: 500;
 }
@@ -244,10 +299,12 @@
 }
 
 .service-card__value {
+  flex: 0 0 auto;
   margin-left: auto;
   color: var(--c-text);
   font-weight: 600;
   text-align: right;
+  white-space: nowrap;
 }
 
 .slider__head {
@@ -280,9 +337,11 @@
   cursor: pointer;
 }
 
+/* Гліф Left 2: 5.5×11.5 у кнопці 44×44 (як FAQ), не stretch до 24 */
 .slider__btn .icon {
-  width: 24px;
-  height: 24px;
+  display: block;
+  width: 5.5px;
+  height: 11.5px;
   object-fit: contain;
 }
 
@@ -298,6 +357,9 @@
   scroll-snap-type: x mandatory;
   scrollbar-width: none;
   -webkit-overflow-scrolling: touch;
+  /* Місце під hover lift (overflow-x:auto кліпає і по Y) */
+  padding-block: 10px;
+  margin-block: -10px;
 }
 
 .slider__viewport::-webkit-scrollbar {
@@ -322,9 +384,11 @@
 .review-card {
   display: flex;
   flex-direction: column;
+  align-items: flex-start;
   gap: 20px;
   width: 225px;
-  padding: var(--s-inner);
+  min-height: 0;
+  padding: var(--s-block);
   border: 0;
   border-radius: var(--r-card);
   background: var(--c-card);
@@ -333,20 +397,32 @@
 .review-card__avatar {
   display: grid;
   place-items: center;
-  width: 30px;
-  height: 30px;
+  flex: none;
+  width: 48px;
+  height: 48px;
   margin: 0;
   border-radius: var(--r-chip);
   background: var(--c-text);
   color: var(--c-accent);
-  font-size: var(--fs-small);
+  font-size: 22px;
   font-weight: 500;
+  line-height: var(--lh);
+}
+
+.review-card__body {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--s-block);
+  align-self: stretch;
+  min-width: 0;
 }
 
 .review-card__name {
   margin: 0;
   font-size: var(--fs-lead);
   font-weight: 600;
+  line-height: var(--lh);
 }
 
 .review-card__text {
@@ -486,15 +562,19 @@ select.field__control option[value=""] {
   }
 
   .service-card__price {
+    height: 54px;
     min-height: 54px;
-    padding: 8px 14px;
+    padding: 0 14px;
     border-radius: var(--r-card);
     font-size: var(--fs-lead);
   }
 
+  .service-card__prices {
+    margin-top: auto;
+  }
+
   .review-card {
     width: min(320px, calc((100vw - 80px) / 2));
-    padding: var(--s-block);
   }
 
   .works__photo {
@@ -508,12 +588,29 @@ select.field__control option[value=""] {
 }
 
 @media (min-width: 1280px) {
-  .service-card__photo {
-    height: 293px;
+  /* Figma Frame 51: колонка space-between — фото+текст зверху, ціна внизу */
+  .service-card:not(.service-card--wide) {
+    justify-content: flex-start;
+    gap: 0;
+    height: 100%;
+    min-height: calc(598px * var(--scale));
   }
 
-  .service-card:not(.service-card--wide) {
-    min-height: 598px;
+  .service-card:not(.service-card--wide) .service-card__photo {
+    height: calc(293px * var(--scale));
+    margin-bottom: calc(20px * var(--scale));
+  }
+
+  .service-card:not(.service-card--wide) .service-card__body {
+    gap: calc(14px * var(--scale));
+  }
+
+  .service-card:not(.service-card--wide) .service-card__prices {
+    margin-top: auto;
+  }
+
+  .service-card__title {
+    font-size: var(--fs-h3);
   }
 
   .service-card__list li span {
@@ -521,19 +618,35 @@ select.field__control option[value=""] {
     text-box-edge: cap alphabetic;
   }
 
+  .service-card--wide {
+    gap: calc(12px * var(--scale));
+    height: calc(598px * var(--scale));
+    min-height: calc(598px * var(--scale));
+    max-height: calc(598px * var(--scale));
+  }
+
   .service-card--wide .service-card__photo {
-    height: 219px;
+    height: calc(211px * var(--scale));
+    margin-bottom: 0;
+  }
+
+  /* Останній ряд Figma Frame 55/51: висота 522, фото лишається 293 */
+  .services__grid > .service-card:nth-child(12),
+  .services__grid > .service-card:nth-child(13) {
+    min-height: calc(522px * var(--scale));
   }
 
   .review-card {
-    width: 320px;
-    gap: 40px;
+    width: calc(320px * var(--scale));
+    height: calc(253px * var(--scale));
+    gap: calc(40px * var(--scale));
+    padding: calc(20px * var(--scale));
   }
 
   .review-card__avatar {
-    width: 70px;
-    height: 70px;
-    font-size: 38px;
+    width: calc(70px * var(--scale));
+    height: calc(70px * var(--scale));
+    font-size: calc(38px * var(--scale));
   }
 
   .review-card__name {
@@ -545,31 +658,43 @@ select.field__control option[value=""] {
   }
 
   .works__photo {
-    width: 490px;
-    height: 287px;
-  }
-}
-
-@media (min-width: 1440px) {
-  .service-card--wide {
-    gap: 12px;
-    height: 598px;
-    min-height: 598px;
-    max-height: 598px;
+    width: calc(490px * var(--scale));
+    height: calc(287px * var(--scale));
   }
 
-  .service-card--wide .service-card__photo {
-    height: 211px;
+  .slider__btn {
+    width: calc(44px * var(--scale));
+    height: calc(44px * var(--scale));
   }
 
-  .services__grid > .service-card:nth-child(12) .service-card__photo,
-  .services__grid > .service-card:nth-child(13) .service-card__photo {
-    height: 217px;
+  .btn {
+    height: calc(44px * var(--scale));
+    min-height: calc(44px * var(--scale));
+    padding-inline: calc(26px * var(--scale));
+    font-size: var(--fs-body);
+    line-height: var(--lh);
   }
 
-  .services__grid > .service-card:nth-child(12),
-  .services__grid > .service-card:nth-child(13) {
-    gap: 12px;
+  /* Header CTA поверх .btn */
+  .header .btn.header__cta {
+    box-sizing: border-box;
+    align-self: center;
+    flex: none;
+    gap: calc(10px * var(--scale));
+    width: calc(262px * var(--scale));
+    height: calc(44px * var(--scale));
+    min-height: calc(44px * var(--scale));
+    margin: 0;
+    padding: 0 calc(26px * var(--scale));
+    border: 0;
+    line-height: var(--lh);
+  }
+
+  .header .btn.header__cta .icon {
+    width: calc(22px * var(--scale));
+    height: calc(22px * var(--scale));
+    flex: none;
+    object-fit: contain;
   }
 }
 

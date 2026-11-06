@@ -1,3 +1,5 @@
+from urllib.parse import quote_plus
+
 from django.urls import reverse
 
 from landing.data import NAV
@@ -78,6 +80,7 @@ def build_context(request=None):
             "direct": site.success_direct,
         },
         "legal": {"title": site.privacy_title, "body": site.privacy_body},
+        "offer": {"title": site.offer_title, "body": site.offer_body},
     }
 
 
@@ -96,10 +99,23 @@ def _settings(site):
     lines = [site.address_line_1]
     if site.address_line_2:
         lines.append(site.address_line_2)
+    address_query = ", ".join(part.strip() for part in lines if part and part.strip())
+    map_q = quote_plus(address_query)
+    legal_links = [
+        {"label": site.privacy_label, "url": reverse("privacy")},
+        {
+            "label": site.offer_label or "Публічний договір (офферта)",
+            "url": reverse("offer"),
+        },
+    ]
     return {
         "phone": site.phone,
         "phone_href": site.phone_href,
         "address_lines": lines,
+        "map_embed_url": (
+            f"https://maps.google.com/maps?q={map_q}&hl=uk&z=16&output=embed"
+        ),
+        "map_link_url": f"https://www.google.com/maps/search/?api=1&query={map_q}",
         "logo_url": public_url(site.logo, site.logo_static),
         "schedule": site.schedule,
         "copyright": site.copyright,
@@ -108,6 +124,7 @@ def _settings(site):
         "cta_diagnostics": site.cta_diagnostics,
         "privacy_url": reverse("privacy"),
         "privacy_label": site.privacy_label,
+        "legal_links": legal_links,
     }
 
 

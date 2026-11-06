@@ -2,6 +2,7 @@ import re
 
 from django.db import models
 
+from landing.fields import WebPImageField
 from landing.images import validate_raster
 
 
@@ -20,7 +21,7 @@ class SiteSettings(SingletonModel):
     address_line_1 = models.CharField("Адреса, рядок 1", max_length=120)
     address_line_2 = models.CharField("Адреса, рядок 2", max_length=120, blank=True)
     schedule = models.CharField("Графік", max_length=160)
-    logo = models.ImageField(
+    logo = WebPImageField(
         "Логотип (файл)",
         upload_to="brand/",
         blank=True,
@@ -38,7 +39,7 @@ class SiteSettings(SingletonModel):
     cta_diagnostics = models.CharField("Кнопка діагностики", max_length=80)
 
     hero_title = models.CharField("Головна пропозиція", max_length=200)
-    hero_image = models.ImageField(
+    hero_image = WebPImageField(
         "Фон першого екрана",
         upload_to="hero/",
         blank=True,
@@ -60,7 +61,7 @@ class SiteSettings(SingletonModel):
     promo_title = models.CharField("Заголовок Нової пошти", max_length=200)
     promo_lead = models.TextField("Лід Нової пошти", blank=True)
     promo_text = models.TextField("Текст Нової пошти", blank=True)
-    promo_image = models.ImageField(
+    promo_image = WebPImageField(
         "Фото Нової пошти",
         upload_to="promo/",
         blank=True,
@@ -91,6 +92,24 @@ class SiteSettings(SingletonModel):
     privacy_label = models.CharField("Підпис посилання", max_length=120)
     privacy_title = models.CharField("Заголовок політики", max_length=160)
     privacy_body = models.TextField("Текст політики")
+    offer_label = models.CharField(
+        "Підпис оферти",
+        max_length=120,
+        default="Публічний договір (офферта)",
+    )
+    offer_title = models.CharField(
+        "Заголовок оферти",
+        max_length=160,
+        default="Публічний договір (офферта)",
+    )
+    offer_body = models.TextField(
+        "Текст оферти",
+        blank=True,
+        default=(
+            "Текст публічного договору тимчасовий і буде замінений "
+            "юридичною редакцією клієнта."
+        ),
+    )
 
     notify_email = models.EmailField(
         "Пошта для заявок",
@@ -134,11 +153,46 @@ class HeroSettings(SiteSettings):
         verbose_name_plural = "Перший екран"
 
 
-class SectionSettings(SiteSettings):
+class AdvantagesSectionSettings(SiteSettings):
     class Meta:
         proxy = True
-        verbose_name = "Заголовки секцій"
-        verbose_name_plural = "Заголовки секцій"
+        verbose_name = "Секція «Переваги»"
+        verbose_name_plural = "Секція «Переваги»"
+
+
+class ServicesSectionSettings(SiteSettings):
+    class Meta:
+        proxy = True
+        verbose_name = "Секція «Послуги»"
+        verbose_name_plural = "Секція «Послуги»"
+
+
+class PromoSectionSettings(SiteSettings):
+    class Meta:
+        proxy = True
+        verbose_name = "Секція «Нова пошта»"
+        verbose_name_plural = "Секція «Нова пошта»"
+
+
+class StepsSectionSettings(SiteSettings):
+    class Meta:
+        proxy = True
+        verbose_name = "Секція «Кроки»"
+        verbose_name_plural = "Секція «Кроки»"
+
+
+class ReviewsSectionSettings(SiteSettings):
+    class Meta:
+        proxy = True
+        verbose_name = "Секція «Відгуки»"
+        verbose_name_plural = "Секція «Відгуки»"
+
+
+class WorksSectionSettings(SiteSettings):
+    class Meta:
+        proxy = True
+        verbose_name = "Секція «Роботи»"
+        verbose_name_plural = "Секція «Роботи»"
 
 
 class BookingSettings(SiteSettings):
@@ -148,8 +202,20 @@ class BookingSettings(SiteSettings):
         verbose_name_plural = "Форма заявки"
 
 
-class LegalSettings(SiteSettings):
+class PrivacySettings(SiteSettings):
     class Meta:
         proxy = True
         verbose_name = "Політика конфіденційності"
         verbose_name_plural = "Політика конфіденційності"
+
+
+class OfferSettings(SiteSettings):
+    class Meta:
+        proxy = True
+        verbose_name = "Публічний договір"
+        verbose_name_plural = "Публічний договір"
+
+
+# Зворотна сумісність імпортів
+SectionSettings = AdvantagesSectionSettings
+LegalSettings = PrivacySettings

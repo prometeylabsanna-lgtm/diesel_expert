@@ -2,18 +2,18 @@ from django.contrib import admin
 
 from landing.admin_mixins import SingletonAdmin
 from landing.models import (
+    AdvantagesSectionSettings,
     BookingSettings,
     ContactsSettings,
     HeroSettings,
-    LegalSettings,
-    SectionSettings,
+    OfferSettings,
+    PrivacySettings,
+    PromoSectionSettings,
+    ReviewsSectionSettings,
+    ServicesSectionSettings,
+    StepsSectionSettings,
+    WorksSectionSettings,
 )
-
-_NOTIFY = (
-    "Сповіщення",
-    {"fields": ("notify_email", "telegram_bot_token", "telegram_chat_id")},
-)
-
 
 @admin.register(ContactsSettings)
 class ContactsSettingsAdmin(SingletonAdmin):
@@ -22,10 +22,20 @@ class ContactsSettingsAdmin(SingletonAdmin):
             "Контакти",
             {"fields": ("phone", "address_line_1", "address_line_2", "schedule")},
         ),
-        ("Логотип", {"fields": ("logo", "logo_static")}),
+        ("Логотип", {"fields": ("logo",)}),
+        (
+            "Запас із дизайну",
+            {
+                "classes": ("collapse",),
+                "fields": ("logo_static",),
+            },
+        ),
         ("Кнопки", {"fields": ("cta_service", "cta_diagnostics")}),
         ("Підвал", {"fields": ("copyright", "design_credit")}),
-        _NOTIFY,
+        (
+            "Сповіщення",
+            {"fields": ("notify_email", "telegram_bot_token", "telegram_chat_id")},
+        ),
     )
 
 
@@ -33,7 +43,7 @@ class ContactsSettingsAdmin(SingletonAdmin):
 class HeroSettingsAdmin(SingletonAdmin):
     fieldsets = (
         (
-            "Пропозиція",
+            "Тексти",
             {
                 "fields": (
                     "hero_title",
@@ -43,40 +53,83 @@ class HeroSettingsAdmin(SingletonAdmin):
                 )
             },
         ),
-        ("Фон", {"fields": ("hero_image", "hero_image_static")}),
+        ("Фон", {"fields": ("hero_image",)}),
+        (
+            "Запас із дизайну",
+            {
+                "classes": ("collapse",),
+                "fields": ("hero_image_static",),
+            },
+        ),
     )
 
 
-@admin.register(SectionSettings)
-class SectionSettingsAdmin(SingletonAdmin):
+@admin.register(AdvantagesSectionSettings)
+class AdvantagesSectionSettingsAdmin(SingletonAdmin):
+    fieldsets = (("Заголовок блоку", {"fields": ("advantages_title",)}),)
+
+
+@admin.register(ServicesSectionSettings)
+class ServicesSectionSettingsAdmin(SingletonAdmin):
     fieldsets = (
-        ("Переваги", {"fields": ("advantages_title",)}),
         (
-            "Послуги",
-            {"fields": ("services_title", "services_lead", "services_more_label")},
+            "Заголовки блоку",
+            {
+                "fields": (
+                    "services_title",
+                    "services_lead",
+                    "services_more_label",
+                )
+            },
         ),
+    )
+
+
+@admin.register(PromoSectionSettings)
+class PromoSectionSettingsAdmin(SingletonAdmin):
+    fieldsets = (
         (
-            "Нова пошта",
+            "Тексти",
             {
                 "fields": (
                     "promo_title",
                     "promo_lead",
                     "promo_text",
                     "promo_cta",
-                    "promo_image",
-                    "promo_image_static",
                 )
             },
         ),
-        ("Інші заголовки", {"fields": ("steps_title", "reviews_title", "works_title")}),
+        ("Фото", {"fields": ("promo_image",)}),
+        (
+            "Запас із дизайну",
+            {
+                "classes": ("collapse",),
+                "fields": ("promo_image_static",),
+            },
+        ),
     )
+
+
+@admin.register(StepsSectionSettings)
+class StepsSectionSettingsAdmin(SingletonAdmin):
+    fieldsets = (("Заголовок блоку", {"fields": ("steps_title",)}),)
+
+
+@admin.register(ReviewsSectionSettings)
+class ReviewsSectionSettingsAdmin(SingletonAdmin):
+    fieldsets = (("Заголовок блоку", {"fields": ("reviews_title",)}),)
+
+
+@admin.register(WorksSectionSettings)
+class WorksSectionSettingsAdmin(SingletonAdmin):
+    fieldsets = (("Заголовок блоку", {"fields": ("works_title",)}),)
 
 
 @admin.register(BookingSettings)
 class BookingSettingsAdmin(SingletonAdmin):
     fieldsets = (
         (
-            "Форма",
+            "Форма запису",
             {
                 "fields": (
                     "booking_title",
@@ -90,7 +143,7 @@ class BookingSettingsAdmin(SingletonAdmin):
             },
         ),
         (
-            "Дякуємо",
+            "Екран «Дякуємо»",
             {
                 "fields": (
                     "success_title",
@@ -103,11 +156,21 @@ class BookingSettingsAdmin(SingletonAdmin):
     )
 
 
-@admin.register(LegalSettings)
-class LegalSettingsAdmin(SingletonAdmin):
+@admin.register(PrivacySettings)
+class PrivacySettingsAdmin(SingletonAdmin):
     fieldsets = (
         (
-            "Сторінка",
+            "Сторінка політики",
             {"fields": ("privacy_label", "privacy_title", "privacy_body")},
+        ),
+    )
+
+
+@admin.register(OfferSettings)
+class OfferSettingsAdmin(SingletonAdmin):
+    fieldsets = (
+        (
+            "Сторінка публічного договору",
+            {"fields": ("offer_label", "offer_title", "offer_body")},
         ),
     )

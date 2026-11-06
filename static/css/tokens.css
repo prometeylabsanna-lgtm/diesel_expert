@@ -6,19 +6,11 @@
   --c-secondary: #b1b1b1;
   --c-placeholder: #676767;
   --c-light: #eaeaea;
+  /* Figma GLASS fill — однаковий для header / hero-dir / карток */
   --c-card: rgba(38, 38, 38, 0.2);
-  /* Hero-dir / header denser glass (DL v5). Shared panels stay .2 / blur12. */
-  --c-hero-glass: rgba(20, 22, 22, 0.65);
-  /* Figma GLASS frost 12; outline CTA frost 4. Без drop-shadow на склі. */
+  /* Figma GLASS frost 12; outline CTA frost 4. Без border/shadow/бліку. */
   --blur-frost-12: 12px;
   --blur-frost-4: 4px;
-  --blur-hero-glass: 24px;
-  --glass-light-edge: linear-gradient(
-    135deg,
-    rgba(255, 255, 255, 0.2),
-    transparent 55%
-  );
-  --glass-inset-top: inset 0 1px 0 rgba(255, 255, 255, 0.08);
   --c-accent-soft: rgba(69, 219, 0, 0.12);
   --c-divider-35: rgba(234, 234, 234, 0.35);
   --c-divider-40: rgba(234, 234, 234, 0.4);
@@ -28,6 +20,8 @@
   --c-hero-to: rgba(1, 11, 13, 0);
   --c-step: rgba(0, 0, 0, 0.6);
   --font: "Involve", Inter, system-ui, -apple-system, "Segoe UI", sans-serif;
+  /* Mobile / tablet base (не Figma-desktop scale) */
+  --scale: 1;
   --fs-h1: 54px;
   --fs-h2: 32px;
   --fs-h3: 22px;
@@ -47,19 +41,48 @@
   --s-tight: 10px;
   --s-xs: 8px;
   --s-lg: 50px;
-  --page: 1340px;
+  --page: 1408px;
+  /* Бокові відступи від країв */
+  --gutter: 16px;
   --header-offset: 78px;
 }
 
+/*
+  Figma desktop 1440 = 1.
+  --scale має бути NUMBER (length/length), інакше всі calc(* var(--scale)) падають.
+*/
 @media (min-width: 1280px) {
   :root {
-    --fs-h2: 54px;
-    --header-offset: 127px;
+    --scale: 1;
+    --scale: min(1, calc(100vw / 1440px));
+    --fs-h1: calc(54px * var(--scale));
+    --fs-h2: calc(54px * var(--scale));
+    --fs-h3: calc(22px * var(--scale));
+    --fs-price: calc(24px * var(--scale));
+    --fs-lead: calc(18px * var(--scale));
+    --fs-body: calc(16px * var(--scale));
+    --fs-small: calc(14px * var(--scale));
+    --fs-caption: calc(12px * var(--scale));
+    --r-card: calc(20px * var(--scale));
+    --r-card-sm: calc(14px * var(--scale));
+    --r-control: calc(12px * var(--scale));
+    --r-chip: calc(8px * var(--scale));
+    --s-section: calc(40px * var(--scale));
+    --s-block: calc(20px * var(--scale));
+    --s-inner: calc(14px * var(--scale));
+    --s-tight: calc(10px * var(--scale));
+    --s-xs: calc(8px * var(--scale));
+    --s-lg: calc(50px * var(--scale));
+    --page: calc(1408px * var(--scale));
+    --gutter: calc(16px * var(--scale));
+    --header-offset: calc(127px * var(--scale));
   }
 }
 
-/* Shared Figma GLASS (frost 12): fill/radius лишаються на компонентах. */
+/* Figma GLASS frost 12: fill/radius на компонентах. */
+.header__bar,
 .mobile-menu__panel,
+.hero-dir,
 .advantage,
 .service-card__price,
 .promo__note,
@@ -68,100 +91,20 @@
 .faq__item,
 .footer__bar,
 .field {
-  position: relative;
   -webkit-backdrop-filter: blur(var(--blur-frost-12));
   backdrop-filter: blur(var(--blur-frost-12));
-  box-shadow: var(--glass-inset-top);
 }
 
-.mobile-menu__panel::after,
-.advantage::after,
-.service-card__price::after,
-.promo__note::after,
-.step::after,
-.review-card::after,
-.faq__item::after,
-.footer__bar::after,
-.field::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  padding: 1px;
-  background: var(--glass-light-edge);
-  pointer-events: none;
-  -webkit-mask:
-    linear-gradient(#fff 0 0) content-box,
-    linear-gradient(#fff 0 0);
-  -webkit-mask-composite: xor;
-  mask:
-    linear-gradient(#fff 0 0) content-box,
-    linear-gradient(#fff 0 0);
-  mask-composite: exclude;
-}
-
-/* Header bar glass (DL v5): denser fill + blur24; mobile brightness.3 / desktop .4; edge .2 / inset .08. */
-.header__bar {
-  position: relative;
-  -webkit-backdrop-filter: blur(24px) brightness(0.3);
-  backdrop-filter: blur(24px) brightness(0.3);
-  box-shadow: var(--glass-inset-top);
-}
-
-@media (min-width: 1280px) {
-  .header__bar {
-    -webkit-backdrop-filter: blur(24px) brightness(0.4);
-    backdrop-filter: blur(24px) brightness(0.4);
-  }
-}
-
-.header__bar::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  padding: 1px;
-  background: var(--glass-light-edge);
-  pointer-events: none;
-  -webkit-mask:
-    linear-gradient(#fff 0 0) content-box,
-    linear-gradient(#fff 0 0);
-  -webkit-mask-composite: xor;
-  mask:
-    linear-gradient(#fff 0 0) content-box,
-    linear-gradient(#fff 0 0);
-  mask-composite: exclude;
-}
-
-/* Hero-dir glass (DL v5): mobile denser blur; desktop + brightness.35; edge/inset shared. */
-.hero-dir {
-  position: relative;
-  -webkit-backdrop-filter: blur(var(--blur-hero-glass));
-  backdrop-filter: blur(var(--blur-hero-glass));
-  box-shadow: var(--glass-inset-top);
-}
-
-@media (min-width: 1280px) {
-  .hero-dir {
-    -webkit-backdrop-filter: blur(24px) brightness(0.35);
-    backdrop-filter: blur(24px) brightness(0.35);
-  }
-}
-
-.hero-dir::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  padding: 1px;
-  background: var(--glass-light-edge);
-  pointer-events: none;
-  -webkit-mask:
-    linear-gradient(#fff 0 0) content-box,
-    linear-gradient(#fff 0 0);
-  -webkit-mask-composite: xor;
-  mask:
-    linear-gradient(#fff 0 0) content-box,
-    linear-gradient(#fff 0 0);
-  mask-composite: exclude;
+/* Figma GLASS light −45° / 0.8 — тонкий край */
+.header__bar,
+.hero-dir,
+.advantage,
+.service-card__price,
+.promo__note,
+.faq__item,
+.footer__bar,
+.review-card {
+  box-shadow:
+    inset 1px 1px 0 rgba(255, 255, 255, 0.14),
+    inset -1px -1px 0 rgba(255, 255, 255, 0.04);
 }

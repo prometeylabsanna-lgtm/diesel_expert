@@ -19,7 +19,7 @@ body.is-menu-open .header {
   padding: 8px 12px;
   border: 0;
   border-radius: var(--r-card);
-  background: rgba(20, 22, 22, 0.65);
+  background: var(--c-card);
 }
 
 .header__brand {
@@ -31,7 +31,7 @@ body.is-menu-open .header {
   text-decoration: none;
 }
 
-/* Mobile logo 46×39 → measured hit ≥44×44; neg margin keeps bar rhythm */
+/* Mobile/tablet logo 46×39 → measured hit ≥44×44; neg margin keeps bar rhythm */
 @media (max-width: 1279px) {
   .header__brand {
     min-height: 44px;
@@ -304,6 +304,13 @@ body.is-menu-open .header {
   padding: 24px 0 max(32px, env(safe-area-inset-bottom));
 }
 
+.footer__inner {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 40px;
+}
+
 .footer__top {
   display: grid;
   gap: 20px;
@@ -340,24 +347,100 @@ body.is-menu-open .header {
   overflow-wrap: anywhere;
 }
 
+.footer__schedule {
+  white-space: pre-line;
+}
+
 .footer__brand-address {
   color: var(--c-light);
   font-size: var(--fs-caption);
   font-weight: 500;
 }
 
-.footer__cols,
+.footer__cols {
+  display: grid;
+  gap: 20px;
+}
+
+.footer__links {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 13px;
+}
+
+.footer__link {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  color: var(--c-text);
+  font-size: var(--fs-body);
+  font-weight: 600;
+  line-height: var(--lh);
+  text-decoration: none;
+}
+
+.footer__link:hover,
+.footer__link:focus-visible {
+  color: var(--c-accent);
+}
+
+.footer__contact {
+  display: grid;
+  gap: 20px;
+}
+
 .footer__info {
   display: grid;
   gap: 20px;
+}
+
+.footer__map {
+  position: relative;
+  width: 100%;
+  max-width: 320px;
+  height: 166px;
+  border-radius: var(--r-card);
+  overflow: hidden;
+  -webkit-mask-image: -webkit-radial-gradient(white, black);
+  background: #1a1a1a;
+}
+
+.footer__map-frame {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  border-radius: inherit;
+}
+
+.footer__map-link {
+  position: absolute;
+  inset: auto 8px 8px auto;
+  z-index: 1;
+  padding: 6px 10px;
+  border-radius: var(--r-chip);
+  background: rgba(0, 0, 0, 0.72);
+  color: var(--c-text);
+  font-size: var(--fs-caption);
+  font-weight: 600;
+  line-height: var(--lh);
+  text-decoration: none;
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+}
+
+.footer__map-link:hover,
+.footer__map-link:focus-visible {
+  color: var(--c-accent);
 }
 
 .footer__bar {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
+  align-items: center;
   gap: 8px 20px;
-  margin-top: 40px;
   min-height: 54px;
   padding: 14px 16px;
   border: 0;
@@ -366,20 +449,11 @@ body.is-menu-open .header {
   color: var(--c-muted);
   font-size: var(--fs-caption);
   font-weight: 500;
+  line-height: var(--lh);
 }
 
 .footer__bar p {
   margin: 0;
-}
-
-.footer__legal {
-  display: inline-flex;
-  align-items: center;
-  min-height: 44px;
-  margin-block: -15px;
-  color: inherit;
-  text-decoration: underline;
-  text-underline-offset: 3px;
 }
 
 .legal-page {
@@ -405,39 +479,54 @@ body.is-menu-open .header {
 }
 
 @media (min-width: 768px) {
+  .footer__contact {
+    grid-template-columns: minmax(0, 1fr) 320px;
+    align-items: center;
+  }
+
   .footer__info {
-    grid-template-columns: repeat(2, minmax(0, max-content));
-    align-items: start;
-    column-gap: 48px;
+    gap: 40px;
   }
 }
 
+/* Figma desktop (scale від 1440) — header + footer */
 @media (min-width: 1280px) {
   .header {
-    padding-top: 20px;
+    padding-top: calc(20px * var(--scale));
   }
 
   .header__bar {
-    height: 107px;
-    min-height: 107px;
-    padding: 14px 20px;
+    box-sizing: border-box;
+    align-items: center;
+    /* space-between без gap:46 — інакше 280+553+400+92 > 1300 і CTA вилізає */
+    justify-content: space-between;
+    gap: 0;
+    height: calc(107px * var(--scale));
+    min-height: calc(107px * var(--scale));
+    padding: calc(14px * var(--scale)) calc(20px * var(--scale));
+    overflow: hidden;
+  }
+
+  .header__brand {
+    gap: calc(8px * var(--scale));
+    flex: none;
   }
 
   .header__logo {
-    width: 91px;
-    height: 79px;
+    width: calc(91px * var(--scale));
+    height: calc(79px * var(--scale));
   }
 
   .header__divider {
     display: block;
     width: 1px;
-    height: 30px;
+    height: calc(30px * var(--scale));
     background: var(--c-divider-40);
   }
 
   .header__address {
     display: grid;
-    width: 173px;
+    width: calc(173px * var(--scale));
     color: var(--c-light);
     font-size: var(--fs-caption);
     font-weight: 500;
@@ -447,7 +536,12 @@ body.is-menu-open .header {
   .header__nav {
     display: flex;
     align-items: center;
-    gap: 18px;
+    gap: calc(38px * var(--scale));
+    flex: none;
+  }
+
+  .header__link {
+    font-size: var(--fs-body);
   }
 
   .header .header__cta {
@@ -458,22 +552,65 @@ body.is-menu-open .header {
     display: none;
   }
 
+  .header__tools {
+    display: flex;
+    align-items: center;
+    align-self: center;
+    gap: calc(20px * var(--scale));
+    flex: 0 0 auto;
+    height: calc(44px * var(--scale));
+  }
+
   .header__phone {
+    gap: calc(8px * var(--scale));
+    height: auto;
+    min-height: 0;
+    margin-block: 0;
     font-size: var(--fs-small);
   }
 
   .header__phone img {
-    width: 20px;
-    height: 20px;
+    width: calc(20px * var(--scale));
+    height: calc(20px * var(--scale));
+  }
+
+  /* Figma 262×44 — flex center у барці, без neg-margin */
+  .header__cta {
+    box-sizing: border-box;
+    align-self: center;
+    flex: none;
+    gap: calc(10px * var(--scale));
+    width: calc(262px * var(--scale));
+    height: calc(44px * var(--scale));
+    min-height: calc(44px * var(--scale));
+    margin: 0;
+    padding: 0 calc(26px * var(--scale));
+    border: 0;
+    border-radius: var(--r-control);
+    font-size: var(--fs-body);
+    font-weight: 600;
+    line-height: var(--lh);
+  }
+
+  .header__cta span {
+    line-height: var(--lh);
+  }
+
+  .header__cta .icon {
+    width: calc(22px * var(--scale));
+    height: calc(22px * var(--scale));
+    flex: none;
+    object-fit: contain;
   }
 
   .footer__brand {
     display: block;
+    flex: none;
   }
 
   .footer__logo {
-    width: 192px;
-    height: 166px;
+    width: calc(192px * var(--scale));
+    height: calc(166px * var(--scale));
   }
 
   .footer__divider,
@@ -482,47 +619,60 @@ body.is-menu-open .header {
   }
 
   .footer__top {
-    grid-template-columns: 192px minmax(0, 1fr);
-    gap: 40px;
-    align-items: start;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: calc(40px * var(--scale));
   }
 
   .footer__cols {
-    justify-content: end;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: calc(80px * var(--scale));
+    flex: 1 1 auto;
+    min-width: 0;
+    max-width: none;
+  }
+
+  .footer__links {
+    width: calc(236px * var(--scale));
+    flex: none;
+  }
+
+  .footer__link {
+    min-height: 0;
+  }
+
+  .footer__contact {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: calc(20px * var(--scale));
+    flex: none;
   }
 
   .footer__info {
-    justify-content: end;
-    column-gap: 64px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: calc(259px * var(--scale));
+    min-height: calc(169px * var(--scale));
+    gap: calc(74px * var(--scale));
+  }
+
+  .footer__map {
+    width: calc(320px * var(--scale));
+    height: calc(166px * var(--scale));
+    flex: none;
   }
 
   .footer__bar {
-    padding-inline: 20px;
+    min-height: calc(54px * var(--scale));
+    height: calc(54px * var(--scale));
+    padding: 0 calc(20px * var(--scale));
     font-size: var(--fs-small);
-  }
-}
-
-@media (min-width: 1280px) and (max-width: 1439px) {
-  .header__address,
-  .header__divider {
-    display: none;
-  }
-
-  .header__nav {
-    gap: 14px;
-  }
-
-  .header__link {
-    font-size: var(--fs-small);
-  }
-}
-
-@media (min-width: 1440px) {
-  .header__nav {
-    gap: 38px;
-  }
-
-  .header__link {
-    font-size: var(--fs-body);
   }
 }

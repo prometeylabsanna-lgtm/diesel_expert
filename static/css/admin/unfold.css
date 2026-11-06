@@ -1,3 +1,171 @@
+/* Diesel Expert Unfold: світла — білий/зелений; темна — чорний/зелений */
+
+:root {
+  --de-green: #3d9e0e;
+}
+
+html:not(.dark) body {
+  background: #ffffff;
+}
+
+html.dark body {
+  background: #050505;
+}
+
+/* Не чіпати [class*="bg-primary-600"] — інакше checked:bg-primary-600
+   на чекбоксах завжди зелений і виглядає як «обрано». */
+html:not(.dark) .bg-primary-600 {
+  background-color: var(--de-green);
+}
+
+html.dark .bg-primary-600 {
+  background-color: var(--de-green);
+}
+
+.unfold-logo--light {
+  display: block;
+}
+
+.unfold-logo--dark {
+  display: none;
+}
+
+html.dark .unfold-logo--light {
+  display: none;
+}
+
+html.dark .unfold-logo--dark {
+  display: block;
+}
+
+/* —— Toolbar: пошук + фільтри в один ряд —— */
+.de-changelist-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: 12px 16px;
+  margin-bottom: 1rem;
+  padding: 12px;
+  border: 1px solid rgb(229 231 235);
+  border-radius: 0.5rem;
+  background: rgb(255 255 255);
+}
+
+html.dark .de-changelist-toolbar {
+  border-color: rgb(55 65 81);
+  background: transparent;
+}
+
+.de-changelist-toolbar #toolbar {
+  margin: 0;
+  flex: 0 1 18rem;
+  min-width: min(100%, 14rem);
+}
+
+.de-changelist-toolbar #toolbar > form > div {
+  width: 100%;
+  min-height: 42px;
+}
+
+.de-filters-row {
+  display: flex;
+  flex: 1 1 auto;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: 12px 16px;
+  margin: 0;
+  min-width: 0;
+}
+
+.de-filter {
+  flex: 0 1 14rem;
+  min-width: min(100%, 11rem);
+  margin: 0;
+}
+
+.de-filter__inner {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin: 0;
+}
+
+.de-filter__label {
+  display: block;
+  margin: 0;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  line-height: 1.25;
+  color: rgb(17 24 39);
+}
+
+html.dark .de-filter__label {
+  color: rgb(243 244 246);
+}
+
+.de-filter__control,
+.de-filter__date-field {
+  margin: 0;
+  min-width: 0;
+}
+
+.de-filter__control select,
+.de-filter__control .admin-autocomplete,
+.de-filter__control .select2-container {
+  width: 100%;
+  min-width: 0;
+}
+
+.de-filter__control .select2-container .select2-selection--single {
+  min-height: 42px;
+  display: flex;
+  align-items: center;
+}
+
+.de-filter__dates {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  gap: 8px;
+}
+
+.de-filter__dates-sep {
+  flex: 0 0 auto;
+  color: rgb(156 163 175);
+  font-weight: 600;
+}
+
+.de-filter__date-field {
+  flex: 1 1 0;
+  min-width: 7.5rem;
+}
+
+.de-filter__date-field input {
+  width: 100%;
+  min-height: 42px;
+  box-sizing: border-box;
+}
+
+.de-filter__inner--date {
+  min-width: min(100%, 18rem);
+}
+
+@media (max-width: 767px) {
+  .de-changelist-toolbar {
+    align-items: stretch;
+  }
+
+  .de-changelist-toolbar #toolbar,
+  .de-filter {
+    flex: 1 1 100%;
+    min-width: 0;
+  }
+
+  .de-filter__dates {
+    flex-wrap: wrap;
+  }
+}
+
 #changelist .result-list-wrapper > .grow > .flex.flex-col.flex-wrap {
   align-items: flex-end;
 }
@@ -15,4 +183,43 @@
   #changelist form.flex {
     width: 100%;
   }
+}
+
+/* Не фарбувати всі посилання в зелений на hover — інакше на зелених
+   кнопках (primary) текст зливається з фоном. */
+
+/* Чекбокси дій: явно невибраний стан (без «завжди зелених») */
+input.action-select:not(:checked),
+input.action-toggle:not(:checked),
+#action-toggle:not(:checked) {
+  background-color: #ffffff;
+  border-color: #d1d5db;
+}
+
+html.dark input.action-select:not(:checked),
+html.dark input.action-toggle:not(:checked),
+html.dark #action-toggle:not(:checked) {
+  background-color: #111827;
+  border-color: #374151;
+}
+
+input.action-select:not(:checked)::after,
+input.action-toggle:not(:checked)::after,
+#action-toggle:not(:checked)::after {
+  color: transparent;
+  opacity: 0;
+}
+
+input.action-select:checked,
+input.action-toggle:checked,
+#action-toggle:checked {
+  background-color: var(--de-green);
+  border-color: var(--de-green);
+}
+
+input.action-select:checked::after,
+input.action-toggle:checked::after,
+#action-toggle:checked::after {
+  color: #ffffff;
+  opacity: 1;
 }

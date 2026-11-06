@@ -16,7 +16,7 @@
       <span class="field__icon" aria-hidden="true">
         <img src="{% static 'img/icons/profile.svg' %}" alt="" width="20" height="20">
       </span>
-      <input class="field__control" type="text" name="name" autocomplete="name" maxlength="80" placeholder="{{ booking.name_placeholder }}" aria-label="{{ booking.name_placeholder }}" value="{% if form %}{{ form.name.value|default:'' }}{% endif %}" required>
+      <input class="field__control" type="text" name="name" autocomplete="name" maxlength="80" placeholder="{{ booking.name_placeholder }}" aria-label="{{ booking.name_placeholder }}" value="{% if form %}{{ form.name.value|default:'' }}{% endif %}" required data-validate="name">
     </label>
     {% if form.name.errors %}
       <p class="field__error" role="alert">{{ form.name.errors.0 }}</p>
@@ -27,7 +27,7 @@
       <span class="field__icon" aria-hidden="true">
         <img src="{% static 'img/icons/call.svg' %}" alt="" width="20" height="20">
       </span>
-      <input class="field__control" type="tel" name="phone" inputmode="tel" autocomplete="tel" maxlength="32" placeholder="{{ booking.phone_placeholder }}" aria-label="{{ booking.phone_placeholder }}" value="{% if form %}{{ form.phone.value|default:'' }}{% endif %}" required>
+      <input class="field__control" type="tel" name="phone" inputmode="numeric" autocomplete="tel" maxlength="17" placeholder="+380XXXXXXXXX" aria-label="{{ booking.phone_placeholder }}" value="{% if form %}{{ form.phone.value|default:'' }}{% endif %}" required data-validate="phone">
     </label>
     {% if form.phone.errors %}
       <p class="field__error" role="alert">{{ form.phone.errors.0 }}</p>

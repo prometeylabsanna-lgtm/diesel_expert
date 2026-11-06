@@ -1,4 +1,3 @@
-{% load static %}
 <footer class="footer" id="contacts" role="contentinfo">
   <div class="wrap footer__inner">
     <div class="footer__top">
@@ -13,23 +12,52 @@
           {% endfor %}
         </p>
       </div>
+
       <div class="footer__cols">
-        <div class="footer__info">
-          <p class="footer__schedule">{{ settings.schedule }}</p>
-          <p class="footer__address">
-            {% for line in settings.address_lines %}
-              <span>{{ line }}</span>
-            {% endfor %}
-          </p>
+        <nav class="footer__links" aria-label="Юридичні посилання">
+          {% for link in settings.legal_links %}
+            <a class="footer__link" href="{{ link.url }}">{{ link.label }}</a>
+          {% endfor %}
+        </nav>
+
+        <div class="footer__contact">
+          <div class="footer__info">
+            <p class="footer__schedule">{{ settings.schedule }}</p>
+            <p class="footer__address">
+              {% for line in settings.address_lines %}
+                <span>{{ line }}</span>
+              {% endfor %}
+            </p>
+          </div>
+          <div class="footer__map">
+            <iframe
+              class="footer__map-frame"
+              title="Карта: {{ settings.address_lines|join:', ' }}"
+              src="{{ settings.map_embed_url }}"
+              width="320"
+              height="166"
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+              allowfullscreen
+            ></iframe>
+            <a
+              class="footer__map-link"
+              href="{{ settings.map_link_url }}"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Відкрити в Google Maps
+            </a>
+          </div>
         </div>
       </div>
     </div>
+
     <div class="footer__bar">
-      {% if settings.privacy_url %}
-        <a class="footer__legal" href="{{ settings.privacy_url }}">{{ settings.privacy_label }}</a>
-      {% endif %}
       <p>{{ settings.copyright }}</p>
-      <p>{{ settings.design_credit }}</p>
+      {% if settings.design_credit %}
+        <p>{{ settings.design_credit }}</p>
+      {% endif %}
     </div>
   </div>
 </footer>
