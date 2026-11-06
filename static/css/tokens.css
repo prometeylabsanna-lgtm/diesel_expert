@@ -6,7 +6,7 @@
   --c-secondary: #b1b1b1;
   --c-placeholder: #676767;
   --c-light: #eaeaea;
-  --c-card: rgba(38, 38, 38, 0.38);
+  --c-card: rgba(38, 38, 38, 0.2);
   /* Figma GLASS frost 12; outline CTA frost 4. Без drop-shadow на склі. */
   --blur-frost-12: 12px;
   --blur-frost-4: 4px;

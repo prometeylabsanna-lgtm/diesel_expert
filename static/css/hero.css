@@ -5,15 +5,59 @@
   min-height: 805px;
   padding-top: 339px;
   padding-bottom: 36px;
+  background: var(--c-bg);
 }
 
+/* Photo window: Figma 393 → 1431×805 @ left -677; not cover / not full hero. */
 .hero__media {
   position: absolute;
-  inset: 0;
+  top: 0;
+  left: 0;
   z-index: 0;
-  background:
+  width: 100%;
+  height: 805px;
+  overflow: hidden;
+  background-image:
     linear-gradient(180deg, var(--c-hero-to) 0%, var(--c-hero-from) 100%),
-    url("../img/hero/bg.webp") center top / cover no-repeat;
+    url("../img/hero/bg.webp");
+  background-repeat: no-repeat;
+  background-size: 100% 100%, 1431px 805px;
+  background-position: 0 0, -677px 0;
+}
+
+/* ≤392 (incl. 390): normalize image width/left by W/393; height stays 805. */
+@media (max-width: 392px) {
+  .hero__media {
+    background-size: 100% 100%, calc(1431 * 100vw / 393) 805px;
+    background-position: 0 0, calc(-677 * 100vw / 393) 0;
+  }
+}
+
+/* 393–1439: interpolate height + 16:9 image toward desktop 1440. */
+@media (min-width: 393px) and (max-width: 1439px) {
+  .hero__media {
+    height: calc(805px + 95 * (100vw - 393px) / 1047);
+    background-size:
+      100% 100%,
+      calc(1431px + 169 * (100vw - 393px) / 1047)
+        calc(805px + 95 * (100vw - 393px) / 1047);
+    background-position:
+      0 0,
+      calc(-677px + 527 * (100vw - 393px) / 1047) 0;
+  }
+}
+
+/* ≥1440: scale = W/1440 — 1600×900 @ left -150 × scale. */
+@media (min-width: 1440px) {
+  .hero__media {
+    height: calc(900 * 100vw / 1440);
+    background-size:
+      100% 100%,
+      calc(1600 * 100vw / 1440) calc(900 * 100vw / 1440);
+    background-position:
+      0 0,
+      calc(-150 * 100vw / 1440) 0;
+  }
 }
 
 .hero__content {
