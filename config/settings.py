@@ -3,15 +3,36 @@ from pathlib import Path
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+# Vercel виставляє VERCEL=1 сам (не треба env у дашборді)
+IS_VERCEL = bool(os.environ.get("VERCEL"))
+
 SECRET_KEY = os.environ.get(
     "DJANGO_SECRET_KEY",
-    "dev-only-diesel-expert-layout",
+    # TODO(prod): обовʼязковий SECRET_KEY у env на DigitalOcean
+    "dev-only-diesel-expert-demo-not-for-prod",
 )
-DEBUG = os.environ.get("DJANGO_DEBUG", "1") == "1"
-ALLOWED_HOSTS = [
-    host
-    for host in os.environ.get("DJANGO_ALLOWED_HOSTS", "127.0.0.1,localhost").split(",")
-    if host
+
+# Локально DEBUG=1 за замовчуванням; на Vercel — завжди False
+if IS_VERCEL:
+    DEBUG = False
+else:
+    DEBUG = os.environ.get("DJANGO_DEBUG", "1") == "1"
+
+if IS_VERCEL:
+    ALLOWED_HOSTS = ["*"]
+else:
+    ALLOWED_HOSTS = [
+        host
+        for host in os.environ.get(
+            "DJANGO_ALLOWED_HOSTS", "127.0.0.1,localhost"
+        ).split(",")
+        if host
+    ]
+
+CSRF_TRUSTED_ORIGINS = [
+    "https://*.vercel.app",
+    "http://127.0.0.1:8000",
+    "http://localhost:8000",
 ]
 
 INSTALLED_APPS = [
@@ -30,6 +51,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
+    "whitenoise.middleware.WhiteNoiseMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
@@ -57,12 +79,36 @@ TEMPLATES = [
     }
 ]
 
-DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
+if IS_VERCEL:
+    # Read-only FS на Vercel → SQLite + media в /tmp (ефемерно, ок для демо)
+    DATABASES = {
+        "default": {
+            "ENGINE": "django.db.backends.sqlite3",
+            "NAME": "/tmp/diesel-expert-demo.sqlite3",
+        }
     }
-}
+    MEDIA_ROOT = Path("/tmp/diesel-expert-media")
+    MEDIA_ROOT.mkdir(parents=True, exist_ok=True)
+
+    # Cookie-сесії: /tmp SQLite може зникнути між інстансами
+    SESSION_ENGINE = "django.contrib.sessions.backends.signed_cookies"
+    SESSION_COOKIE_HTTPONLY = True
+    SESSION_COOKIE_SAMESITE = "Lax"
+    SESSION_COOKIE_SECURE = True
+    SESSION_COOKIE_AGE = 60 * 60 * 24 * 14
+    SESSION_SAVE_EVERY_REQUEST = True
+    CSRF_COOKIE_SECURE = True
+    CSRF_COOKIE_SAMESITE = "Lax"
+    SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
+    USE_X_FORWARDED_HOST = True
+else:
+    DATABASES = {
+        "default": {
+            "ENGINE": "django.db.backends.sqlite3",
+            "NAME": BASE_DIR / "db.sqlite3",
+        }
+    }
+    MEDIA_ROOT = BASE_DIR / "media"
 
 AUTH_PASSWORD_VALIDATORS = [
     {"NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator"},
@@ -78,8 +124,20 @@ USE_TZ = True
 
 STATIC_URL = "static/"
 STATICFILES_DIRS = [BASE_DIR / "static"]
+STATIC_ROOT = BASE_DIR / "staticfiles"
 MEDIA_URL = "media/"
-MEDIA_ROOT = BASE_DIR / "media"
+
+STORAGES = {
+    "default": {
+        "BACKEND": "django.core.files.storage.FileSystemStorage",
+    },
+    "staticfiles": {
+        "BACKEND": "whitenoise.storage.CompressedStaticFilesStorage",
+    },
+}
+
+WHITENOISE_USE_FINDERS = False
+WHITENOISE_MANIFEST_STRICT = False
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
@@ -122,7 +180,6 @@ UNFOLD = {
         },
     ],
     "STYLES": ["landing.unfold_nav.admin_style"],
-    # Світла: білий + зелений; темна: чорний + зелений (accent #3D9E0E ≈ brand)
     "COLORS": {
         "primary": {
             "50": "oklch(97% 0.05 142)",

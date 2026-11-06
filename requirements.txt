@@ -1,3 +1,4 @@
 Django==5.2.19
 django-unfold==0.110.1
 Pillow>=10.0.0
+whitenoise==6.12.0
