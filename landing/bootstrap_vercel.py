@@ -10,14 +10,16 @@ logger = logging.getLogger(__name__)
 DEMO_USERNAME = "admin"
 DEMO_PASSWORD = "admin"
 DEMO_EMAIL = "admin@diesel-expert.local"
-# Фіксований salt → однаковий password hash на cold start (cookie-сесії).
-_DEMO_PASSWORD_SALT = "dieselexpertdemo01"
+# Фіксований hash (salt ≥128 bit entropy) → Django не робить rehash на login,
+# тож cookie-сесія (_auth_user_hash) стабільна між cold start на Vercel.
+DEMO_PASSWORD_HASH = (
+    "pbkdf2_sha256$1000000$DieselExpertDemoFixedSalt128bitOK$"
+    "jVuZQyljL1ymoormgakCq0wUFswDn0sp01LbSIz4hHs="
+)
 
 
 def _demo_password_hash() -> str:
-    from django.contrib.auth.hashers import make_password
-
-    return make_password(DEMO_PASSWORD, salt=_DEMO_PASSWORD_SALT, hasher="pbkdf2_sha256")
+    return DEMO_PASSWORD_HASH
 
 
 def ensure_demo_superuser() -> None:
@@ -43,7 +45,10 @@ def ensure_demo_superuser() -> None:
         user.is_superuser = True
         user.is_active = True
         changed = True
-    if user.password != desired_hash:
+    # Не перезаписувати password, якщо admin/admin вже валідний:
+    # Django після login може зробити rehash (інший salt) — скидання
+    # до DEMO_PASSWORD_HASH інвалідує _auth_user_hash і кидає на login.
+    if not user.check_password(DEMO_PASSWORD):
         user.password = desired_hash
         changed = True
     if not user.email:

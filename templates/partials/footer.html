@@ -55,9 +55,20 @@
 
     <div class="footer__bar">
       <p>{{ settings.copyright }}</p>
-      {% if settings.design_credit %}
-        <p>{{ settings.design_credit }}</p>
-      {% endif %}
+      {# Кредит агенції: фіксовано в шаблоні (не CMS). Лінк лише на homepage. #}
+      <p class="footer__credit">
+        Дизайн розроблено
+        {% if request.resolver_match.url_name == "home" %}
+          <a
+            class="footer__credit-link"
+            href="https://www.prometeylabs.com/corporate-website-v2/"
+            target="_blank"
+            rel="nofollow noopener noreferrer"
+          >PrometeyLabs</a>
+        {% else %}
+          <span class="footer__credit-name">PrometeyLabs</span>
+        {% endif %}
+      </p>
     </div>
   </div>
 </footer>

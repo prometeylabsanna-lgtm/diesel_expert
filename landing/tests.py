@@ -1,7 +1,10 @@
 from django.contrib.auth import get_user_model
 from django.test import Client, TestCase
+from django.urls import reverse
 
 from landing.models import Lead, ServicePrice, SiteSettings
+
+CREDIT_URL = "https://www.prometeylabs.com/corporate-website-v2/"
 
 
 class LandingTests(TestCase):
@@ -105,3 +108,23 @@ class LandingTests(TestCase):
         recent = self.client.get("/admin/recent-actions/")
         self.assertContains(recent, "recent-actions-page")
         self.assertContains(recent, "Недавніх дій ще немає")
+
+
+class FooterDeveloperLinkTests(TestCase):
+    def setUp(self):
+        self.client = Client()
+
+    def test_home_has_nofollow_credit_link(self):
+        response = self.client.get(reverse("home"))
+        self.assertContains(response, CREDIT_URL)
+        self.assertContains(response, "nofollow")
+        self.assertContains(response, ">PrometeyLabs</a>")
+        self.assertContains(response, "Дизайн розроблено")
+
+    def test_inner_pages_show_credit_without_link(self):
+        for url_name in ("privacy", "offer", "thanks"):
+            response = self.client.get(reverse(url_name))
+            self.assertContains(response, "PrometeyLabs")
+            self.assertContains(response, "Дизайн розроблено")
+            self.assertNotContains(response, CREDIT_URL)
+            self.assertNotContains(response, "footer__credit-link")

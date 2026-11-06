@@ -456,6 +456,25 @@ body.is-menu-open .header {
   margin: 0;
 }
 
+.footer__credit {
+  margin: 0;
+}
+
+.footer__credit-link {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.footer__credit-link:hover,
+.footer__credit-link:focus-visible {
+  color: var(--c-accent);
+}
+
+.footer__credit-name {
+  color: inherit;
+}
+
 .legal-page {
   padding-top: calc(var(--header-offset) + var(--s-section));
 }

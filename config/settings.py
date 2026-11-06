@@ -53,11 +53,17 @@ MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
     "whitenoise.middleware.WhiteNoiseMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
+    "django.middleware.locale.LocaleMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
+    "landing.middleware.VercelEnsureDemoMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+]
+
+AUTHENTICATION_BACKENDS = [
+    "landing.auth_backend.VercelResilientAuthBackend",
 ]
 
 ROOT_URLCONF = "config.urls"
@@ -90,13 +96,14 @@ if IS_VERCEL:
     MEDIA_ROOT = Path("/tmp/diesel-expert-media")
     MEDIA_ROOT.mkdir(parents=True, exist_ok=True)
 
-    # Cookie-сесії: /tmp SQLite може зникнути між інстансами
+    # Cookie-сесії: /tmp SQLite ефемерний між інстансами serverless
     SESSION_ENGINE = "django.contrib.sessions.backends.signed_cookies"
     SESSION_COOKIE_HTTPONLY = True
     SESSION_COOKIE_SAMESITE = "Lax"
     SESSION_COOKIE_SECURE = True
     SESSION_COOKIE_AGE = 60 * 60 * 24 * 14
-    SESSION_SAVE_EVERY_REQUEST = True
+    # False — менше роздування cookie (ліміт ~4KB у браузері)
+    SESSION_SAVE_EVERY_REQUEST = False
     CSRF_COOKIE_SECURE = True
     CSRF_COOKIE_SAMESITE = "Lax"
     SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
@@ -118,6 +125,9 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 LANGUAGE_CODE = "uk"
+LANGUAGES = [
+    ("uk", "Ukrainian"),
+]
 TIME_ZONE = "Europe/Kyiv"
 USE_I18N = True
 USE_TZ = True
