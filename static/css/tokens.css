@@ -7,7 +7,9 @@
   --c-placeholder: #676767;
   --c-light: #eaeaea;
   --c-card: rgba(38, 38, 38, 0.2);
-  --c-glass-border: rgba(234, 234, 234, 0.2);
+  /* Figma GLASS frost 12 ≈ blur(6px); outline frost 4 ≈ blur(4px). Без border/shadow на склі. */
+  --blur-frost-12: 6px;
+  --blur-frost-4: 4px;
   --c-accent-soft: rgba(69, 219, 0, 0.12);
   --c-divider-35: rgba(234, 234, 234, 0.35);
   --c-divider-40: rgba(234, 234, 234, 0.4);

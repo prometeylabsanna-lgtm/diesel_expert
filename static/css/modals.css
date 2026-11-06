@@ -63,7 +63,7 @@
 
 .modal .field {
   height: 44px;
-  border: 1px solid var(--c-glass-border);
+  border: 0;
 }
 
 .modal .field__control {

@@ -53,11 +53,12 @@
   height: 56px;
   min-height: 56px;
   padding: 0 14px;
-  border: 1px solid var(--c-glass-border);
+  border: 0;
   border-radius: var(--r-card);
   background: var(--c-card);
-  -webkit-backdrop-filter: blur(12px);
-  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(var(--blur-frost-12));
+  backdrop-filter: blur(var(--blur-frost-12));
+  box-shadow: none;
 }
 
 .hero-dir__thumb {
@@ -208,7 +209,7 @@
   .hero-badge + .hero-badge {
     min-height: 71px;
     padding-left: 25px;
-    border-left: 1px solid var(--c-divider-35);
+    border-left: 1px solid var(--c-muted);
   }
 
   .hero-badge img {

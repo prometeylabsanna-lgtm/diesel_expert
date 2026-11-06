@@ -41,7 +41,7 @@
           <option value="{{ service.title }}" {% if form and form.service.value == service.title %}selected{% endif %}>{{ service.title }}</option>
         {% endfor %}
       </select>
-      <img class="field__chevron icon icon--down" src="{% static 'img/icons/chevron-lime.svg' %}" alt="" width="24" height="24">
+      <span class="field__chevron icon icon--down" aria-hidden="true"></span>
     </label>
     {% if form.service.errors %}
       <p class="field__error" role="alert">{{ form.service.errors.0 }}</p>

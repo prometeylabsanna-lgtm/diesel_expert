@@ -16,8 +16,12 @@
   flex-direction: column;
   gap: var(--s-tight);
   padding: var(--s-inner);
+  border: 0;
   border-radius: var(--r-card);
   background: var(--c-card);
+  -webkit-backdrop-filter: blur(var(--blur-frost-12));
+  backdrop-filter: blur(var(--blur-frost-12));
+  box-shadow: none;
 }
 
 .advantage__icon {
@@ -105,8 +109,12 @@
   display: grid;
   gap: var(--s-block);
   padding: var(--s-block);
+  border: 0;
   border-radius: var(--r-card);
   background: var(--c-card);
+  -webkit-backdrop-filter: blur(var(--blur-frost-12));
+  backdrop-filter: blur(var(--blur-frost-12));
+  box-shadow: none;
   color: var(--c-muted);
   font-size: var(--fs-body);
   font-weight: 500;
@@ -118,8 +126,9 @@
 }
 
 .promo__note img {
-  width: 40px;
-  height: 40px;
+  width: 29px;
+  height: 20px;
+  object-fit: contain;
 }
 
 .promo__photo {
@@ -153,8 +162,12 @@
   display: grid;
   gap: var(--s-inner);
   padding: var(--s-inner);
+  border: 0;
   border-radius: var(--r-card-sm);
   background: var(--c-step);
+  -webkit-backdrop-filter: blur(var(--blur-frost-12));
+  backdrop-filter: blur(var(--blur-frost-12));
+  box-shadow: none;
 }
 
 .step__num {
@@ -187,8 +200,12 @@
 
 .faq__item {
   padding: 13px 13px 13px 14px;
+  border: 0;
   border-radius: var(--r-card-sm);
   background: var(--c-card);
+  -webkit-backdrop-filter: blur(var(--blur-frost-12));
+  backdrop-filter: blur(var(--blur-frost-12));
+  box-shadow: none;
 }
 
 .faq__question {
@@ -217,6 +234,12 @@
   height: 44px;
   border-radius: var(--r-control);
   background: var(--c-accent);
+}
+
+.faq__icon .icon {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
 }
 
 .faq__item.is-open .icon--down,

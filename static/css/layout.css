@@ -17,11 +17,12 @@ body.is-menu-open .header {
   gap: 12px;
   min-height: 68px;
   padding: 8px 12px;
-  border: 1px solid var(--c-glass-border);
+  border: 0;
   border-radius: var(--r-card);
   background: var(--c-card);
-  -webkit-backdrop-filter: blur(18px);
-  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(var(--blur-frost-12));
+  backdrop-filter: blur(var(--blur-frost-12));
+  box-shadow: none;
 }
 
 .header__brand {
@@ -129,11 +130,12 @@ body.is-menu-open .header {
   height: 627px;
   max-height: calc(100dvh - 40px);
   padding: 12px 14px 14px 13px;
-  border: 1px solid var(--c-glass-border);
+  border: 0;
   border-radius: var(--r-card);
   background: var(--c-card);
-  -webkit-backdrop-filter: blur(18px);
-  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(var(--blur-frost-12));
+  backdrop-filter: blur(var(--blur-frost-12));
+  box-shadow: none;
   overflow-x: hidden;
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
@@ -287,7 +289,7 @@ body.is-menu-open .header {
 .footer__divider {
   width: 1px;
   height: 30px;
-  background: var(--c-divider-45);
+  background: var(--c-divider-40);
 }
 
 .footer__brand-address,
@@ -323,8 +325,12 @@ body.is-menu-open .header {
   margin-top: 40px;
   min-height: 54px;
   padding: 14px 16px;
+  border: 0;
   border-radius: var(--r-card);
   background: var(--c-card);
+  -webkit-backdrop-filter: blur(var(--blur-frost-12));
+  backdrop-filter: blur(var(--blur-frost-12));
+  box-shadow: none;
   color: var(--c-muted);
   font-size: var(--fs-caption);
   font-weight: 500;
@@ -390,7 +396,7 @@ body.is-menu-open .header {
     display: block;
     width: 1px;
     height: 30px;
-    background: var(--c-divider-45);
+    background: var(--c-divider-40);
   }
 
   .header__address {

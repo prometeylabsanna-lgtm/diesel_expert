@@ -5,14 +5,14 @@
     <div class="service-card__heading">
       <h3 class="service-card__title">{{ service.title }}</h3>
       <button class="service-card__toggle" type="button" aria-expanded="false" aria-label="{{ service.title }}">
-        <img class="icon icon--down" src="{% static 'img/icons/chevron-lime.svg' %}" alt="" width="24" height="24">
+        <span class="icon icon--down service-card__chevron" aria-hidden="true"></span>
       </button>
     </div>
     <p class="service-card__excerpt">{{ service.bullets|join:" " }}</p>
     <ul class="service-card__list">
       {% for bullet in service.bullets %}
         <li>
-          <img src="{% static 'img/icons/bullet.svg' %}" alt="" width="16" height="14">
+          <img src="{% static 'img/icons/icon-service-bullet-check.svg' %}" alt="" width="16" height="14">
           <span>{{ bullet }}</span>
         </li>
       {% endfor %}

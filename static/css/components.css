@@ -26,6 +26,9 @@
   background: var(--c-card);
   border-color: var(--c-accent);
   color: var(--c-text);
+  -webkit-backdrop-filter: blur(var(--blur-frost-4));
+  backdrop-filter: blur(var(--blur-frost-4));
+  box-shadow: none;
 }
 
 @media (hover: hover) {
@@ -80,15 +83,23 @@
     min-height: calc(var(--fs-small) * var(--lh) * 2);
   }
 
-  /* glyph sized to SVG 5.5×11.5; layout box of toggle stays 12×24 (see below) */
-  .service-card__toggle .icon {
+  /* glyph 5.5×11.5 from icon-left2-chevron; lime via mask/currentColor (SVG fill #010B0D) */
+  .service-card__toggle .service-card__chevron {
     box-sizing: content-box;
     flex: none;
     width: 5.5px;
     height: 11.5px;
     padding: 0;
     margin: 0;
-    object-fit: contain;
+    background-color: var(--c-accent);
+    -webkit-mask-image: url("../img/icons/icon-left2-chevron.svg");
+    mask-image: url("../img/icons/icon-left2-chevron.svg");
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+    -webkit-mask-position: center;
+    mask-position: center;
+    -webkit-mask-size: contain;
+    mask-size: contain;
   }
 }
 
@@ -211,11 +222,17 @@
   align-items: center;
   justify-content: space-between;
   gap: 4px 8px;
+  box-sizing: border-box;
+  width: 100%;
   min-height: 40px;
   margin: 0;
   padding: 8px 10px;
+  border: 0;
   border-radius: var(--r-card-sm);
   background: var(--c-card);
+  -webkit-backdrop-filter: blur(var(--blur-frost-12));
+  backdrop-filter: blur(var(--blur-frost-12));
+  box-shadow: none;
   font-size: var(--fs-small);
   line-height: var(--lh);
 }
@@ -266,6 +283,12 @@
   cursor: pointer;
 }
 
+.slider__btn .icon {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+}
+
 .slider {
   max-width: 100%;
   min-width: 0;
@@ -305,8 +328,12 @@
   gap: 20px;
   width: 225px;
   padding: var(--s-inner);
+  border: 0;
   border-radius: var(--r-card);
   background: var(--c-card);
+  -webkit-backdrop-filter: blur(var(--blur-frost-12));
+  backdrop-filter: blur(var(--blur-frost-12));
+  box-shadow: none;
 }
 
 .review-card__avatar {
@@ -350,8 +377,12 @@
   gap: var(--s-inner);
   min-height: 44px;
   padding: 0 20px;
+  border: 0;
   border-radius: var(--r-control);
   background: var(--c-card);
+  -webkit-backdrop-filter: blur(var(--blur-frost-12));
+  backdrop-filter: blur(var(--blur-frost-12));
+  box-shadow: none;
 }
 
 .field__icon {
@@ -407,10 +438,17 @@ select.field__control option[value=""] {
   right: 16px;
   width: 24px;
   height: 24px;
-  padding: 6.25px 9.25px;
-  object-fit: contain;
   box-sizing: border-box;
   pointer-events: none;
+  background-color: var(--c-accent);
+  -webkit-mask-image: url("../img/icons/icon-left2-chevron.svg");
+  mask-image: url("../img/icons/icon-left2-chevron.svg");
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  mask-position: center;
+  -webkit-mask-size: 5.5px 11.5px;
+  mask-size: 5.5px 11.5px;
 }
 
 @media (min-width: 768px) {
