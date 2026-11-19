@@ -105,21 +105,14 @@ class SiteSettings(SingletonModel):
     offer_label = models.CharField(
         "Підпис оферти",
         max_length=120,
-        default="Публічний договір (офферта)",
+        default="Публічний договір (оферта)",
     )
     offer_title = models.CharField(
         "Заголовок оферти",
         max_length=160,
-        default="Публічний договір (офферта)",
+        default="Публічний договір (оферта)",
     )
-    offer_body = models.TextField(
-        "Текст оферти",
-        blank=True,
-        default=(
-            "Текст публічного договору тимчасовий і буде замінений "
-            "юридичною редакцією клієнта."
-        ),
-    )
+    offer_body = models.TextField("Текст оферти", blank=True, default="")
 
     notify_email = models.EmailField(
         "Пошта для заявок",

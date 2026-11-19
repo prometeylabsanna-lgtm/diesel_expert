@@ -23,7 +23,7 @@ def privacy(request):
 def offer(request):
     ctx = build_context(request)
     ctx["legal"] = ctx.get("offer") or {
-        "title": "Публічний договір (офферта)",
+        "title": "Публічний договір (оферта)",
         "body": "",
     }
     return render(request, "pages/privacy.html", ctx)

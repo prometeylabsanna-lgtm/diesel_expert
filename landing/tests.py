@@ -254,3 +254,37 @@ class SeoOnPageTests(TestCase):
         response = self.client.get(reverse("privacy"))
         self.assertContains(response, '"@type":"BreadcrumbList"')
         self.assertContains(response, 'rel="canonical"')
+
+
+class LegalPagesContentTests(TestCase):
+    def setUp(self):
+        self.client = Client()
+
+    def test_privacy_has_real_policy(self):
+        response = self.client.get(reverse("privacy"))
+        self.assertContains(response, "Які дані ми збираємо")
+        self.assertContains(response, "ім’я")
+        self.assertContains(response, "номер телефону")
+        self.assertContains(response, "Сайт збирає файли cookie")
+        self.assertContains(response, "[назва ФОП / ТОВ]")
+        self.assertNotContains(response, "тимчасовий і стоїть")
+        self.assertContains(response, "<p>")
+        self.assertNotContains(response, "&lt;p&gt;")
+
+    def test_offer_has_real_contract(self):
+        response = self.client.get(reverse("offer"))
+        self.assertContains(response, "публічною офертою")
+        self.assertContains(response, "Предмет договору")
+        self.assertContains(response, "Нову Пошту")
+        self.assertContains(response, "м. Луцьк")
+        self.assertContains(response, "068 806 83 16")
+        self.assertContains(response, "[ЄДРПОУ / ІПН]")
+        self.assertNotContains(response, "буде замінений")
+        self.assertNotContains(response, "офферта")
+
+    def test_richtext_unescapes_stored_html_entities(self):
+        from landing.templatetags.landing_extras import richtext
+
+        rendered = richtext("&lt;p&gt;Тест абзацу&lt;/p&gt;")
+        self.assertIn("<p>", str(rendered))
+        self.assertNotIn("&lt;p&gt;", str(rendered))

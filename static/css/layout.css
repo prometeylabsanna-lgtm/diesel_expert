@@ -481,8 +481,8 @@ body.is-menu-open .header {
 
 .legal {
   display: grid;
-  gap: 16px;
-  max-width: 720px;
+  gap: 14px;
+  max-width: 760px;
   color: var(--c-muted);
   font-size: var(--fs-body);
   line-height: 1.5;
@@ -490,6 +490,22 @@ body.is-menu-open .header {
 
 .legal p {
   margin: 0;
+}
+
+.legal strong,
+.legal b {
+  color: var(--c-text);
+  font-weight: 600;
+}
+
+.legal ul,
+.legal ol {
+  margin: 0;
+  padding-left: 1.2em;
+}
+
+.legal li + li {
+  margin-top: 6px;
 }
 
 .legal .btn {

@@ -13,6 +13,7 @@ from landing.data import (
     SUCCESS,
     WORKS,
 )
+from landing.legal_texts import OFFER_BODY, PRIVACY_BODY
 from landing.models import (
     Advantage,
     FaqItem,
@@ -25,15 +26,6 @@ from landing.models import (
     SiteSettings,
     WorkPhoto,
 )
-
-PRIVACY_BODY = """Цей текст тимчасовий і стоїть, доки клієнт не передасть юридичну редакцію.
-
-Diesel Expert обробляє ім’я та номер телефону, які ви залишаєте у формі заявки, щоб передзвонити і узгодити послугу. Дані не продаються і не передаються для реклами третіх осіб.
-
-Заявку бачать лише співробітники сервісу в адмінці, а також — якщо це вказано в налаштуваннях — пошта або Telegram, куди надсилається сповіщення.
-
-Щоб уточнити або видалити заявку, зателефонуйте на номер, вказаний на сайті.
-"""
 
 
 def seed_if_empty():
@@ -93,13 +85,10 @@ def _seed_settings():
         success_direct=SUCCESS["direct"],
         privacy_label="Політика конфіденційності",
         privacy_title="Політика конфіденційності",
-        privacy_body=PRIVACY_BODY.strip(),
-        offer_label="Публічний договір (офферта)",
-        offer_title="Публічний договір (офферта)",
-        offer_body=(
-            "Текст публічного договору тимчасовий і буде замінений "
-            "юридичною редакцією клієнта."
-        ),
+        privacy_body=PRIVACY_BODY,
+        offer_label="Публічний договір (оферта)",
+        offer_title="Публічний договір (оферта)",
+        offer_body=OFFER_BODY,
     )
 
 
