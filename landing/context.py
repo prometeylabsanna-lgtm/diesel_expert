@@ -54,7 +54,7 @@ def build_context(request=None):
     }
 
     return {
-        "nav": _nav(on_home),
+        "nav": _nav(on_home, show_reviews=sections["reviews"]),
         "settings": _settings(site),
         "sections": sections,
         "seo": build_seo(
@@ -118,11 +118,13 @@ def build_context(request=None):
     }
 
 
-def _nav(on_home):
+def _nav(on_home, show_reviews=True):
     home = reverse("home")
     items = []
     for item in NAV:
         url = item["url"]
+        if url == "#reviews" and not show_reviews:
+            continue
         if url.startswith("#") and not on_home:
             url = f"{home}{url}"
         items.append({"label": item["label"], "url": url})

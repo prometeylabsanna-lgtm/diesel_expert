@@ -210,11 +210,14 @@ class SectionVisibilityTests(TestCase):
         self.assertFalse(site.show_reviews_section)
         hidden = self.client.get("/")
         self.assertNotContains(hidden, 'id="reviews"')
-        self.assertContains(hidden, "Відгуки")  # пункт меню лишається
+        self.assertNotContains(hidden, 'href="#reviews"')
+        self.assertNotContains(hidden, ">Відгуки</a>")
         site.show_reviews_section = True
         site.save(update_fields=["show_reviews_section"])
         shown = self.client.get("/")
         self.assertContains(shown, 'id="reviews"')
+        self.assertContains(shown, 'href="#reviews"')
+        self.assertContains(shown, ">Відгуки</a>")
 
     def test_faq_section_can_be_hidden(self):
         site = SiteSettings.objects.get(pk=1)
