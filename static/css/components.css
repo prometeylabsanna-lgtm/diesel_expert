@@ -252,6 +252,13 @@
   object-fit: contain;
 }
 
+.service-card__sub {
+  display: flex;
+  flex-direction: column;
+  margin-top: 4px;
+  padding-left: 0.75em;
+}
+
 .service-card--wide .service-card__toggle,
 .service-card--wide .service-card__excerpt {
   display: none;
@@ -613,9 +620,13 @@ select.field__control option[value=""] {
     font-size: var(--fs-h3);
   }
 
-  .service-card__list li span {
+  .service-card__list li > span {
     text-box-trim: trim-both;
     text-box-edge: cap alphabetic;
+  }
+
+  .service-card__sub {
+    text-box-trim: none;
   }
 
   .service-card--wide {
@@ -681,7 +692,7 @@ select.field__control option[value=""] {
     align-self: center;
     flex: none;
     gap: calc(10px * var(--scale));
-    width: calc(262px * var(--scale));
+    width: auto;
     height: calc(44px * var(--scale));
     min-height: calc(44px * var(--scale));
     margin: 0;

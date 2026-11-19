@@ -54,6 +54,8 @@ TEXT_LIMITS: dict[str, TextLimit] = {
     "design_credit": TextLimit(200),
     "cta_service": TextLimit(40),
     "cta_diagnostics": TextLimit(40),
+    "hero_kicker": TextLimit(80),
+    "hero_brand": TextLimit(40),
     "hero_title": TextLimit(90),
     "hero_primary_cta": TextLimit(40),
     "hero_secondary_cta": TextLimit(40),

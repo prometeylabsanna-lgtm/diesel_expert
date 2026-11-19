@@ -61,6 +61,8 @@ def _seed_settings():
         design_credit=SETTINGS["design_credit"],
         cta_service=SETTINGS["cta_service"],
         cta_diagnostics=SETTINGS["cta_diagnostics"],
+        hero_kicker=HERO["kicker"],
+        hero_brand=HERO["brand"],
         hero_title=HERO["title"],
         hero_image_static=HERO["image"],
         hero_primary_cta=HERO["primary_cta"],

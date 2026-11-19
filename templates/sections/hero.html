@@ -13,7 +13,18 @@
   </div>
   <div class="wrap hero__content">
     <div class="hero__copy">
-      <h1 class="hero__title" id="hero-title">{{ hero.title }}</h1>
+      <div class="hero__heading">
+        {% if hero.kicker %}
+          <p class="hero__kicker">
+            <span class="hero__kicker-mark" aria-hidden="true">/</span>
+            <span>{{ hero.kicker }}</span>
+          </p>
+        {% endif %}
+        {% if hero.brand %}
+          <p class="hero__brand">{{ hero.brand }}</p>
+        {% endif %}
+        <h1 class="hero__title" id="hero-title">{{ hero.title }}</h1>
+      </div>
       <ul class="hero__dirs">
         {% for card in hero_cards %}
           <li>
@@ -23,7 +34,11 @@
               <div class="hero-dir">
             {% endif %}
               <span class="hero-dir__thumb hero-dir__thumb--{{ card.modifier }}" aria-hidden="true"></span>
-              <span class="hero-dir__title">{{ card.title }}</span>
+              <span class="hero-dir__title">
+                {% for line in card.title_lines %}
+                  <span>{{ line }}</span>
+                {% endfor %}
+              </span>
             {% if card.url %}
               </a>
             {% else %}
@@ -37,7 +52,10 @@
           <span>{{ hero.primary_cta }}</span>
           <img class="icon icon--right" src="{% static 'img/icons/arrow.svg' %}" alt="" width="16" height="16">
         </button>
-        <a class="btn btn--ghost" href="{{ hero.secondary_url }}">{{ hero.secondary_cta }}</a>
+        <a class="btn btn--ghost" href="{{ hero.secondary_url }}">
+          <span>{{ hero.secondary_cta }}</span>
+          <img class="icon icon--right" src="{% static 'img/icons/arrow.svg' %}" alt="" width="16" height="16">
+        </a>
       </div>
     </div>
     <ul class="hero__badges">

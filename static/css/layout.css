@@ -599,7 +599,7 @@ body.is-menu-open .header {
     align-self: center;
     flex: none;
     gap: calc(10px * var(--scale));
-    width: calc(262px * var(--scale));
+    width: auto;
     height: calc(44px * var(--scale));
     min-height: calc(44px * var(--scale));
     margin: 0;

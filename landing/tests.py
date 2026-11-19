@@ -2,7 +2,7 @@ from django.contrib.auth import get_user_model
 from django.test import Client, TestCase
 from django.urls import reverse
 
-from landing.models import Lead, ServicePrice, SiteSettings
+from landing.models import Lead, Service, ServicePrice, SiteSettings
 
 CREDIT_URL = "https://www.prometeylabs.com/corporate-website-v2/"
 
@@ -14,8 +14,35 @@ class LandingTests(TestCase):
     def test_home_renders_seeded_hero(self):
         response = self.client.get("/")
         self.assertEqual(response.status_code, 200)
-        self.assertContains(response, "Діагностуємо точно - ремонтуємо надійно")
+        self.assertContains(response, "СПЕЦІАЛІЗОВАНИЙ АВТОСЕРВІС У ЛУЦЬКУ")
+        self.assertContains(response, "DIESEL EXPERT")
+        self.assertContains(response, "ДІАГНОСТУЄМО ТОЧНО — РЕМОНТУЄМО НАДІЙНО")
+        self.assertContains(response, "Дізнатись більше")
+        self.assertContains(response, "Записатись</span>")
+        self.assertContains(response, "Ремонт ДВЗ")
         self.assertContains(response, "Політика конфіденційності")
+
+    def test_copy_fixes_from_client_notes(self):
+        response = self.client.get("/")
+        self.assertContains(response, "будь-якої")
+        self.assertNotContains(response, "будь якої")
+        self.assertContains(response, "турбокомпресорів")
+        self.assertNotContains(response, "турбокомпрессор")
+        self.assertContains(response, "(кодування)")
+        self.assertNotContains(response, "(Кодування)")
+        self.assertContains(response, "механічних")
+        self.assertContains(response, "гідравлічних")
+        self.assertContains(response, "електричних")
+        self.assertContains(response, "Консультація безкоштовна")
+        injectors = Service.objects.get(title="Ремонт форсунок")
+        pnvt = Service.objects.get(title="Ремонт ПНВТ")
+        self.assertEqual(injectors.image_static, "img/services/pnvt.webp")
+        self.assertEqual(pnvt.image_static, "img/services/injectors.webp")
+        steering = Service.objects.get(title="Ремонт рульових рейок")
+        self.assertIn("  механічних", steering.bullets)
+        self.assertIn("  гідравлічних", steering.bullets)
+        self.assertIn("  електричних", steering.bullets)
+        self.assertNotContains(response, "механічних,")
 
     def test_price_edit_reaches_the_page(self):
         price = ServicePrice.objects.get(service__title="Ремонт турбін", sort=1)

@@ -8,12 +8,21 @@
         <span class="icon icon--down service-card__chevron" aria-hidden="true"></span>
       </button>
     </div>
-    <p class="service-card__excerpt">{{ service.bullets|join:" " }}</p>
+    <p class="service-card__excerpt">{{ service.excerpt }}</p>
     <ul class="service-card__list">
       {% for bullet in service.bullets %}
         <li>
           <img src="{% static 'img/icons/icon-service-bullet-check.svg' %}" alt="" width="16" height="14">
-          <span>{{ bullet }}</span>
+          <span>
+            {{ bullet.text }}
+            {% if bullet.sub %}
+              <span class="service-card__sub">
+                {% for line in bullet.sub %}
+                  <span>{{ line }}</span>
+                {% endfor %}
+              </span>
+            {% endif %}
+          </span>
         </li>
       {% endfor %}
     </ul>

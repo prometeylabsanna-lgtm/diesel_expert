@@ -47,6 +47,8 @@ class HeroSettingsAdmin(SingletonAdmin):
             "Тексти",
             {
                 "fields": (
+                    "hero_kicker",
+                    "hero_brand",
                     "hero_title",
                     "hero_primary_cta",
                     "hero_secondary_cta",

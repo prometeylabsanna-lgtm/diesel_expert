@@ -38,6 +38,8 @@ class SiteSettings(SingletonModel):
     cta_service = models.CharField("Кнопка в шапці", max_length=80)
     cta_diagnostics = models.CharField("Кнопка діагностики", max_length=80)
 
+    hero_kicker = models.CharField("Рядок над назвою", max_length=120, blank=True)
+    hero_brand = models.CharField("Назва в першому екрані", max_length=80, blank=True)
     hero_title = models.CharField("Головна пропозиція", max_length=200)
     hero_image = WebPImageField(
         "Фон першого екрана",

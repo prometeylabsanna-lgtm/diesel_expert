@@ -169,6 +169,8 @@ def _hero(site, request=None):
     if site.hero_image and site.hero_image.name:
         override = public_url(site.hero_image, "")
     return {
+        "kicker": site.hero_kicker,
+        "brand": site.hero_brand,
         "title": site.hero_title,
         "primary_cta": site.hero_primary_cta,
         "secondary_cta": site.hero_secondary_cta,
@@ -179,8 +181,14 @@ def _hero(site, request=None):
 
 
 def _hero_card(item):
+    title = item.title or ""
+    if " / " in title:
+        lines = [part.strip() for part in title.split(" / ") if part.strip()]
+    else:
+        lines = [title]
     return {
-        "title": item.title,
+        "title": title,
+        "title_lines": lines,
         "modifier": item.modifier,
         "url": item.url,
     }
@@ -198,11 +206,31 @@ def _advantage(item):
     }
 
 
+def _parse_bullets(text):
+    bullets = []
+    for raw_line in (text or "").splitlines():
+        if not raw_line.strip():
+            continue
+        indented = raw_line[:1] in {" ", "\t"}
+        line = raw_line.strip()
+        if indented and bullets:
+            bullets[-1]["sub"].append(line)
+            continue
+        bullets.append({"text": line, "sub": []})
+    return bullets
+
+
 def _service(item):
+    bullets = _parse_bullets(item.bullets)
+    excerpt_parts = []
+    for bullet in bullets:
+        excerpt_parts.append(bullet["text"])
+        excerpt_parts.extend(bullet["sub"])
     return {
         "title": item.title,
         "image": public_url(item.image, item.image_static),
-        "bullets": item.bullet_list(),
+        "bullets": bullets,
+        "excerpt": " ".join(excerpt_parts),
         "prices": [
             {"label": price.label, "short": price.short, "value": price.value}
             for price in item.prices.all()
