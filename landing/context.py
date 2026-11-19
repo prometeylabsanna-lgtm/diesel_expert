@@ -168,9 +168,11 @@ def _hero(site, request=None):
     override = ""
     if site.hero_image and site.hero_image.name:
         override = public_url(site.hero_image, "")
+    brand = site.hero_brand or ""
     return {
         "kicker": site.hero_kicker,
-        "brand": site.hero_brand,
+        "brand": brand,
+        "brand_words": [word for word in brand.split() if word],
         "title": site.hero_title,
         "primary_cta": site.hero_primary_cta,
         "secondary_cta": site.hero_secondary_cta,

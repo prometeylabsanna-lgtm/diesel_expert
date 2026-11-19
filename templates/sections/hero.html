@@ -20,8 +20,12 @@
             <span>{{ hero.kicker }}</span>
           </p>
         {% endif %}
-        {% if hero.brand %}
-          <p class="hero__brand">{{ hero.brand }}</p>
+        {% if hero.brand_words %}
+          <p class="hero__brand">
+            {% for word in hero.brand_words %}
+              <span{% if not forloop.first %} class="hero__brand-accent"{% endif %}>{{ word }}</span>
+            {% endfor %}
+          </p>
         {% endif %}
         <h1 class="hero__title" id="hero-title">{{ hero.title }}</h1>
       </div>

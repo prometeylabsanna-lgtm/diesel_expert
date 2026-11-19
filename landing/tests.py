@@ -15,7 +15,9 @@ class LandingTests(TestCase):
         response = self.client.get("/")
         self.assertEqual(response.status_code, 200)
         self.assertContains(response, "СПЕЦІАЛІЗОВАНИЙ АВТОСЕРВІС У ЛУЦЬКУ")
-        self.assertContains(response, "DIESEL EXPERT")
+        self.assertContains(response, "DIESEL")
+        self.assertContains(response, "hero__brand-accent")
+        self.assertContains(response, "EXPERT")
         self.assertContains(response, "ДІАГНОСТУЄМО ТОЧНО — РЕМОНТУЄМО НАДІЙНО")
         self.assertContains(response, "Дізнатись більше")
         self.assertContains(response, "Записатись</span>")
@@ -39,10 +41,12 @@ class LandingTests(TestCase):
         self.assertEqual(injectors.image_static, "img/services/pnvt.webp")
         self.assertEqual(pnvt.image_static, "img/services/injectors.webp")
         steering = Service.objects.get(title="Ремонт рульових рейок")
-        self.assertIn("  механічних", steering.bullets)
-        self.assertIn("  гідравлічних", steering.bullets)
-        self.assertIn("  електричних", steering.bullets)
-        self.assertNotContains(response, "механічних,")
+        self.assertIn("  механічних,", steering.bullets)
+        self.assertIn("  гідравлічних,", steering.bullets)
+        self.assertIn("  електричних.", steering.bullets)
+        self.assertContains(response, "механічних,")
+        self.assertContains(response, "гідравлічних,")
+        self.assertContains(response, "електричних.")
 
     def test_price_edit_reaches_the_page(self):
         price = ServicePrice.objects.get(service__title="Ремонт турбін", sort=1)
@@ -201,14 +205,16 @@ class SectionVisibilityTests(TestCase):
     def setUp(self):
         self.client = Client()
 
-    def test_reviews_section_can_be_hidden(self):
+    def test_reviews_section_hidden_by_default_and_can_be_shown(self):
         site = SiteSettings.objects.get(pk=1)
-        self.assertContains(self.client.get("/"), 'id="reviews"')
-        site.show_reviews_section = False
+        self.assertFalse(site.show_reviews_section)
+        hidden = self.client.get("/")
+        self.assertNotContains(hidden, 'id="reviews"')
+        self.assertContains(hidden, "Відгуки")  # пункт меню лишається
+        site.show_reviews_section = True
         site.save(update_fields=["show_reviews_section"])
-        response = self.client.get("/")
-        self.assertNotContains(response, 'id="reviews"')
-        self.assertContains(response, "Відгуки")  # пункт меню лишається
+        shown = self.client.get("/")
+        self.assertContains(shown, 'id="reviews"')
 
     def test_faq_section_can_be_hidden(self):
         site = SiteSettings.objects.get(pk=1)

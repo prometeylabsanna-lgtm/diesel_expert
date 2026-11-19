@@ -83,7 +83,7 @@ class SiteSettings(SingletonModel):
     show_services_section = models.BooleanField("Показувати блок", default=True)
     show_promo_section = models.BooleanField("Показувати блок", default=True)
     show_steps_section = models.BooleanField("Показувати блок", default=True)
-    show_reviews_section = models.BooleanField("Показувати блок", default=True)
+    show_reviews_section = models.BooleanField("Показувати блок", default=False)
     show_works_section = models.BooleanField("Показувати блок", default=True)
     show_faq_section = models.BooleanField("Показувати блок", default=True)
 
