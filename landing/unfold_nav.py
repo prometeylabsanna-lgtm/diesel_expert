@@ -47,6 +47,11 @@ def navigation(_request):
             "title": "Налаштування",
             "separator": True,
             "items": [
+                {
+                    "title": "Оформлення",
+                    "icon": "palette",
+                    "link": change("looksettings"),
+                },
                 {"title": "Контакти", "icon": "call", "link": change("contactssettings")},
                 {
                     "title": "Форма заявки",

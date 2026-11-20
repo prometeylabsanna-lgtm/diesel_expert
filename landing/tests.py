@@ -335,3 +335,39 @@ class CookieBannerTests(TestCase):
         )
         self.assertEqual(redirect_away.status_code, 302)
         self.assertEqual(redirect_away["Location"], "/")
+
+
+class SiteLookTests(TestCase):
+    def setUp(self):
+        self.client = Client()
+
+    def test_home_uses_saved_colors(self):
+        self.client.get("/")
+        site = SiteSettings.objects.get(pk=1)
+        site.color_bg = "#112233"
+        site.color_text = "#f4f4f4"
+        site.color_highlight = "#00aaff"
+        site.color_accent = "#ff00aa"
+        site.save()
+        page = self.client.get("/")
+        self.assertContains(page, "--c-bg: #112233")
+        self.assertContains(page, "--c-text: #f4f4f4")
+        self.assertContains(page, "--c-accent: #ff00aa")
+        self.assertContains(page, "--c-highlight: #00aaff")
+        self.assertContains(page, "--c-accent-soft: rgba(0, 170, 255, 0.12)")
+        self.assertContains(page, 'content="#112233"')
+
+    def test_admin_look_page_has_color_pickers(self):
+        user = get_user_model().objects.create_superuser(
+            "look",
+            "look@example.com",
+            "DieselExpert-Test-1",
+        )
+        self.client.force_login(user)
+        page = self.client.get("/admin/landing/looksettings/1/change/")
+        self.assertContains(page, "Колір фону")
+        self.assertContains(page, "Колір шрифту")
+        self.assertContains(page, "Колір підсвітки")
+        self.assertContains(page, "Колір акценту")
+        self.assertContains(page, 'type="color"')
+        self.assertContains(page, "Дефолт")

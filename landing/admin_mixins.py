@@ -18,6 +18,7 @@ from landing.admin_widgets import (
     CmsAdminTextareaWidget,
     CmsImageFieldWidget,
     CmsTinyMCEWidget,
+    color_widget_for,
 )
 from landing.images import public_url
 
@@ -43,6 +44,10 @@ class CmsWidgetsMixin:
         help_text = help_for_field(name)
         if help_text and not kwargs.get("help_text"):
             kwargs["help_text"] = help_text
+
+        if name.startswith("color_"):
+            kwargs["widget"] = color_widget_for(db_field)
+            return db_field.formfield(**kwargs)
 
         if isinstance(db_field, models.ImageField):
             preview = ""

@@ -1,0 +1,7 @@
+<div class="cms-color">
+  <input type="{{ widget.type }}" name="{{ widget.name }}"{% if widget.value != None %} value="{{ widget.value|stringformat:'s' }}"{% endif %}{% include "django/forms/widgets/attrs.html" %} data-cms-color>
+  <span class="cms-color__hex" data-cms-color-hex>{{ widget.value }}</span>
+  {% if color_default %}
+  <button type="button" class="cms-color__default" data-cms-color-reset>Дефолт</button>
+  {% endif %}
+</div>

@@ -7,6 +7,7 @@ from landing.models import (
     ContactsSettings,
     FaqSectionSettings,
     HeroSettings,
+    LookSettings,
     OfferSettings,
     PrivacySettings,
     PromoSectionSettings,
@@ -15,6 +16,23 @@ from landing.models import (
     StepsSectionSettings,
     WorksSectionSettings,
 )
+
+@admin.register(LookSettings)
+class LookSettingsAdmin(SingletonAdmin):
+    fieldsets = (
+        (
+            "Оформлення",
+            {
+                "fields": (
+                    "color_bg",
+                    "color_text",
+                    "color_highlight",
+                    "color_accent",
+                )
+            },
+        ),
+    )
+
 
 @admin.register(ContactsSettings)
 class ContactsSettingsAdmin(SingletonAdmin):

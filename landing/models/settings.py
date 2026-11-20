@@ -1,9 +1,20 @@
 import re
 
+from django.core.validators import RegexValidator
 from django.db import models
 
 from landing.fields import WebPImageField
 from landing.images import validate_raster
+
+hex_color = RegexValidator(
+    regex=r"^#[0-9A-Fa-f]{6}$",
+    message="Оберіть колір у палітрі.",
+)
+COLOR_HELP = "Натисніть квадратик, щоб обрати колір. Зміна з’явиться на сайті після збереження."
+COLOR_BG_DEFAULT = "#010b0d"
+COLOR_TEXT_DEFAULT = "#ffffff"
+COLOR_HIGHLIGHT_DEFAULT = "#45db00"
+COLOR_ACCENT_DEFAULT = "#45db00"
 
 
 class SingletonModel(models.Model):
@@ -114,6 +125,35 @@ class SiteSettings(SingletonModel):
     )
     offer_body = models.TextField("Текст оферти", blank=True, default="")
 
+    color_bg = models.CharField(
+        "Колір фону",
+        max_length=7,
+        default=COLOR_BG_DEFAULT,
+        validators=[hex_color],
+        help_text=COLOR_HELP,
+    )
+    color_text = models.CharField(
+        "Колір шрифту",
+        max_length=7,
+        default=COLOR_TEXT_DEFAULT,
+        validators=[hex_color],
+        help_text=COLOR_HELP,
+    )
+    color_highlight = models.CharField(
+        "Колір підсвітки",
+        max_length=7,
+        default=COLOR_HIGHLIGHT_DEFAULT,
+        validators=[hex_color],
+        help_text=COLOR_HELP,
+    )
+    color_accent = models.CharField(
+        "Колір акценту",
+        max_length=7,
+        default=COLOR_ACCENT_DEFAULT,
+        validators=[hex_color],
+        help_text="Текст, виділений зеленим, і кнопки акценту.",
+    )
+
     notify_email = models.EmailField(
         "Пошта для заявок",
         blank=True,
@@ -140,6 +180,13 @@ class SiteSettings(SingletonModel):
             digits = "38" + digits
         self.phone_href = f"tel:+{digits}" if digits else ""
         super().save(*args, **kwargs)
+
+
+class LookSettings(SiteSettings):
+    class Meta:
+        proxy = True
+        verbose_name = "Оформлення"
+        verbose_name_plural = "Оформлення"
 
 
 class ContactsSettings(SiteSettings):

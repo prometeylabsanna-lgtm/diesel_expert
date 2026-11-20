@@ -134,6 +134,7 @@ def _nav(on_home, show_reviews=True):
 
 
 def _settings(site):
+    from landing.colors import public_colors
     lines = [site.address_line_1]
     if site.address_line_2:
         lines.append(site.address_line_2)
@@ -163,6 +164,7 @@ def _settings(site):
         "privacy_url": reverse("privacy"),
         "privacy_label": site.privacy_label,
         "legal_links": legal_links,
+        **public_colors(site),
     }
 
 

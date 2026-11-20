@@ -503,6 +503,11 @@ body.is-menu-open .header {
   margin: 0;
 }
 
+.legal__body {
+  display: grid;
+  gap: 12px;
+}
+
 .legal strong,
 .legal b {
   color: var(--c-text);
