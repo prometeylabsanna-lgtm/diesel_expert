@@ -33,8 +33,10 @@
 html {
   scroll-behavior: smooth;
   color-scheme: dark;
-  /* Тимчасово: уся сторінка −10% (незалежно від Figma). Firefox 126+. */
-  zoom: 0.9;
+  /*
+    Не став zoom/transform на html або body: на iOS Safari це стискає
+    position:fixed (меню, модалки, cookie) і лишає «дірку» з контентом сторінки.
+  */
 }
 
 body {
@@ -97,7 +99,6 @@ p {
 
 @media (min-width: 1280px) {
   .wrap {
-    /* Без жорсткого cap на --page — інакше zoom лишає чорні поля */
     width: min(1680px, calc(100vw - (var(--gutter) * 2)));
   }
 
