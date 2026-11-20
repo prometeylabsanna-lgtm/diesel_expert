@@ -38,6 +38,49 @@ html.dark .unfold-logo--dark {
   display: block;
 }
 
+.de-admin-brand-wrap {
+  overflow: hidden;
+}
+
+.de-admin-brand {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+  max-width: 100%;
+  overflow: hidden;
+}
+
+.de-admin-brand__logo {
+  flex: none;
+  height: 40px;
+  width: auto;
+  max-width: 40px;
+  object-fit: contain;
+}
+
+.de-admin-brand__name {
+  flex: 1 1 auto;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 15px;
+  font-weight: 650;
+  line-height: 1.2;
+}
+
+@media (max-width: 767px) {
+  .de-admin-brand__logo {
+    height: 32px;
+    max-width: 32px;
+  }
+
+  .de-admin-brand__name {
+    font-size: 14px;
+  }
+}
+
 /* —— Toolbar: пошук + фільтри в один ряд —— */
 .de-changelist-toolbar {
   display: flex;

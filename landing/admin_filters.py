@@ -7,7 +7,13 @@ from django.db.models import DateTimeField, QuerySet
 from django.forms import ValidationError
 from django.http import HttpRequest
 
-from unfold.contrib.filters.admin import ChoicesDropdownFilter, DropdownFilter, RangeDateFilter
+from unfold.contrib.filters.admin import (
+    ChoicesDropdownFilter,
+    DropdownFilter,
+    RangeDateFilter,
+    RelatedDropdownFilter,
+)
+from unfold.contrib.filters.admin.mixins import ValueMixin, DropdownMixin
 from unfold.contrib.filters.forms import RangeDateForm
 from unfold.utils import parse_date_str
 
@@ -24,6 +30,36 @@ class UkChoicesDropdownFilter(ChoicesDropdownFilter):
                 label=str(self.title),
                 name=self.lookup_kwarg,
                 choices=choices,
+                data={self.lookup_kwarg: self.value()},
+                multiple=False,
+            ),
+        }
+
+
+class YesNoDropdownFilter(ValueMixin, DropdownMixin, admin.BooleanFieldListFilter):
+    all_option = ["", "Усі"]
+
+    def choices(self, changelist: ChangeList) -> Iterator:
+        yield {
+            "form": self.form_class(
+                label=str(self.title),
+                name=self.lookup_kwarg,
+                choices=[self.all_option, ("1", "Так"), ("0", "Ні")],
+                data={self.lookup_kwarg: self.value()},
+                multiple=False,
+            ),
+        }
+
+
+class UkRelatedDropdownFilter(RelatedDropdownFilter):
+    all_option = ["", "Усі"]
+
+    def choices(self, changelist: ChangeList) -> Iterator:
+        yield {
+            "form": self.form_class(
+                label=str(self.title),
+                name=self.lookup_kwarg,
+                choices=[self.all_option, *self.lookup_choices],
                 data={self.lookup_kwarg: self.value()},
                 multiple=False,
             ),

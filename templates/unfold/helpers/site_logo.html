@@ -1,0 +1,11 @@
+{% load i18n %}
+
+<a href="{% url "admin:index" %}" class="de-admin-brand">
+    {% if site_logo.light and site_logo.dark %}
+        <img src="{{ site_logo.dark }}" alt="" class="de-admin-brand__logo unfold-logo--dark">
+        <img src="{{ site_logo.light }}" alt="" class="de-admin-brand__logo unfold-logo--light">
+    {% else %}
+        <img src="{{ site_logo }}" class="de-admin-brand__logo" alt="">
+    {% endif %}
+    <span class="de-admin-brand__name">DieselExpert</span>
+</a>

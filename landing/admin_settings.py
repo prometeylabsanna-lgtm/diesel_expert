@@ -51,10 +51,6 @@ class ContactsSettingsAdmin(SingletonAdmin):
         ),
         ("Кнопки", {"fields": ("cta_service", "cta_diagnostics")}),
         ("Підвал", {"fields": ("copyright",)}),
-        (
-            "Сповіщення",
-            {"fields": ("notify_email", "telegram_bot_token", "telegram_chat_id")},
-        ),
     )
 
 
