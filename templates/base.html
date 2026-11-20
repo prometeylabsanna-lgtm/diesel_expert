@@ -32,11 +32,12 @@
   <link rel="apple-touch-icon" href="{% static 'img/apple-touch-icon.png' %}?v=2">
   <link rel="stylesheet" href="{% static 'css/tokens.css' %}?v=seo1">
   <link rel="stylesheet" href="{% static 'css/base.css' %}?v=seo1">
-  <link rel="stylesheet" href="{% static 'css/layout.css' %}?v=r2">
+  <link rel="stylesheet" href="{% static 'css/layout.css' %}?v=menu1">
   <link rel="stylesheet" href="{% static 'css/hero.css' %}?v=r3">
   <link rel="stylesheet" href="{% static 'css/sections.css' %}?v=seo1">
   <link rel="stylesheet" href="{% static 'css/components.css' %}?v=r2">
   <link rel="stylesheet" href="{% static 'css/modals.css' %}?v=seo1">
+  <link rel="stylesheet" href="{% static 'css/cookie-banner.css' %}?v=1">
   {% for block in seo.json_ld %}
   <script type="application/ld+json">{{ block|safe }}</script>
   {% endfor %}
@@ -50,8 +51,14 @@
   {% include "partials/footer.html" with settings=settings nav=nav %}
   {% include "modals/booking.html" with services=services settings=settings booking=booking %}
   {% include "modals/success.html" with settings=settings success=success %}
+  {% if not cookie_consent_chosen %}
+    {% include "partials/cookie_banner.html" %}
+  {% endif %}
   <script src="{% static 'js/htmx.min.js' %}" defer></script>
   <script src="{% static 'js/booking.js' %}" defer></script>
   <script type="module" src="{% static 'js/main.js' %}"></script>
+  {% if not cookie_consent_chosen %}
+  <script src="{% static 'js/cookie-banner.js' %}?v=1" defer></script>
+  {% endif %}
 </body>
 </html>

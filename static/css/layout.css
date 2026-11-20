@@ -136,7 +136,18 @@ body.is-menu-open .header {
   overflow: hidden;
   background:
     linear-gradient(180deg, var(--c-hero-to) 0%, var(--c-hero-from) 100%),
-    url("../img/hero/bg.webp") center top / cover no-repeat;
+    url("../img/hero/bg.webp") center right / cover no-repeat;
+}
+
+/*
+  html { zoom: 0.9 } на iOS Safari зменшує position:fixed до ~90% екрана.
+  Навколо меню лишається герой сторінки (інший кроп), тому фон «змінюється»,
+  а сама панель виглядає дрібнішою. Зворотний zoom повертає оверлей на весь екран.
+*/
+@supports (-webkit-touch-callout: none) {
+  .mobile-menu {
+    zoom: calc(1 / 0.9);
+  }
 }
 
 .mobile-menu[hidden] {

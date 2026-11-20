@@ -1,5 +1,6 @@
 from django.urls import path
 
+from landing.cookie_consent import cookie_consent
 from landing.seo import llm_txt, llms_txt, robots_txt, sitemap_xml
 from landing.views import home, lead_create, offer, privacy, thanks
 
@@ -13,4 +14,5 @@ urlpatterns = [
     path("dyakuyemo/", thanks, name="thanks"),
     path("polityka-konfidentsiynosti/", privacy, name="privacy"),
     path("publichnyy-dogovir/", offer, name="offer"),
+    path("cookie-consent/", cookie_consent, name="cookie_consent"),
 ]

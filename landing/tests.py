@@ -219,6 +219,12 @@ class SectionVisibilityTests(TestCase):
         self.assertContains(shown, 'href="#reviews"')
         self.assertContains(shown, ">Відгуки</a>")
 
+    def test_faq_answers_are_in_the_page(self):
+        response = self.client.get("/")
+        self.assertContains(response, "Чи надаєте ви гарантію на виконані роботи?")
+        self.assertContains(response, "На виконані роботи даємо гарантію")
+        self.assertContains(response, "Точну вартість називаємо після діагностики")
+
     def test_faq_section_can_be_hidden(self):
         site = SiteSettings.objects.get(pk=1)
         site.show_faq_section = False
@@ -288,3 +294,44 @@ class LegalPagesContentTests(TestCase):
         rendered = richtext("&lt;p&gt;Тест абзацу&lt;/p&gt;")
         self.assertIn("<p>", str(rendered))
         self.assertNotIn("&lt;p&gt;", str(rendered))
+
+
+class CookieBannerTests(TestCase):
+    def setUp(self):
+        self.client = Client()
+
+    def test_banner_on_public_pages_until_choice(self):
+        for name in ("home", "privacy", "offer", "thanks"):
+            response = self.client.get(reverse(name))
+            self.assertContains(response, 'id="cookie-banner"')
+            self.assertContains(response, "Сайт збирає cookie")
+            self.assertContains(response, "Погоджуюсь")
+            self.assertContains(response, "Відмовитись")
+
+    def test_accept_hides_banner_on_next_pages(self):
+        accept = self.client.post(
+            reverse("cookie_consent"),
+            {"choice": "accepted", "next": reverse("privacy")},
+        )
+        self.assertEqual(accept.status_code, 302)
+        self.assertEqual(self.client.cookies["cookie_consent"].value, "accepted")
+        self.assertNotContains(self.client.get(reverse("home")), 'id="cookie-banner"')
+        self.assertNotContains(self.client.get(reverse("offer")), 'id="cookie-banner"')
+
+    def test_decline_hides_banner_on_next_page(self):
+        self.client.post(
+            reverse("cookie_consent"),
+            {"choice": "declined", "next": "/"},
+        )
+        self.assertEqual(self.client.cookies["cookie_consent"].value, "declined")
+        self.assertNotContains(self.client.get(reverse("privacy")), 'id="cookie-banner"')
+
+    def test_invalid_choice_and_open_redirect(self):
+        bad = self.client.post(reverse("cookie_consent"), {"choice": "maybe"})
+        self.assertEqual(bad.status_code, 400)
+        redirect_away = self.client.post(
+            reverse("cookie_consent"),
+            {"choice": "accepted", "next": "https://evil.example/"},
+        )
+        self.assertEqual(redirect_away.status_code, 302)
+        self.assertEqual(redirect_away["Location"], "/")

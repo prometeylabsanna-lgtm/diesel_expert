@@ -2,6 +2,7 @@ from urllib.parse import quote_plus
 
 from django.urls import reverse
 
+from landing.cookie_consent import has_consent_choice
 from landing.data import NAV
 from landing.images import public_url
 from landing.models import (
@@ -115,6 +116,7 @@ def build_context(request=None):
         },
         "legal": {"title": site.privacy_title, "body": site.privacy_body},
         "offer": {"title": site.offer_title, "body": site.offer_body},
+        "cookie_consent_chosen": bool(request and has_consent_choice(request)),
     }
 
 

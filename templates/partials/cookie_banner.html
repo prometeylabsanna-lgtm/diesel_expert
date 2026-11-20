@@ -1,0 +1,43 @@
+<aside
+  class="cookie-banner"
+  id="cookie-banner"
+  role="region"
+  aria-labelledby="cookie-banner-title"
+  aria-describedby="cookie-banner-text"
+>
+  <div class="cookie-banner__inner">
+    <div class="cookie-banner__copy">
+      <p class="cookie-banner__title" id="cookie-banner-title">Файли cookie</p>
+      <p class="cookie-banner__text" id="cookie-banner-text">
+        Сайт збирає cookie для роботи сторінок і збереження вашої згоди.
+        Деталі — у
+        <a href="{% url 'privacy' %}">політиці конфіденційності</a>.
+      </p>
+    </div>
+    <form
+      class="cookie-banner__form"
+      method="post"
+      action="{% url 'cookie_consent' %}"
+      data-cookie-form
+    >
+      {% csrf_token %}
+      <input type="hidden" name="next" value="{{ request.path }}">
+      <button class="btn btn--ghost" type="submit" name="choice" value="declined">
+        Відмовитись
+      </button>
+      <button class="btn btn--primary" type="submit" name="choice" value="accepted">
+        Погоджуюсь
+      </button>
+    </form>
+  </div>
+</aside>
+<script nonce="{{ request.csp_nonce }}">
+(function () {
+  var el = document.getElementById("cookie-banner");
+  if (!el) return;
+  try {
+    var v = localStorage.getItem("de_cookie_consent");
+    if (v === "accepted" || v === "declined") el.hidden = true;
+  } catch (e) {}
+})();
+</script>
