@@ -51,6 +51,26 @@ class AdminCmsSmokeTests(TestCase):
             response = self.client.get(url)
             self.assertEqual(response.status_code, 200, name)
 
+    def test_schedule_admin_shows_line_breaks(self):
+        site = SiteSettings.objects.get(pk=1)
+        site.schedule = (
+            "Робочий час з 9.00 до 19.00\n"
+            "Субота з 9.00 до 15.00\n"
+            "Неділя вихідний"
+        )
+        site.save(update_fields=["schedule"])
+        page = self.client.get("/admin/landing/contactssettings/1/change/")
+        self.assertContains(page, 'name="schedule"')
+        self.assertContains(page, "<textarea")
+        self.assertContains(
+            page,
+            "Робочий час з 9.00 до 19.00\nСубота з 9.00 до 15.00\nНеділя вихідний",
+        )
+        self.assertNotContains(
+            page,
+            "19.00Субота",
+        )
+
     def test_service_slug_readonly_and_auto(self):
         service = Service.objects.create(title="Тестова послуга", bullets="a", image_static="x.webp")
         self.assertTrue(service.slug)

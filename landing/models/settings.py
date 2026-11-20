@@ -31,7 +31,7 @@ class SiteSettings(SingletonModel):
     phone_href = models.CharField("Посилання tel:", max_length=40, blank=True)
     address_line_1 = models.CharField("Адреса, рядок 1", max_length=120)
     address_line_2 = models.CharField("Адреса, рядок 2", max_length=120, blank=True)
-    schedule = models.CharField("Графік", max_length=160)
+    schedule = models.TextField("Графік")
     logo = WebPImageField(
         "Логотип (файл)",
         upload_to="brand/",

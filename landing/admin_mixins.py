@@ -87,7 +87,7 @@ class CmsWidgetsMixin:
             kwargs["widget"] = CmsAdminTextareaWidget(
                 max_chars=max_chars,
                 hard_limit=hard,
-                attrs={"rows": 4},
+                attrs={"rows": 3 if name == "schedule" else 4},
             )
             return db_field.formfield(**kwargs)
 
