@@ -22,22 +22,15 @@
     >
       {% csrf_token %}
       <input type="hidden" name="next" value="{{ request.path }}">
-      <button class="btn btn--ghost" type="submit" name="choice" value="declined">
-        Відмовитись
-      </button>
-      <button class="btn btn--primary" type="submit" name="choice" value="accepted">
-        Погоджуюсь
-      </button>
+      <div class="cookie-banner__actions">
+        <button class="btn btn--ghost" type="submit" name="choice" value="declined">
+          Відмовитись
+        </button>
+        <button class="btn btn--primary" type="submit" name="choice" value="accepted">
+          Погоджуюсь
+        </button>
+      </div>
+      <p class="cookie-banner__error" data-cookie-error hidden role="alert"></p>
     </form>
   </div>
 </aside>
-<script nonce="{{ request.csp_nonce }}">
-(function () {
-  var el = document.getElementById("cookie-banner");
-  if (!el) return;
-  try {
-    var v = localStorage.getItem("de_cookie_consent");
-    if (v === "accepted" || v === "declined") el.hidden = true;
-  } catch (e) {}
-})();
-</script>

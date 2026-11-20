@@ -50,7 +50,12 @@ body {
 }
 
 body.is-locked {
+  position: fixed;
+  left: 0;
+  right: 0;
+  width: 100%;
   overflow: hidden;
+  overscroll-behavior: none;
 }
 
 img {

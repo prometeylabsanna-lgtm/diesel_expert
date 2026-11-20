@@ -4,38 +4,38 @@
 </button>
 <h2 class="modal__title" id="modal-booking-title">{{ booking.title }}</h2>
 <p class="modal__lead">{{ booking.lead }}</p>
-<form class="modal__form" data-booking-form method="post" action="{% url 'lead_create' %}" hx-post="{% url 'lead_create' %}" hx-swap="none" hx-disabled-elt="find button[type='submit']">
+<form class="modal__form" data-booking-form method="post" action="{% url 'lead_create' %}" hx-post="{% url 'lead_create' %}" hx-swap="none" hx-disabled-elt="find button[type='submit']" hx-sync="this:replace">
   {% csrf_token %}
   <div class="hp" aria-hidden="true">
     <label>Компанія
       <input type="text" name="company" tabindex="-1" autocomplete="off" value="">
     </label>
   </div>
-  <div class="modal__field">
+  <div class="modal__field{% if form.name.errors %} is-invalid{% endif %}">
     <label class="field">
       <span class="field__icon" aria-hidden="true">
         <img src="{% static 'img/icons/profile.svg' %}" alt="" width="20" height="20">
       </span>
-      <input class="field__control" type="text" name="name" autocomplete="name" maxlength="80" placeholder="{{ booking.name_placeholder }}" aria-label="{{ booking.name_placeholder }}" value="{% if form %}{{ form.name.value|default:'' }}{% endif %}" required data-validate="name">
+      <input class="field__control" type="text" name="name" autocomplete="name" maxlength="80" placeholder="{{ booking.name_placeholder }}" aria-label="{{ booking.name_placeholder }}" value="{% if form %}{{ form.name.value|default:'' }}{% endif %}" required data-validate="name"{% if form.name.errors %} aria-invalid="true"{% endif %}>
     </label>
     {% if form.name.errors %}
       <p class="field__error" role="alert">{{ form.name.errors.0 }}</p>
     {% endif %}
   </div>
-  <div class="modal__field">
+  <div class="modal__field{% if form.phone.errors %} is-invalid{% endif %}">
     <label class="field">
       <span class="field__icon" aria-hidden="true">
         <img src="{% static 'img/icons/call.svg' %}" alt="" width="20" height="20">
       </span>
-      <input class="field__control" type="tel" name="phone" inputmode="numeric" autocomplete="tel" maxlength="17" placeholder="+380XXXXXXXXX" aria-label="{{ booking.phone_placeholder }}" value="{% if form %}{{ form.phone.value|default:'' }}{% endif %}" required data-validate="phone">
+      <input class="field__control" type="tel" name="phone" inputmode="tel" autocomplete="tel" maxlength="32" placeholder="+380XXXXXXXXX" aria-label="{{ booking.phone_placeholder }}" value="{% if form %}{{ form.phone.value|default:'' }}{% endif %}" required data-validate="phone"{% if form.phone.errors %} aria-invalid="true"{% endif %}>
     </label>
     {% if form.phone.errors %}
       <p class="field__error" role="alert">{{ form.phone.errors.0 }}</p>
     {% endif %}
   </div>
-  <div class="modal__field">
+  <div class="modal__field{% if form.service.errors %} is-invalid{% endif %}">
     <label class="field field--select">
-      <select class="field__control" name="service" aria-label="{{ booking.service_placeholder }}" required>
+      <select class="field__control" name="service" aria-label="{{ booking.service_placeholder }}" required{% if form.service.errors %} aria-invalid="true"{% endif %}>
         <option value="" disabled {% if not form or not form.service.value %}selected{% endif %}>{{ booking.service_placeholder }}</option>
         {% for service in services.items %}
           <option value="{{ service.title }}" {% if form and form.service.value == service.title %}selected{% endif %}>{{ service.title }}</option>
@@ -48,6 +48,7 @@
     {% endif %}
   </div>
   <button class="btn btn--primary modal__submit" type="submit">{{ booking.submit }}</button>
+  <p class="form__status" data-form-status hidden role="alert"></p>
 </form>
 <p class="modal__direct">
   <span>{{ booking.direct }}</span>

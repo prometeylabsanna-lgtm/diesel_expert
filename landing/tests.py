@@ -69,7 +69,7 @@ class LandingTests(TestCase):
         )
         self.assertEqual(response.status_code, 204)
         self.assertEqual(response["HX-Trigger"], "lead-ok")
-        self.assertEqual(response["HX-Push-Url"], "/dyakuyemo/")
+        self.assertFalse(response.has_header("HX-Push-Url"))
         lead = Lead.objects.get()
         self.assertEqual(lead.phone, "+380688068316")
         self.assertEqual(lead.status, Lead.Status.NEW)

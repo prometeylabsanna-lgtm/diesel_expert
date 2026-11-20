@@ -131,6 +131,23 @@
   display: none;
 }
 
+.form__status {
+  margin: 0;
+  color: #ff6b6b;
+  font-size: var(--fs-caption);
+  line-height: 1.35;
+  text-align: center;
+}
+
+.form__status[hidden] {
+  display: none;
+}
+
+.modal__submit:disabled {
+  cursor: progress;
+  opacity: 0.72;
+}
+
 .modal__field.is-invalid .field {
   box-shadow: 0 0 0 1px rgba(255, 107, 107, 0.55);
 }
@@ -301,5 +318,12 @@
     min-height: 0;
     max-height: calc(100dvh - 32px);
     padding-block: 36px;
+  }
+}
+
+/* html { zoom: 0.9 } на iOS зменшує position:fixed. Зворотний zoom тримає модалку на весь екран. */
+@supports (-webkit-touch-callout: none) {
+  .modal {
+    zoom: calc(1 / 0.9);
   }
 }

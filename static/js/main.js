@@ -9,20 +9,42 @@ function anyOverlayOpen() {
   return Boolean(modalOpen || menuOpen);
 }
 
-function syncLock() {
-  body.classList.toggle("is-locked", anyOverlayOpen());
+let menuReturnFocus = null;
+let lockScrollY = 0;
+
+function rememberScroll() {
+  if (body.style.top) return;
+  lockScrollY = window.scrollY || document.documentElement.scrollTop || 0;
+  body.style.top = `-${lockScrollY}px`;
 }
 
-let menuReturnFocus = null;
+function releaseScroll() {
+  const top = body.style.top;
+  body.style.top = "";
+  if (!top) return;
+  const y = Math.abs(parseInt(top, 10));
+  window.scrollTo(0, Number.isNaN(y) ? lockScrollY : y);
+}
 
-function closeMenu() {
+function syncLock() {
+  const lock = anyOverlayOpen();
+  if (lock) {
+    rememberScroll();
+    body.classList.add("is-locked");
+    return;
+  }
+  body.classList.remove("is-locked");
+  releaseScroll();
+}
+
+function closeMenu(options) {
   if (!menu || menu.hidden) return;
   menu.hidden = true;
   body.classList.remove("is-menu-open");
   document.querySelectorAll("[data-menu-toggle]").forEach((btn) => {
     btn.setAttribute("aria-expanded", "false");
   });
-  syncLock();
+  if (!options || !options.keepLock) syncLock();
   const back = menuReturnFocus;
   menuReturnFocus = null;
   if (back && typeof back.focus === "function" && document.contains(back)) back.focus();
@@ -75,7 +97,7 @@ function openModal(name) {
   document.querySelectorAll(".modal").forEach((item) => {
     item.hidden = true;
   });
-  closeMenu();
+  closeMenu({ keepLock: true });
   lastFocus = document.activeElement;
   modal.hidden = false;
   syncLock();
@@ -97,7 +119,9 @@ document.addEventListener("click", (event) => {
   if (opener) {
     openModal(opener.getAttribute("data-modal-open"));
     const select = document.querySelector('#modal-booking select[name="service"]');
-    if (select) select.value = opener.getAttribute("data-service") || "";
+    if (select && opener.hasAttribute("data-service")) {
+      select.value = opener.getAttribute("data-service") || "";
+    }
     return;
   }
   const closer = event.target.closest("[data-modal-close]");
@@ -109,35 +133,41 @@ document.addEventListener("click", (event) => {
 document.body.addEventListener("lead-ok", () => {
   const form = document.querySelector("[data-booking-form]");
   if (form) form.reset();
-  const thanks = document.body.getAttribute("data-thanks-url");
-  if (thanks && window.location.pathname !== thanks) {
-    window.history.pushState({ thanks: true }, "", thanks);
-  }
   const booking = document.getElementById("modal-booking");
   if (booking) booking.hidden = true;
   openModal("success");
 });
 
+function trapTab(event, panel) {
+  const focusable = getFocusable(panel);
+  if (!focusable.length) {
+    event.preventDefault();
+    return;
+  }
+  const first = focusable[0];
+  const last = focusable[focusable.length - 1];
+  if (event.shiftKey && document.activeElement === first) {
+    event.preventDefault();
+    last.focus();
+  } else if (!event.shiftKey && document.activeElement === last) {
+    event.preventDefault();
+    first.focus();
+  } else if (!panel.contains(document.activeElement)) {
+    event.preventDefault();
+    first.focus();
+  }
+}
+
 document.addEventListener("keydown", (event) => {
   const modal = document.querySelector(".modal:not([hidden])");
-  if (modal && event.key === "Tab") {
-    const panel = modal.querySelector(".modal__panel") || modal;
-    const focusable = getFocusable(panel);
-    if (!focusable.length) {
-      event.preventDefault();
+  if (event.key === "Tab") {
+    if (modal) {
+      trapTab(event, modal.querySelector(".modal__panel") || modal);
       return;
     }
-    const first = focusable[0];
-    const last = focusable[focusable.length - 1];
-    if (event.shiftKey && document.activeElement === first) {
-      event.preventDefault();
-      last.focus();
-    } else if (!event.shiftKey && document.activeElement === last) {
-      event.preventDefault();
-      first.focus();
-    } else if (!panel.contains(document.activeElement)) {
-      event.preventDefault();
-      first.focus();
+    if (menu && !menu.hidden) {
+      const panel = menu.querySelector(".mobile-menu__panel") || menu;
+      trapTab(event, panel);
     }
     return;
   }
@@ -148,6 +178,24 @@ document.addEventListener("keydown", (event) => {
   }
   closeMenu();
 });
+
+if (menu) {
+  menu.addEventListener("click", (event) => {
+    if (event.target === menu) closeMenu();
+  });
+}
+
+const desktopNav = window.matchMedia("(min-width: 1280px)");
+const closeMenuOnDesktop = () => {
+  if (desktopNav.matches) closeMenu();
+};
+if (typeof desktopNav.addEventListener === "function") {
+  desktopNav.addEventListener("change", closeMenuOnDesktop);
+} else if (typeof desktopNav.addListener === "function") {
+  desktopNav.addListener(closeMenuOnDesktop);
+}
+
+if (body.classList.contains("is-locked")) rememberScroll();
 
 document.querySelectorAll(".faq__question").forEach((button) => {
   button.addEventListener("click", () => {
